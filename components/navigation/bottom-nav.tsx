@@ -177,7 +177,7 @@ export function BottomNav() {
   return (
     <nav className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-3 safe-bottom safe-bottom-keyboard">
       <div className="mx-auto max-w-md">
-        <div className="pointer-events-auto relative overflow-hidden rounded-[22px] border border-border/70 bg-card/95 px-2 py-2 shadow-premium backdrop-blur-xl">
+        <div className="pointer-events-auto relative overflow-hidden rounded-[22px] border border-border/70 bg-card/88 px-2 py-2 shadow-premium backdrop-blur-2xl">
           {/* Top gradient line */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -195,7 +195,7 @@ export function BottomNav() {
                 <button
                   key={screen}
                   onClick={() => navigate(screen)}
-                  className="relative flex h-[56px] items-center justify-center rounded-xl transition-colors active:bg-accent/45"
+                  className="relative flex h-[54px] items-center justify-center rounded-xl transition-all active:scale-[0.98] active:bg-accent/45"
                   aria-label={`${a11yLabel}${badgeLabel}`}
                   aria-current={isActive ? 'page' : undefined}
                   aria-pressed={isActive}
@@ -247,7 +247,7 @@ export function BottomNav() {
                           stiffness: 380,
                           damping: 24,
                         }}
-                        className={`text-[10px] font-semibold tracking-tight ${
+                        className={`text-[11px] font-medium tracking-tight ${
                           isActive
                             ? 'text-primary'
                             : 'text-muted-foreground'

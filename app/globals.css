@@ -141,7 +141,7 @@
   }
 
   html {
-    font-size: 16px;
+    font-size: 15px;
   }
 }
 
@@ -177,9 +177,9 @@
   
   /* Premium glass effect - light only */
   .glass {
-    background: oklch(1 0 0 / 0.82);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: color-mix(in oklab, var(--card) 78%, transparent);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
   }
   
   /* Premium text gradient */
@@ -228,6 +228,9 @@
 
   .app-shell {
     @apply min-h-screen bg-background text-foreground pb-24;
+    background-image:
+      radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 32%),
+      radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 36%);
     padding-top: env(safe-area-inset-top);
   }
 
