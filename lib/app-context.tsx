@@ -1,40 +1,40 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, useMemo, type ReactNode } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import type { Language, Theme, UserRole, AppScreen, Master, Booking, ServiceRequest, Chat, InfoPage } from './types';
 import { translations, type TranslationKey } from './i18n';
 import { masters as mockMasters, bookings as mockBookings, serviceRequests as mockRequests, chats as mockChats } from './mock-data';
+import { PATH_TO_SCREEN, SCREEN_PATHS } from './routes';
 
 interface AppState {
   // UI State
   language: Language;
   theme: Theme;
-  currentScreen: AppScreen;
-  previousScreens: AppScreen[];
-  
+
   // User State
   userRole: UserRole | null;
   userName: string;
-  
+
   // Data State
   masters: Master[];
   favorites: string[];
   bookings: Booking[];
   requests: ServiceRequest[];
   chats: Chat[];
-  
+
   // Selected State
   selectedMasterId: string | null;
   selectedRequestId: string | null;
   selectedChatId: string | null;
   selectedServiceId: string | null;
   selectedInfoPage: InfoPage | null;
-  
+
   // Booking Flow State
   bookingServiceId: string | null;
   bookingDate: string | null;
   bookingTime: string | null;
-  
+
   // Search State
   searchQuery: string;
   selectedCategory: string | null;
@@ -42,38 +42,41 @@ interface AppState {
 }
 
 interface AppContextType extends AppState {
+  currentScreen: AppScreen;
+  previousScreens: AppScreen[];
+
   // Translation
   t: (key: TranslationKey) => string;
-  
+
   // Navigation
   navigate: (screen: AppScreen) => void;
   goBack: () => void;
-  
+
   // Settings
   setLanguage: (lang: Language) => void;
   setTheme: (theme: Theme) => void;
   setUserRole: (role: UserRole) => void;
-  
+
   // Master Actions
   selectMaster: (id: string) => void;
   toggleFavorite: (masterId: string) => void;
-  
+
   // Booking Actions
   startBooking: (masterId: string, serviceId?: string) => void;
   setBookingService: (serviceId: string) => void;
   setBookingDate: (date: string) => void;
   setBookingTime: (time: string) => void;
   confirmBooking: () => void;
-  
+
   // Request Actions
   selectRequest: (id: string) => void;
   createRequest: (request: Omit<ServiceRequest, 'id' | 'createdAt' | 'responsesCount' | 'status'>) => void;
-  
+
   // Chat Actions
   selectChat: (id: string) => void;
   openChatWithMaster: (masterId: string) => void;
   selectInfoPage: (page: InfoPage) => void;
-  
+
   // Search Actions
   setSearchQuery: (query: string) => void;
   setSelectedCategory: (category: string | null) => void;
@@ -83,11 +86,12 @@ interface AppContextType extends AppState {
 const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [state, setState] = useState<AppState>({
     language: 'ru',
     theme: 'light',
-    currentScreen: 'splash',
-    previousScreens: [],
     userRole: null,
     userName: 'Пользователь',
     masters: mockMasters,
@@ -122,6 +126,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const currentScreen = useMemo<AppScreen>(() => {
+    return PATH_TO_SCREEN[pathname] ?? 'home';
+  }, [pathname]);
+
   // Translation helper
   const t = useCallback((key: TranslationKey): string => {
     return translations[state.language][key] || translations.en[key] || key;
@@ -129,24 +137,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // Navigation
   const navigate = useCallback((screen: AppScreen) => {
-    setState(prev => ({
-      ...prev,
-      previousScreens: [...prev.previousScreens, prev.currentScreen],
-      currentScreen: screen,
-    }));
-  }, []);
+    router.push(SCREEN_PATHS[screen]);
+  }, [router]);
 
   const goBack = useCallback(() => {
-    setState(prev => {
-      const newPreviousScreens = [...prev.previousScreens];
-      const previousScreen = newPreviousScreens.pop() || 'home';
-      return {
-        ...prev,
-        previousScreens: newPreviousScreens,
-        currentScreen: previousScreen,
-      };
-    });
-  }, []);
+    router.back();
+  }, [router]);
 
   // Settings
   const setLanguage = useCallback((lang: Language) => {
@@ -157,7 +153,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const setTheme = useCallback((theme: Theme) => {
     window.localStorage.setItem('sloty-theme', theme);
     setState(prev => ({ ...prev, theme }));
-    // Apply theme to document
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -179,10 +174,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       const isFavorite = prev.favorites.includes(masterId);
       return {
         ...prev,
-        favorites: isFavorite 
+        favorites: isFavorite
           ? prev.favorites.filter(id => id !== masterId)
           : [...prev.favorites, masterId],
-        masters: prev.masters.map(m => 
+        masters: prev.masters.map(m =>
           m.id === masterId ? { ...m, isFavorite: !isFavorite } : m
         ),
       };
@@ -216,7 +211,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setState(prev => {
       const master = prev.masters.find(m => m.id === prev.selectedMasterId);
       const service = master?.services.find(s => s.id === prev.bookingServiceId);
-      
+
       if (!master || !service || !prev.bookingDate || !prev.bookingTime) {
         return prev;
       }
@@ -275,7 +270,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (existingChat) {
         return { ...prev, selectedChatId: existingChat.id };
       }
-      
+
       const master = prev.masters.find(m => m.id === masterId);
       if (!master) return prev;
 
@@ -316,6 +311,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const value: AppContextType = {
     ...state,
+    currentScreen,
+    previousScreens: [],
     t,
     navigate,
     goBack,
