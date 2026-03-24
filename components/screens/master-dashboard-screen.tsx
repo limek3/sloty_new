@@ -198,16 +198,16 @@ export function MasterDashboardScreen() {
 
               <div className="min-w-0 flex-1 pt-0.5">
                 <div className="flex items-center gap-1.5">
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                     {isRu ? 'Панель мастера' : 'Master Dashboard'}
                   </h1>
-                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[15px] font-medium text-emerald-700">
+                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[13px] font-medium text-emerald-700">
                     <Sparkles className="h-2 w-2" />
                     {isRu ? 'Мастер' : 'Master'}
                   </span>
                 </div>
 
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[12px] leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Управляйте профилем, расписанием, заявками'
                     : 'Manage profile, schedule, requests'}
@@ -217,7 +217,7 @@ export function MasterDashboardScreen() {
               <div className="flex shrink-0 items-center gap-1.5">
                 <button
                   onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
-                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-[15px] font-bold text-slate-600 transition hover:bg-card"
+                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-[13px] font-bold text-slate-600 transition hover:bg-card"
                 >
                   {language.toUpperCase()}
                 </button>
@@ -226,10 +226,10 @@ export function MasterDashboardScreen() {
 
             <div className="mt-1 flex items-center justify-between rounded-[12px] border border-border/70 bg-[#fafaf8] px-2.5 py-1.5">
               <div>
-                <p className="text-[14px] font-semibold text-slate-900">
+                <p className="text-[12px] font-semibold text-slate-900">
                   {isRu ? 'Профессиональный режим' : 'Professional mode'}
                 </p>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[13px] text-slate-500">
                   {isRu ? 'Панель управления мастера' : 'Master management panel'}
                 </p>
               </div>
@@ -239,7 +239,7 @@ export function MasterDashboardScreen() {
                   setUserRole('client');
                   navigate('home');
                 }}
-                className="rounded-[10px] bg-emerald-50 px-2.5 py-1.5 text-[15px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                className="rounded-[10px] bg-emerald-50 px-2.5 py-1.5 text-[13px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
               >
                 {isRu ? 'К клиенту' : 'Client mode'}
               </button>
@@ -262,10 +262,10 @@ export function MasterDashboardScreen() {
               >
                 <stat.icon className="h-3.5 w-3.5" />
               </div>
-              <p className="text-[16px] font-bold tracking-tight text-slate-900">
+              <p className="text-[12px] font-bold tracking-tight text-slate-900">
                 {stat.value}
               </p>
-              <p className="mt-0.5 text-[15px] text-slate-500">{stat.label}</p>
+              <p className="mt-0.5 text-[13px] text-slate-500">{stat.label}</p>
             </div>
           ))}
         </section>
@@ -292,10 +292,10 @@ export function MasterDashboardScreen() {
               </div>
 
               <div className="mt-2">
-                <p className="text-[15px] font-semibold text-slate-900 transition group-hover:text-emerald-600">
+                <p className="text-[13px] font-semibold text-slate-900 transition group-hover:text-emerald-600">
                   {item.title}
                 </p>
-                <p className="mt-0.5 text-[15px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[13px] leading-[1.4] text-slate-500">
                   {item.description}
                 </p>
               </div>
@@ -305,12 +305,12 @@ export function MasterDashboardScreen() {
 
         <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-[15px] font-semibold text-slate-900">
+            <h3 className="text-[13px] font-semibold text-slate-900">
               {isRu ? 'Ближайшие записи' : 'Upcoming Bookings'}
             </h3>
             <button
               onClick={() => navigate('bookings')}
-              className="inline-flex items-center gap-0.5 text-[15px] font-medium text-emerald-600"
+              className="inline-flex items-center gap-0.5 text-[13px] font-medium text-emerald-600"
             >
               {t('viewAll')}
               <ChevronRight className="h-2.5 w-2.5" />
@@ -326,17 +326,17 @@ export function MasterDashboardScreen() {
                 >
                   <div className="flex items-center justify-between gap-2.5">
                     <div className="min-w-0">
-                      <p className="truncate text-[15px] font-medium text-slate-900">
+                      <p className="truncate text-[13px] font-medium text-slate-900">
                         {booking.service.name}
                       </p>
-                      <div className="mt-0.5 flex items-center gap-1 text-[15px] text-slate-500">
+                      <div className="mt-0.5 flex items-center gap-1 text-[13px] text-slate-500">
                         <Clock3 className="h-2.5 w-2.5" />
                         <span>
                           {booking.date} • {booking.time}
                         </span>
                       </div>
                     </div>
-                    <span className="shrink-0 text-[15px] font-bold text-emerald-600">
+                    <span className="shrink-0 text-[13px] font-bold text-emerald-600">
                       {formatPrice(booking.service.price)}
                     </span>
                   </div>
@@ -372,7 +372,7 @@ export function MasterDashboardScreen() {
         </section>
 
         <section>
-          <h3 className="mb-2 px-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-slate-400">
+          <h3 className="mb-2 px-0.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-slate-400">
             {isRu ? 'Управление' : 'Management'}
           </h3>
 
@@ -393,10 +393,10 @@ export function MasterDashboardScreen() {
                   </div>
 
                   <div className="min-w-0">
-                    <p className="truncate text-[15px] font-medium text-slate-900 transition group-hover:text-emerald-600">
+                    <p className="truncate text-[13px] font-medium text-slate-900 transition group-hover:text-emerald-600">
                       {item.label}
                     </p>
-                    <p className="mt-0.5 text-[15px] text-slate-500">
+                    <p className="mt-0.5 text-[13px] text-slate-500">
                       {item.description}
                     </p>
                   </div>
@@ -411,7 +411,7 @@ export function MasterDashboardScreen() {
         <section className="pb-2">
           <Button
             variant="outline"
-            className="h-9 w-full rounded-[12px] border-border/70 bg-card text-[14px] font-medium shadow-none hover:bg-slate-50"
+            className="h-9 w-full rounded-[12px] border-border/70 bg-card text-[12px] font-medium shadow-none hover:bg-slate-50"
             onClick={() => {
               setUserRole('client');
               navigate('home');

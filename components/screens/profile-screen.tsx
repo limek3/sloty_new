@@ -176,10 +176,10 @@ export function ProfileScreen() {
 
               <div className="min-w-0 flex-1 pt-0.5">
                 <div className="flex items-center gap-1.5">
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                     {profileName}
                   </h1>
-                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[15px] font-medium text-emerald-700">
+                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[13px] font-medium text-emerald-700">
                     <Sparkles className="h-2 w-2" />
                     {userRole === 'client'
                       ? isRu
@@ -191,7 +191,7 @@ export function ProfileScreen() {
                   </span>
                 </div>
 
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[12px] leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Управляйте профилем, записями, заявками'
                     : 'Manage profile, bookings, requests'}
@@ -212,19 +212,19 @@ export function ProfileScreen() {
 
             <div className="mt-1 grid grid-cols-3 gap-2">
               <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
-                <p className="text-[16px] font-bold tracking-tight text-slate-900">
+                <p className="text-[12px] font-bold tracking-tight text-slate-900">
                   {favorites.length}
                 </p>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[13px] text-slate-500">
                   {isRu ? 'Избранное' : 'Favorites'}
                 </p>
               </div>
 
               <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
-                <p className="text-[16px] font-bold tracking-tight text-slate-900">
+                <p className="text-[12px] font-bold tracking-tight text-slate-900">
                   {upcomingCount}
                 </p>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[13px] text-slate-500">
                   {isRu ? 'Записи' : 'Bookings'}
                 </p>
               </div>
@@ -232,9 +232,9 @@ export function ProfileScreen() {
               <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
                 <div className="flex items-center justify-center gap-0.5">
                   <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                  <p className="text-[16px] font-bold tracking-tight text-slate-900">4.9</p>
+                  <p className="text-[12px] font-bold tracking-tight text-slate-900">4.9</p>
                 </div>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[13px] text-slate-500">
                   {isRu ? 'Рейтинг' : 'Rating'}
                 </p>
               </div>
@@ -249,7 +249,7 @@ export function ProfileScreen() {
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-600">
               <Settings2 className="h-3 w-3" />
             </div>
-            <h2 className="text-[14px] font-semibold text-slate-900">
+            <h2 className="text-[12px] font-semibold text-slate-900">
               {t('settings')}
             </h2>
           </div>
@@ -263,10 +263,10 @@ export function ProfileScreen() {
                   </div>
 
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium text-slate-900">
+                    <p className="text-[13px] font-medium text-slate-900">
                       {t('language')}
                     </p>
-                    <p className="text-[15px] text-slate-500">
+                    <p className="text-[13px] text-slate-500">
                       {language === 'ru' ? 'Русский' : 'English'}
                     </p>
                   </div>
@@ -275,7 +275,7 @@ export function ProfileScreen() {
                 <div className="flex items-center rounded-[10px] border border-border/70 bg-card p-0.5">
                   <button
                     onClick={() => setLanguage('ru')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`rounded-[8px] px-2 py-1 text-[12px] font-semibold transition ${
                       language === 'ru'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
@@ -285,7 +285,7 @@ export function ProfileScreen() {
                   </button>
                   <button
                     onClick={() => setLanguage('en')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`rounded-[8px] px-2 py-1 text-[12px] font-semibold transition ${
                       language === 'en'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
@@ -305,10 +305,10 @@ export function ProfileScreen() {
                   </div>
 
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium text-slate-900">
+                    <p className="text-[13px] font-medium text-slate-900">
                       {isRu ? 'Режим' : 'Mode'}
                     </p>
-                    <p className="text-[15px] text-slate-500">
+                    <p className="text-[13px] text-slate-500">
                       {userRole === 'client'
                         ? isRu
                           ? 'Клиент'
@@ -323,7 +323,7 @@ export function ProfileScreen() {
                 <div className="flex items-center rounded-[10px] border border-border/70 bg-card p-0.5">
                   <button
                     onClick={() => setUserRole('client')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`rounded-[8px] px-2 py-1 text-[12px] font-semibold transition ${
                       userRole === 'client'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
@@ -333,7 +333,7 @@ export function ProfileScreen() {
                   </button>
                   <button
                     onClick={() => setUserRole('master')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`rounded-[8px] px-2 py-1 text-[12px] font-semibold transition ${
                       userRole === 'master'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
@@ -352,13 +352,13 @@ export function ProfileScreen() {
                     {theme === 'dark' ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium text-slate-900">{t('theme')}</p>
-                    <p className="text-[15px] text-slate-500">{theme === 'dark' ? t('darkMode') : t('lightMode')}</p>
+                    <p className="text-[13px] font-medium text-slate-900">{t('theme')}</p>
+                    <p className="text-[13px] text-slate-500">{theme === 'dark' ? t('darkMode') : t('lightMode')}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[14px] font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[12px] font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   {theme === 'dark' ? (isRu ? 'Светлая' : 'Light') : (isRu ? 'Темная' : 'Dark')}
                 </button>
@@ -369,7 +369,7 @@ export function ProfileScreen() {
 
         {menuSections.map((section, sectionIndex) => (
           <section key={sectionIndex}>
-            <h2 className="mb-2 px-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-slate-400">
+            <h2 className="mb-2 px-0.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-slate-400">
               {section.title}
             </h2>
 
@@ -391,11 +391,11 @@ export function ProfileScreen() {
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <p className="text-[15px] font-medium text-slate-900">
+                    <p className="text-[13px] font-medium text-slate-900">
                       {item.label}
                     </p>
                     {item.value && (
-                      <p className="mt-0.5 text-[15px] text-slate-500">
+                      <p className="mt-0.5 text-[13px] text-slate-500">
                         {item.value}
                       </p>
                     )}
@@ -408,12 +408,12 @@ export function ProfileScreen() {
           </section>
         ))}
 
-        <button className="flex w-full items-center justify-center gap-1.5 rounded-[14px] border border-rose-200 bg-rose-50 p-2.5 text-[15px] font-medium text-rose-600 transition hover:bg-rose-100">
+        <button className="flex w-full items-center justify-center gap-1.5 rounded-[14px] border border-rose-200 bg-rose-50 p-2.5 text-[13px] font-medium text-rose-600 transition hover:bg-rose-100">
           <LogOut className="h-4 w-4" />
           {isRu ? 'Выйти' : 'Log out'}
         </button>
 
-        <p className="pb-1 text-center text-[15px] text-slate-400">Sloty v1.0.0</p>
+        <p className="pb-1 text-center text-[13px] text-slate-400">Sloty v1.0.0</p>
       </main>
 
       <BottomNav />

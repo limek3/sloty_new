@@ -141,7 +141,7 @@
   }
 
   html {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 
@@ -227,7 +227,7 @@
   }
 
   .app-shell {
-    @apply min-h-screen bg-background text-foreground pb-28;
+    @apply min-h-screen bg-background text-foreground pb-24;
     padding-top: env(safe-area-inset-top);
   }
 
@@ -347,6 +347,36 @@
   background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.4), transparent);
   background-size: 200% 100%;
 }
+
+
+
+  .type-display {
+    @apply text-[20px] font-semibold tracking-tight sm:text-[22px];
+  }
+
+  .type-title {
+    @apply text-[16px] font-semibold tracking-tight;
+  }
+
+  .type-subtitle {
+    @apply text-[14px] font-medium text-muted-foreground;
+  }
+
+  .type-body {
+    @apply text-[13px] leading-5 text-foreground/90;
+  }
+
+  .type-caption {
+    @apply text-[12px] text-muted-foreground;
+  }
+
+  .surface-soft {
+    background: color-mix(in oklab, var(--card) 88%, var(--muted) 12%);
+  }
+
+  .interactive-press {
+    @apply transition active:scale-[0.985];
+  }
 
 /* Leaflet Map Styling */
 .leaflet-container {
@@ -493,11 +523,15 @@ body {
 
 @media (max-width: 430px) {
   :root {
-    --radius: 0.95rem;
+    --radius: 0.9rem;
+  }
+
+  html {
+    font-size: 15px;
   }
 
   body {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .shadow-premium-sm {

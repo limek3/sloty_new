@@ -74,7 +74,7 @@ export function BookingsScreen() {
           </button>
           <p className="truncate text-xs text-muted-foreground">{booking.service.name}</p>
         </div>
-        <span className={`shrink-0 rounded-lg border px-2 py-0.5 text-[15px] font-medium ${getStatusColor(booking.status)}`}>
+        <span className={`shrink-0 rounded-lg border px-2 py-0.5 text-[13px] font-medium ${getStatusColor(booking.status)}`}>
           {getStatusText(booking.status)}
         </span>
       </div>

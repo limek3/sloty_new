@@ -103,7 +103,8 @@ function buildMasterMarkerHTML(master: MasterMapItem, selected: boolean) {
   `;
 }
 
-function buildClusterHTML(count: number) {
+function buildClusterHTML(count: number | string) {
+  const safeCount = typeof count === 'string' ? Number.parseInt(count, 10) || 0 : count;
   return `
     <div style="
       width:48px;
@@ -120,7 +121,7 @@ function buildClusterHTML(count: number) {
       box-shadow:0 10px 24px rgba(20,195,142,0.28);
       border:4px solid rgba(255,255,255,0.92);
     ">
-      ${count}
+      ${safeCount}
     </div>
   `;
 }

@@ -146,7 +146,7 @@ export function MasterProfileScreen() {
               {/* Info */}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
-                  <h1 className="truncate text-[14px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                     {master.name}
                   </h1>
                   {master.verified && (
@@ -154,12 +154,12 @@ export function MasterProfileScreen() {
                   )}
                 </div>
 
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[13px] text-slate-500">
                   {master.specialization}
                 </p>
 
                 {/* Stats */}
-                <div className="mt-2 flex flex-wrap items-center gap-2 text-[14px]">
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-[12px]">
                   <div className="flex items-center gap-0.5">
                     <Star className="h-3 w-3 fill-[#f4b63d] text-[#f4b63d]" />
                     <span className="font-semibold text-slate-900">{master.rating}</span>
@@ -175,8 +175,8 @@ export function MasterProfileScreen() {
 
               {/* Price */}
               <div className="shrink-0 rounded-[14px] bg-emerald-50 px-2.5 py-2 text-right">
-                <span className="text-[15px] text-slate-500">{t('from')}</span>
-                <p className="text-[14px] font-bold text-emerald-600">
+                <span className="text-[13px] text-slate-500">{t('from')}</span>
+                <p className="text-[12px] font-bold text-emerald-600">
                   {formatPrice(master.priceFrom)}
                 </p>
               </div>
@@ -186,7 +186,7 @@ export function MasterProfileScreen() {
             <div className="mt-3 grid grid-cols-2 gap-2">
               <Button
                 variant="outline"
-                className="h-10 rounded-[14px] gap-1.5 border-border/70 bg-[#f7f7f5] text-[15px] shadow-none hover:bg-card"
+                className="h-10 rounded-[14px] gap-1.5 border-border/70 bg-[#f7f7f5] text-[13px] shadow-none hover:bg-card"
                 onClick={handleChat}
               >
                 <MessageCircle className="h-3.5 w-3.5" />
@@ -195,7 +195,7 @@ export function MasterProfileScreen() {
 
               <Button
                 variant="outline"
-                className="h-10 rounded-[14px] gap-1.5 border-border/70 bg-[#f7f7f5] text-[15px] shadow-none hover:bg-card"
+                className="h-10 rounded-[14px] gap-1.5 border-border/70 bg-[#f7f7f5] text-[13px] shadow-none hover:bg-card"
                 onClick={handleBuildRoute}
               >
                 <Navigation className="h-3.5 w-3.5" />
@@ -211,17 +211,17 @@ export function MasterProfileScreen() {
                 </div>
 
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[15px] font-medium text-slate-900">
+                  <p className="truncate text-[13px] font-medium text-slate-900">
                     {master.address}
                   </p>
-                  <p className="mt-0.5 text-[15px] text-slate-500">
+                  <p className="mt-0.5 text-[13px] text-slate-500">
                     {formatDistance(master.distance, language)} {isRu ? 'от вас' : 'from you'}
                   </p>
                 </div>
 
                 <button
                   onClick={handleBuildRoute}
-                  className="shrink-0 rounded-[10px] bg-emerald-50 px-2.5 py-1.5 text-[14px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                  className="shrink-0 rounded-[10px] bg-emerald-50 px-2.5 py-1.5 text-[12px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
                 >
                   {isRu ? 'Маршрут' : 'Route'}
                 </button>
@@ -236,16 +236,16 @@ export function MasterProfileScreen() {
         <div className="mx-auto max-w-2xl">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-4 h-10 rounded-[14px] bg-[#f0f0ec] p-1">
-              <TabsTrigger value="services" className="rounded-[10px] text-[14px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="services" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
                 {t('services')}
               </TabsTrigger>
-              <TabsTrigger value="reviews" className="rounded-[10px] text-[14px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="reviews" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
                 {t('reviews')}
               </TabsTrigger>
-              <TabsTrigger value="portfolio" className="rounded-[10px] text-[14px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="portfolio" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
                 {t('portfolio')}
               </TabsTrigger>
-              <TabsTrigger value="about" className="rounded-[10px] text-[14px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="about" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
                 {t('about')}
               </TabsTrigger>
             </TabsList>
@@ -261,22 +261,22 @@ export function MasterProfileScreen() {
                   >
                     <div className="flex items-center justify-between gap-2.5">
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-[15px] font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                        <h3 className="text-[13px] font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
                           {service.name}
                         </h3>
 
                         {service.description && (
-                          <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.4] text-slate-500">
+                          <p className="mt-0.5 line-clamp-2 text-[12px] leading-[1.4] text-slate-500">
                             {service.description}
                           </p>
                         )}
 
                         <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                          <span className="text-[14px] font-bold text-emerald-600">
+                          <span className="text-[12px] font-bold text-emerald-600">
                             {formatPrice(service.price)}
                           </span>
 
-                          <span className="flex items-center gap-0.5 text-[14px] text-slate-500">
+                          <span className="flex items-center gap-0.5 text-[12px] text-slate-500">
                             <Clock className="h-3 w-3" />
                             {service.duration} {t('min')}
                           </span>
@@ -312,15 +312,15 @@ export function MasterProfileScreen() {
                   >
                     <div className="flex items-center justify-between gap-2.5 mb-2">
                       <div className="flex items-center gap-2 min-w-0">
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-[14px] font-bold text-slate-700">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-[12px] font-bold text-slate-700">
                           {review.authorName.charAt(0)}
                         </div>
 
                         <div className="min-w-0">
-                          <p className="truncate text-[15px] font-medium text-slate-900">
+                          <p className="truncate text-[13px] font-medium text-slate-900">
                             {review.authorName}
                           </p>
-                          <p className="text-[15px] text-slate-400">{review.date}</p>
+                          <p className="text-[13px] text-slate-400">{review.date}</p>
                         </div>
                       </div>
 
@@ -338,7 +338,7 @@ export function MasterProfileScreen() {
                       </div>
                     </div>
 
-                    <p className="text-[14px] leading-[1.5] text-slate-700">{review.text}</p>
+                    <p className="text-[12px] leading-[1.5] text-slate-700">{review.text}</p>
                   </div>
                 ))
               ) : (
@@ -392,13 +392,13 @@ export function MasterProfileScreen() {
             {/* About Tab */}
             <TabsContent value="about" className="mt-3 pb-32">
               <div className="rounded-[16px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-                <h3 className="text-[15px] font-semibold text-slate-900 mb-1.5">{t('about')}</h3>
-                <p className="text-[14px] leading-[1.5] text-slate-700">{master.about}</p>
+                <h3 className="text-[13px] font-semibold text-slate-900 mb-1.5">{t('about')}</h3>
+                <p className="text-[12px] leading-[1.5] text-slate-700">{master.about}</p>
               </div>
 
               {master.tags.length > 0 && (
                 <div className="mt-3">
-                  <h3 className="text-[15px] font-semibold text-slate-900 mb-2">
+                  <h3 className="text-[13px] font-semibold text-slate-900 mb-2">
                     {isRu ? 'Специализация' : 'Specialization'}
                   </h3>
 
@@ -406,7 +406,7 @@ export function MasterProfileScreen() {
                     {master.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-border/70 bg-[#fafaf8] px-2.5 py-1 text-[14px] text-slate-700"
+                        className="rounded-full border border-border/70 bg-[#fafaf8] px-2.5 py-1 text-[12px] text-slate-700"
                       >
                         {tag}
                       </span>
@@ -424,7 +424,7 @@ export function MasterProfileScreen() {
         <div className="mx-auto max-w-2xl">
           <div className="rounded-[18px] bg-card/95 p-2 shadow-[0_-8px_26px_rgba(15,23,42,0.08)] backdrop-blur-xl border border-border/70">
             <Button
-              className="w-full h-11 text-[14px] font-semibold rounded-[14px] bg-emerald-500 text-white shadow-[0_10px_24px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+              className="w-full h-11 text-[12px] font-semibold rounded-[14px] bg-emerald-500 text-white shadow-[0_10px_24px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
               onClick={() => handleBook()}
             >
               {t('bookNow')} • {t('from')} {formatPrice(master.priceFrom)}

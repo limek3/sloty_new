@@ -162,9 +162,9 @@ export function HomeScreen() {
     return { bg: "bg-primary/5", text: "text-primary", border: "border-primary/10" };
   };
 
-  const sectionHeaderClass = "text-[16px] font-semibold tracking-tight text-foreground";
+  const sectionHeaderClass = "text-[12px] font-semibold tracking-tight text-foreground";
   const sectionActionClass =
-    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[15px] font-medium text-slate-700 transition hover:bg-slate-50";
+    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50";
 
   return (
     <div className="app-shell">
@@ -173,8 +173,8 @@ export function HomeScreen() {
           <div className="rounded-[28px] border border-border/70 bg-card p-2 shadow-[0_10px_34px_rgba(15,23,42,0.06)]">
             <div className="flex items-center justify-between gap-3 px-1 pb-2 pt-1">
               <div className="min-w-0">
-                <p className="text-[14px] font-medium text-slate-500">{t("greeting")},</p>
-                <h1 className="truncate text-[14px] font-bold tracking-tight text-slate-900">
+                <p className="text-[12px] font-medium text-slate-500">{t("greeting")},</p>
+                <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                   {userName}
                 </h1>
               </div>
@@ -183,7 +183,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => setLanguage(language === "ru" ? "en" : "ru")}
                   aria-label="Toggle language"
-                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-[14px] font-bold text-slate-600 transition hover:bg-card"
+                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-[12px] font-bold text-slate-600 transition hover:bg-card"
                 >
                   {language.toUpperCase()}
                 </button>
@@ -194,7 +194,7 @@ export function HomeScreen() {
                   className="relative flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
                 >
                   <Bell className="h-4 w-4" />
-                  <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[15px] font-bold text-white">
+                  <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[13px] font-bold text-white">
                     2
                   </span>
                 </button>
@@ -206,7 +206,7 @@ export function HomeScreen() {
               className="group flex h-10 w-full items-center gap-3 rounded-[18px] border border-border/70 bg-[#f7f7f5] px-3 text-left transition hover:bg-card"
             >
               <Search className="h-4 w-4 text-slate-400 transition-colors group-hover:text-emerald-600" />
-              <span className="text-[14px] text-slate-400">{t("searchPlaceholder")}</span>
+              <span className="text-[12px] text-slate-400">{t("searchPlaceholder")}</span>
             </button>
           </div>
         </div>
@@ -228,8 +228,8 @@ export function HomeScreen() {
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-[14px] font-semibold text-slate-900">{t("createRequest")}</p>
-                  <p className="mt-0.5 text-[15px] leading-4 text-slate-500">
+                  <p className="text-[12px] font-semibold text-slate-900">{t("createRequest")}</p>
+                  <p className="mt-0.5 text-[13px] leading-4 text-slate-500">
                     {isRu ? "Получите отклики от лучших мастеров" : "Get responses from top masters"}
                   </p>
                 </div>
@@ -276,13 +276,13 @@ export function HomeScreen() {
                   >
                     <Icon className={`h-4.5 w-4.5 ${tone.text}`} strokeWidth={1.9} />
                     {typeof category.count === "number" && (
-                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[15px] font-bold text-slate-500 shadow-sm">
+                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[13px] font-bold text-slate-500 shadow-sm">
                         {category.count}
                       </span>
                     )}
                   </div>
 
-                  <span className="mt-1.5 text-[14px] font-medium leading-3 text-slate-700">
+                  <span className="mt-1.5 text-[12px] font-medium leading-3 text-slate-700">
                     {getCategoryLabel(category)}
                   </span>
                 </button>
@@ -349,7 +349,7 @@ export function HomeScreen() {
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <div className="truncate text-[14px] font-semibold leading-tight text-slate-900">
+                        <div className="truncate text-[12px] font-semibold leading-tight text-slate-900">
                           {master.name}
                         </div>
                         {master.verified && (
@@ -357,17 +357,17 @@ export function HomeScreen() {
                         )}
                       </div>
 
-                      <div className="mt-0.5 truncate text-[14px] text-slate-500">
+                      <div className="mt-0.5 truncate text-[12px] text-slate-500">
                         {master.specialization}
                       </div>
 
                       <div className="mt-2 flex flex-wrap gap-1">
-                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[15px] font-medium text-emerald-700">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-[13px] font-medium text-emerald-700">
                           <Clock3 className="h-2.5 w-2.5" />
                           {master.nextAvailable || (isRu ? "Сегодня" : "Today")}
                         </span>
 
-                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1 text-[15px] font-medium text-slate-600">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1 text-[13px] font-medium text-slate-600">
                           <MapPin className="h-2.5 w-2.5" />
                           {typeof master.distance === "number"
                             ? master.distance < 1
@@ -382,12 +382,12 @@ export function HomeScreen() {
                   </div>
 
                   <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-3">
-                    <div className="text-[15px] font-bold text-emerald-600">
+                    <div className="text-[13px] font-bold text-emerald-600">
                       {isRu ? "от " : "from "}
                       {master.priceFrom.toLocaleString("ru-RU")} ₽
                     </div>
 
-                    <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.22)]">
+                    <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-[12px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.22)]">
                       {isRu ? "Запись" : "Book"}
                       <ArrowRight className="h-3 w-3" />
                     </div>
@@ -424,13 +424,13 @@ export function HomeScreen() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[14px] font-semibold">
+                      <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[12px] font-semibold">
                         {promo.badge}
                       </div>
-                      <h3 className="mt-3 text-[16px] font-semibold leading-tight text-slate-900">
+                      <h3 className="mt-3 text-[12px] font-semibold leading-tight text-slate-900">
                         {promo.title}
                       </h3>
-                      <p className="mt-1.5 text-[15px] leading-4 text-slate-500">{promo.description}</p>
+                      <p className="mt-1.5 text-[13px] leading-4 text-slate-500">{promo.description}</p>
                     </div>
 
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[16px] bg-card/80 shadow-sm">
@@ -438,7 +438,7 @@ export function HomeScreen() {
                     </div>
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1 text-[15px] font-semibold text-slate-900">
+                  <div className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-slate-900">
                     {isRu ? "Смотреть предложения" : "View offers"}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </div>
