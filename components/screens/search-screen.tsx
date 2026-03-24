@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useApp } from '@/lib/app-context';
 import { categories } from '@/lib/mock-data';
 import { BottomNav } from '@/components/navigation/bottom-nav';
+import { MobileAppHeader } from '@/components/ui/mobile-app-header';
 import {
   Search,
   X,
@@ -76,7 +77,7 @@ function SearchMasterCard({
   return (
     <button
       onClick={onClick}
-      className="group w-full rounded-[18px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
+      className="group list-card density-list w-full transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
     >
       <div className="flex items-start gap-2.5">
         <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px] bg-slate-100">
@@ -181,7 +182,7 @@ function SearchMasterGridCard({
   return (
     <button
       onClick={onClick}
-      className="group w-full rounded-[16px] border border-border/70 bg-card p-2 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px]"
+      className="group w-full radius-card border border-border/70 bg-card p-2 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px]"
     >
       <div className="relative overflow-hidden rounded-[12px]">
         <div className="relative aspect-square w-full bg-slate-100">
@@ -324,13 +325,11 @@ export function SearchScreen() {
 
   return (
     <div className="app-shell">
-      <header className="sticky top-0 z-40 px-3 pt-3">
-        <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
+      <MobileAppHeader>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => navigate('map')}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border border-border/70 bg-[#f7f7f5] text-emerald-600 transition hover:bg-emerald-50"
+                className="radius-card flex h-10 w-10 shrink-0 items-center justify-center border border-border/70 bg-[#f7f7f5] text-emerald-600 transition hover:bg-emerald-50"
                 aria-label={isRu ? 'Открыть карту' : 'Open map'}
               >
                 <Map className="h-4 w-4" />
@@ -343,7 +342,7 @@ export function SearchScreen() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isRu ? 'Поиск мастеров, услуг...' : 'Search masters, services...'}
-                  className="h-10 w-full rounded-[14px] border border-border/70 bg-[#f7f7f5] pl-9 pr-8 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+                  className="radius-card h-10 w-full border border-border/70 bg-[#f7f7f5] pl-9 pr-8 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
                 />
                 {searchQuery && (
                   <button
@@ -358,7 +357,7 @@ export function SearchScreen() {
 
               <button
                 onClick={() => setShowFilters((prev) => !prev)}
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border transition ${
+                className={`radius-card flex h-10 w-10 shrink-0 items-center justify-center border transition ${
                   showFilters
                     ? 'border-emerald-200 bg-emerald-50 text-emerald-600'
                     : 'border-border/70 bg-[#f7f7f5] text-slate-500'
@@ -374,7 +373,7 @@ export function SearchScreen() {
                 value={selectedCategory ?? 'all'}
                 onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] px-3 text-[15px] shadow-none">
+                <SelectTrigger className="h-9 radius-chip border-border/70 bg-[#fafaf8] px-3 text-[15px] shadow-none">
                   <div className="flex min-w-0 items-center gap-1.5">
                     <span className="truncate font-medium text-slate-800">
                       {selectedCategoryData
@@ -397,13 +396,13 @@ export function SearchScreen() {
             </div>
 
             {showFilters && (
-              <div className="mt-2 rounded-[14px] border border-border/70 bg-[#fafaf8] p-2">
+              <div className="mt-2 radius-card border border-border/70 bg-[#fafaf8] p-2">
                 <div className="grid gap-2 sm:grid-cols-2">
                   <Select
                     value={sortBy}
                     onValueChange={(value) => setSortBy(value as typeof sortBy)}
                   >
-                    <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-card px-3 text-[15px] shadow-none">
+                    <SelectTrigger className="h-9 radius-chip border-border/70 bg-card px-3 text-[15px] shadow-none">
                       <div className="flex min-w-0 items-center gap-1.5">
                         <ArrowUpDown className="h-3.5 w-3.5 text-slate-400" />
                         <span className="truncate font-medium text-slate-800">
@@ -427,7 +426,7 @@ export function SearchScreen() {
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setViewMode('list')}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[15px] font-medium transition ${
+                      className={`radius-chip flex h-9 flex-1 items-center justify-center gap-1.5 border text-[15px] font-medium transition ${
                         viewMode === 'list'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                           : 'border-border/70 bg-card text-slate-700'
@@ -439,7 +438,7 @@ export function SearchScreen() {
 
                     <button
                       onClick={() => setViewMode('grid')}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[15px] font-medium transition ${
+                      className={`radius-chip flex h-9 flex-1 items-center justify-center gap-1.5 border text-[15px] font-medium transition ${
                         viewMode === 'grid'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                           : 'border-border/70 bg-card text-slate-700'
@@ -452,11 +451,9 @@ export function SearchScreen() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
-      </header>
+      </MobileAppHeader>
 
-      <main className="mx-auto max-w-2xl px-3 pt-3">
+      <main className="app-content pt-3">
         <div className="mb-2.5 flex items-center gap-1.5">
           <div className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 text-[14px] font-medium text-slate-700 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
             {isRu ? 'Найдено' : 'Found'}: <span className="ml-0.5 font-semibold">{filteredMasters.length}</span>
@@ -509,7 +506,7 @@ export function SearchScreen() {
             ))}
           </div>
         ) : (
-          <div className="space-y-2.5">
+          <div className="stack-card">
             {filteredMasters.map((master) => (
               <SearchMasterCard
                 key={master.id}

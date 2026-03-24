@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useApp } from "@/lib/app-context";
 import { categories } from "@/lib/mock-data";
 import { BottomNav } from "@/components/navigation/bottom-nav";
+import { MobileAppHeader } from "@/components/ui/mobile-app-header";
 import {
   Search,
   Bell,
@@ -167,9 +168,7 @@ export function HomeScreen() {
 
   return (
     <div className="app-shell">
-      <header className="sticky top-0 z-40 px-3 pt-3">
-        <div className="mx-auto max-w-2xl">
-          <div className="rounded-[28px] border border-border/70 bg-card p-2 shadow-[0_10px_34px_rgba(15,23,42,0.06)]">
+      <MobileAppHeader shellClassName="radius-hero shadow-[0_10px_34px_rgba(15,23,42,0.06)]">
             <div className="flex items-center justify-between gap-3 px-1 pb-2 pt-1">
               <div className="min-w-0">
                 <p className="text-[14px] font-medium text-slate-500">{t("greeting")},</p>
@@ -182,7 +181,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => setLanguage(language === "ru" ? "en" : "ru")}
                   aria-label="Toggle language"
-                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-[14px] font-bold text-slate-600 transition hover:bg-card"
+                  className="radius-card flex h-10 w-10 items-center justify-center border border-border/70 bg-[#f7f7f5] text-[14px] font-bold text-slate-600 transition hover:bg-card"
                 >
                   {language.toUpperCase()}
                 </button>
@@ -190,7 +189,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => navigate("notifications")}
                   aria-label="View notifications"
-                  className="relative flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
+                  className="radius-card relative flex h-10 w-10 items-center justify-center border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
                 >
                   <Bell className="h-4 w-4" />
                   <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[15px] font-bold text-white">
@@ -202,20 +201,18 @@ export function HomeScreen() {
 
             <button
               onClick={() => navigate("search")}
-              className="group flex h-10 w-full items-center gap-3 rounded-[18px] border border-border/70 bg-[#f7f7f5] px-3 text-left transition hover:bg-card"
+              className="group radius-card flex h-10 w-full items-center gap-3 border border-border/70 bg-[#f7f7f5] px-3 text-left transition hover:bg-card"
             >
               <Search className="h-4 w-4 text-slate-400 transition-colors group-hover:text-emerald-600" />
               <span className="text-[14px] text-slate-400">{t("searchPlaceholder")}</span>
             </button>
-          </div>
-        </div>
-      </header>
+      </MobileAppHeader>
 
-      <main className="mx-auto max-w-2xl space-y-5 px-4 py-4">
-        <section>
+      <main className="app-content stack-section py-4">
+        <section className="stack-card">
           <button
             onClick={() => navigate("create-request")}
-            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)]"
+            className="group relative w-full overflow-hidden radius-hero border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)]"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">

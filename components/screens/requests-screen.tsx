@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useApp } from '@/lib/app-context';
 import { formatPrice } from '@/lib/i18n';
 import { BottomNav } from '@/components/navigation/bottom-nav';
+import { MobileAppHeader } from '@/components/ui/mobile-app-header';
+import { MobileAppShell, MobileCardStack, MobileContent } from '@/components/ui/mobile-layout';
 import {
   Plus,
   MapPin,
@@ -61,41 +63,37 @@ export function RequestsScreen() {
   };
 
   return (
-    <div className="app-shell">
-      <header className="sticky top-0 z-40 px-3 pt-3">
-        <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
-            <div className="flex items-center justify-between gap-2.5 px-0.5 pb-1.5 pt-0.5">
-              <div className="min-w-0">
-                <div className="flex items-center gap-1.5">
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                    <FileText className="h-3.5 w-3.5" />
-                  </div>
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
-                    {t('requests')}
-                  </h1>
-                </div>
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
-                  {isRu
-                    ? 'Смотрите актуальные заявки или управляйте своими'
-                    : 'Browse active requests or manage your own'}
-                </p>
-              </div>
+    <MobileAppShell>
+      <MobileAppHeader
+        title={
+          <span className="flex items-center gap-1.5">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+              <FileText className="h-3.5 w-3.5" />
+            </span>
+            {t('requests')}
+          </span>
+        }
+        description={
+          isRu
+            ? 'Смотрите актуальные заявки или управляйте своими'
+            : 'Browse active requests or manage your own'
+        }
+        actions={
+          <Button
+            size="sm"
+            onClick={() => navigate('create-request')}
+            className="h-9 radius-chip bg-emerald-500 px-2.5 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+          >
+            <Plus className="mr-1 h-3.5 w-3.5" />
+            {t('newRequest')}
+          </Button>
+        }
+      >
 
-              <Button
-                size="sm"
-                onClick={() => navigate('create-request')}
-                className="h-9 rounded-[12px] bg-emerald-500 px-2.5 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
-              >
-                <Plus className="mr-1 h-3.5 w-3.5" />
-                {t('newRequest')}
-              </Button>
-            </div>
-
-            <div className="mt-1 grid grid-cols-2 gap-1.5 rounded-[14px] border border-border/70 bg-[#fafaf8] p-1">
+            <div className="mt-1 grid grid-cols-2 gap-1.5 radius-card border border-border/70 bg-[#fafaf8] p-1">
               <button
                 onClick={() => setActiveTab('browse')}
-                className={`flex items-center justify-center gap-1 rounded-[10px] px-2.5 py-2 text-[14px] font-medium transition-all ${
+                className={`radius-chip flex items-center justify-center gap-1 px-2.5 py-2 text-[14px] font-medium transition-all ${
                   activeTab === 'browse'
                     ? 'bg-card text-slate-900 shadow-[0_4px_12px_rgba(15,23,42,0.05)]'
                     : 'text-slate-500'
@@ -107,7 +105,7 @@ export function RequestsScreen() {
 
               <button
                 onClick={() => setActiveTab('my')}
-                className={`flex items-center justify-center gap-1 rounded-[10px] px-2.5 py-2 text-[14px] font-medium transition-all ${
+                className={`radius-chip flex items-center justify-center gap-1 px-2.5 py-2 text-[14px] font-medium transition-all ${
                   activeTab === 'my'
                     ? 'bg-card text-slate-900 shadow-[0_4px_12px_rgba(15,23,42,0.05)]'
                     : 'text-slate-500'
@@ -117,18 +115,16 @@ export function RequestsScreen() {
                 {t('myRequests')}
               </button>
             </div>
-          </div>
-        </div>
-      </header>
+      </MobileAppHeader>
 
-      <main className="mx-auto max-w-2xl px-3 py-3">
+      <MobileContent className="py-3">
         {displayRequests.length > 0 ? (
-          <div className="space-y-2.5">
+          <MobileCardStack>
             {displayRequests.map((request) => (
               <button
                 key={request.id}
                 onClick={() => handleRequestClick(request.id)}
-                className="group w-full rounded-[18px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
+                className="group list-card density-list w-full transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
               >
                 <div className="flex items-start justify-between gap-2.5">
                   <h3 className="line-clamp-2 pr-2 text-[14px] font-semibold leading-[1.4] text-slate-900 transition-colors group-hover:text-emerald-600">
@@ -197,7 +193,7 @@ export function RequestsScreen() {
                 </div>
               </button>
             ))}
-          </div>
+          </MobileCardStack>
         ) : (
           <div className="rounded-[18px] border border-border/70 bg-card px-4 py-10 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f2]">
@@ -229,9 +225,9 @@ export function RequestsScreen() {
             </Button>
           </div>
         )}
-      </main>
+      </MobileContent>
 
       <BottomNav />
-    </div>
+    </MobileAppShell>
   );
 }

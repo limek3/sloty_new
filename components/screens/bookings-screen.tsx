@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useApp } from '@/lib/app-context';
 import { formatPrice } from '@/lib/i18n';
 import { BottomNav } from '@/components/navigation/bottom-nav';
+import { MobileAppHeader } from '@/components/ui/mobile-app-header';
+import { MobileAppShell, MobileCardStack, MobileContent } from '@/components/ui/mobile-layout';
 import { Calendar, Clock, MapPin, MessageCircle, ChevronLeft, History, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -50,7 +52,7 @@ export function BookingsScreen() {
   const displayBookings = activeTab === 'upcoming' ? upcomingBookings : pastBookings;
 
   const renderBookingCard = (booking: typeof bookings[0]) => (
-    <div key={booking.id} className="rounded-xl border border-border bg-card p-3.5">
+    <div key={booking.id} className="list-card density-list p-3.5">
       {/* Master Info */}
       <div className="flex items-center gap-3">
         <button
@@ -115,25 +117,24 @@ export function BookingsScreen() {
   );
 
   return (
-    <div className="min-h-screen bg-background pb-24 safe-top">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur-md">
-        <div className="px-4 py-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => navigate('profile')}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <h1 className="text-base font-bold text-foreground">{t('yourBookings')}</h1>
-          </div>
+    <MobileAppShell>
+      <MobileAppHeader
+        title={t('yourBookings')}
+        leading={
+          <button
+            onClick={() => navigate('profile')}
+            className="radius-chip flex h-9 w-9 items-center justify-center border border-border bg-card text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+        }
+      >
 
           {/* Tabs */}
-          <div className="mt-3 flex items-center rounded-xl border border-border bg-muted/50 p-1">
+          <div className="mt-1 flex items-center radius-card border border-border bg-muted/50 p-1">
             <button
               onClick={() => setActiveTab('upcoming')}
-              className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
+              className={`radius-chip flex-1 px-3 py-2 text-xs font-medium transition-all ${
                 activeTab === 'upcoming'
                   ? 'bg-card text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -146,7 +147,7 @@ export function BookingsScreen() {
             </button>
             <button
               onClick={() => setActiveTab('past')}
-              className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition-all ${
+              className={`radius-chip flex-1 px-3 py-2 text-xs font-medium transition-all ${
                 activeTab === 'past'
                   ? 'bg-card text-foreground shadow-sm'
                   : 'text-muted-foreground hover:text-foreground'
@@ -158,15 +159,13 @@ export function BookingsScreen() {
               </div>
             </button>
           </div>
-        </div>
-      </header>
+      </MobileAppHeader>
 
-      {/* Content */}
-      <main className="px-4 py-4">
+      <MobileContent className="py-4">
         {displayBookings.length > 0 ? (
-          <div className="space-y-2.5">
+          <MobileCardStack>
             {displayBookings.map(renderBookingCard)}
-          </div>
+          </MobileCardStack>
         ) : (
           <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-10 text-center">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
@@ -186,9 +185,9 @@ export function BookingsScreen() {
             </Button>
           </div>
         )}
-      </main>
+      </MobileContent>
 
       <BottomNav />
-    </div>
+    </MobileAppShell>
   );
 }

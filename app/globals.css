@@ -53,6 +53,23 @@
 
   /* Premium radius - Generous, soft corners */
   --radius: 1rem;
+  --radius-chip: 0.75rem;
+  --radius-card: 1rem;
+  --radius-sheet: 1.25rem;
+  --radius-hero: 1.5rem;
+
+  /* Vertical rhythm + mobile shell spacing */
+  --space-section-gap: 1rem;
+  --space-card-gap: 0.75rem;
+  --space-inset: 0.875rem;
+  --space-safe-top-offset: max(env(safe-area-inset-top), 0.5rem);
+  --space-safe-bottom-offset: max(env(safe-area-inset-bottom), 0.5rem);
+  --mobile-header-height: 4.875rem;
+  --mobile-bottom-nav-height: 6.5rem;
+  --mobile-composer-height: 0rem;
+  --mobile-visible-bottom-offset: calc(
+    var(--mobile-bottom-nav-height) + var(--mobile-composer-height) + var(--space-safe-bottom-offset)
+  );
   
   /* Premium surface layers */
   --surface-1: oklch(0.995 0.002 90);
@@ -221,8 +238,59 @@
   }
 
   .app-shell {
-    @apply min-h-screen bg-background text-foreground pb-28;
-    padding-top: env(safe-area-inset-top);
+    @apply min-h-screen bg-background text-foreground;
+    padding-top: var(--space-safe-top-offset);
+    padding-bottom: var(--mobile-visible-bottom-offset);
+  }
+
+  .app-shell--with-composer {
+    --mobile-composer-height: 5.5rem;
+  }
+
+  .app-content {
+    @apply mx-auto w-full max-w-2xl;
+    padding-inline: var(--space-inset);
+  }
+
+  .stack-section {
+    @apply space-y-4;
+    gap: var(--space-section-gap);
+  }
+
+  .stack-card {
+    @apply space-y-3;
+    gap: var(--space-card-gap);
+  }
+
+  .app-header-shell {
+    @apply border border-border/70 bg-card shadow-[0_8px_28px_rgba(15,23,42,0.05)];
+    border-radius: var(--radius-sheet);
+    padding: 0.625rem;
+  }
+
+  .list-card {
+    @apply border border-border/70 bg-card p-3 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)];
+    border-radius: var(--radius-card);
+  }
+
+  .density-list {
+    @apply min-h-[120px];
+  }
+
+  .radius-chip {
+    border-radius: var(--radius-chip);
+  }
+
+  .radius-card {
+    border-radius: var(--radius-card);
+  }
+
+  .radius-sheet {
+    border-radius: var(--radius-sheet);
+  }
+
+  .radius-hero {
+    border-radius: var(--radius-hero);
   }
 
   .premium-panel {

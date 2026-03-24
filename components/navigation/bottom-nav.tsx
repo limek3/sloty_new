@@ -79,9 +79,9 @@ export function BottomNav() {
   const totalUnread = chats.reduce((sum, chat) => sum + chat.unreadCount, 0);
 
   return (
-    <nav className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-4 safe-bottom">
+    <nav className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-3 safe-bottom">
       <div className="mx-auto max-w-md">
-        <div className="pointer-events-auto relative overflow-hidden rounded-[26px] border border-border/70 bg-card/95 px-2 py-2 shadow-premium backdrop-blur-xl">
+        <div className="pointer-events-auto relative overflow-hidden radius-hero border border-border/70 bg-card/95 px-2 py-2 shadow-premium backdrop-blur-xl">
           {/* Top gradient line */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -98,7 +98,7 @@ export function BottomNav() {
                 <button
                   key={screen}
                   onClick={() => navigate(screen)}
-                  className="relative flex h-[60px] items-center justify-center rounded-xl transition-colors active:bg-accent/45"
+                  className="radius-chip relative flex h-[58px] items-center justify-center transition-colors active:bg-accent/45"
                 >
                   <div className="relative flex w-full items-center justify-center">
                     {isActive && (
