@@ -30,7 +30,7 @@ export function ScreenHero({
       <div className="mx-auto max-w-2xl">
         <div
           className={cn(
-            'rounded-[22px] border border-black/5 bg-white p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]',
+            'rounded-[22px] border border-border/60 bg-card p-2.5 shadow-elevation-nav',
             className
           )}
         >
@@ -38,7 +38,7 @@ export function ScreenHero({
             {onBack && (
               <button
                 onClick={onBack}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[14px] border border-black/6 bg-[#f7f7f5] text-slate-700 transition hover:bg-white"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[14px] border border-border/60 bg-surface-2 text-foreground transition hover:state-hover"
                 aria-label="Back"
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
@@ -53,14 +53,14 @@ export function ScreenHero({
 
             <div className="min-w-0 flex-1 pt-0.5">
               <div className="flex items-center gap-1.5">
-                <h1 className="truncate text-[13px] font-bold tracking-tight text-slate-900">
+                <h1 className="truncate text-[13px] font-bold tracking-tight text-foreground">
                   {title}
                 </h1>
                 {badge}
               </div>
 
               {subtitle && (
-                <p className="mt-0.5 text-[9px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[9px] leading-[1.4] text-muted-foreground">
                   {subtitle}
                 </p>
               )}
@@ -84,12 +84,12 @@ interface HeroStatProps {
 
 export function HeroStat({ value, label, icon }: HeroStatProps) {
   return (
-    <div className="rounded-[12px] border border-black/6 bg-[#fafaf8] p-2 text-center">
+    <div className="rounded-[12px] border border-border/60 bg-surface-1 p-2 text-center">
       <div className="flex items-center justify-center gap-1">
         {icon}
-        <p className="text-[13px] font-bold tracking-tight text-slate-900">{value}</p>
+        <p className="text-[13px] font-bold tracking-tight text-foreground">{value}</p>
       </div>
-      <p className="mt-0.5 text-[8px] text-slate-500">{label}</p>
+      <p className="mt-0.5 text-[8px] text-muted-foreground">{label}</p>
     </div>
   );
 }
@@ -105,7 +105,7 @@ export function HeroSearch({ value, onChange, placeholder, icon }: HeroSearchPro
   return (
     <div className="relative mt-1.5">
       {icon && (
-        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
           {icon}
         </div>
       )}
@@ -115,7 +115,7 @@ export function HeroSearch({ value, onChange, placeholder, icon }: HeroSearchPro
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={cn(
-          'h-9 w-full rounded-[14px] border border-black/6 bg-[#f7f7f5] pr-3 text-[10px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-white',
+          'h-9 w-full rounded-[14px] border border-border/60 bg-surface-2 pr-3 text-[10px] text-foreground outline-none transition placeholder:text-muted-foreground focus:border-emerald-200 focus:bg-surface-1',
           icon ? 'pl-9' : 'pl-3'
         )}
       />
@@ -132,7 +132,7 @@ export function HeroInfoBar({ children, className }: HeroInfoBarProps) {
   return (
     <div
       className={cn(
-        'mt-1.5 flex items-center justify-between rounded-[12px] border border-black/6 bg-[#fafaf8] px-2.5 py-1.5',
+        'mt-1.5 flex items-center justify-between rounded-[12px] border border-border/60 bg-surface-1 px-2.5 py-1.5',
         className
       )}
     >
@@ -149,7 +149,7 @@ interface HeroTabsProps {
 
 export function HeroTabs({ tabs, activeTab, onTabChange }: HeroTabsProps) {
   return (
-    <div className="mt-1.5 grid gap-1.5 rounded-[14px] border border-black/6 bg-[#fafaf8] p-1" style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}>
+    <div className="mt-1.5 grid gap-1.5 rounded-[14px] border border-border/60 bg-surface-1 p-1" style={{ gridTemplateColumns: `repeat(${tabs.length}, 1fr)` }}>
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -157,8 +157,8 @@ export function HeroTabs({ tabs, activeTab, onTabChange }: HeroTabsProps) {
           className={cn(
             'flex items-center justify-center gap-1 rounded-[10px] px-2.5 py-2 text-[9px] font-medium transition-all',
             activeTab === tab.id
-              ? 'bg-white text-slate-900 shadow-[0_4px_12px_rgba(15,23,42,0.05)]'
-              : 'text-slate-500'
+              ? 'bg-card text-foreground shadow-premium-sm'
+              : 'text-muted-foreground'
           )}
         >
           {tab.icon}

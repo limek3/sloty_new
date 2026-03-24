@@ -70,7 +70,7 @@ export function HomeScreen() {
             : "Top masters with a great first-booking offer",
         icon: TicketPercent,
         classes:
-          "from-emerald-50 via-white to-emerald-100 border-emerald-200/70 text-emerald-700",
+          "from-emerald-50 via-surface-1 to-emerald-100 border-emerald-200/70 text-emerald-700 dark:from-emerald-950/35 dark:via-surface-2 dark:to-emerald-900/25 dark:border-emerald-700/50 dark:text-emerald-200",
       },
       {
         id: "today",
@@ -82,7 +82,7 @@ export function HomeScreen() {
             : "Available slots in the next few hours",
         icon: Zap,
         classes:
-          "from-amber-50 via-white to-orange-100 border-amber-200/70 text-amber-700",
+          "from-amber-50 via-surface-1 to-orange-100 border-amber-200/70 text-amber-700 dark:from-amber-950/35 dark:via-surface-2 dark:to-orange-900/20 dark:border-amber-700/45 dark:text-amber-200",
       },
       {
         id: "week",
@@ -94,7 +94,7 @@ export function HomeScreen() {
             : "Curated beauty deals for this week",
         icon: Sparkles,
         classes:
-          "from-violet-50 via-white to-fuchsia-100 border-violet-200/70 text-violet-700",
+          "from-violet-50 via-surface-1 to-fuchsia-100 border-violet-200/70 text-violet-700 dark:from-violet-950/35 dark:via-surface-2 dark:to-fuchsia-900/20 dark:border-violet-700/45 dark:text-violet-200",
       },
     ],
     [isRu],
@@ -163,17 +163,17 @@ export function HomeScreen() {
 
   const sectionHeaderClass = "text-[16px] font-semibold tracking-tight text-foreground";
   const sectionActionClass =
-    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[15px] font-medium text-slate-700 transition hover:bg-slate-50";
+    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[15px] font-medium text-foreground transition hover:state-hover";
 
   return (
     <div className="app-shell">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[28px] border border-border/70 bg-card p-2 shadow-[0_10px_34px_rgba(15,23,42,0.06)]">
+          <div className="rounded-[28px] border border-border/70 bg-card p-2 shadow-elevation-nav">
             <div className="flex items-center justify-between gap-3 px-1 pb-2 pt-1">
               <div className="min-w-0">
-                <p className="text-[14px] font-medium text-slate-500">{t("greeting")},</p>
-                <h1 className="truncate text-[14px] font-bold tracking-tight text-slate-900">
+                <p className="text-[14px] font-medium text-muted-foreground">{t("greeting")},</p>
+                <h1 className="truncate text-[14px] font-bold tracking-tight text-foreground">
                   {userName}
                 </h1>
               </div>
@@ -182,7 +182,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => setLanguage(language === "ru" ? "en" : "ru")}
                   aria-label="Toggle language"
-                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-[14px] font-bold text-slate-600 transition hover:bg-card"
+                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-surface-2 text-[14px] font-bold text-muted-foreground transition hover:bg-card"
                 >
                   {language.toUpperCase()}
                 </button>
@@ -190,7 +190,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => navigate("notifications")}
                   aria-label="View notifications"
-                  className="relative flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
+                  className="relative flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-surface-2 text-muted-foreground transition hover:bg-card"
                 >
                   <Bell className="h-4 w-4" />
                   <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[15px] font-bold text-white">
@@ -202,10 +202,10 @@ export function HomeScreen() {
 
             <button
               onClick={() => navigate("search")}
-              className="group flex h-10 w-full items-center gap-3 rounded-[18px] border border-border/70 bg-[#f7f7f5] px-3 text-left transition hover:bg-card"
+              className="group flex h-10 w-full items-center gap-3 rounded-[18px] border border-border/70 bg-surface-2 px-3 text-left transition hover:bg-card"
             >
-              <Search className="h-4 w-4 text-slate-400 transition-colors group-hover:text-emerald-600" />
-              <span className="text-[14px] text-slate-400">{t("searchPlaceholder")}</span>
+              <Search className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-emerald-600" />
+              <span className="text-[14px] text-muted-foreground">{t("searchPlaceholder")}</span>
             </button>
           </div>
         </div>
@@ -215,7 +215,7 @@ export function HomeScreen() {
         <section>
           <button
             onClick={() => navigate("create-request")}
-            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)]"
+            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-surface-1 to-orange-50 p-3 text-left shadow-elevation-card dark:from-amber-950/30 dark:via-surface-2 dark:to-orange-900/20 dark:border-amber-700/45"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
@@ -227,8 +227,8 @@ export function HomeScreen() {
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-[14px] font-semibold text-slate-900">{t("createRequest")}</p>
-                  <p className="mt-0.5 text-[15px] leading-4 text-slate-500">
+                  <p className="text-[14px] font-semibold text-foreground">{t("createRequest")}</p>
+                  <p className="mt-0.5 text-[15px] leading-4 text-muted-foreground">
                     {isRu ? "Получите отклики от лучших мастеров" : "Get responses from top masters"}
                   </p>
                 </div>
@@ -269,19 +269,19 @@ export function HomeScreen() {
                       tone.bg,
                       tone.border,
                       isActive
-                        ? "shadow-[0_12px_24px_rgba(16,185,129,0.16)]"
-                        : "shadow-[0_6px_18px_rgba(15,23,42,0.05)] group-hover:shadow-[0_10px_24px_rgba(15,23,42,0.08)]",
+                        ? "shadow-primary-glow"
+                        : "shadow-elevation-card group-hover:shadow-elevation-nav",
                     ].join(" ")}
                   >
                     <Icon className={`h-4.5 w-4.5 ${tone.text}`} strokeWidth={1.9} />
                     {typeof category.count === "number" && (
-                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[15px] font-bold text-slate-500 shadow-sm">
+                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[15px] font-bold text-muted-foreground shadow-sm">
                         {category.count}
                       </span>
                     )}
                   </div>
 
-                  <span className="mt-1.5 text-[14px] font-medium leading-3 text-slate-700">
+                  <span className="mt-1.5 text-[14px] font-medium leading-3 text-foreground">
                     {getCategoryLabel(category)}
                   </span>
                 </button>
@@ -306,8 +306,8 @@ export function HomeScreen() {
           </div>
 
           {availableTodayMasters.length === 0 ? (
-            <div className="rounded-[20px] border border-border/70 bg-card p-4 text-center shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
-              <p className="text-[15px] text-slate-500">
+            <div className="rounded-[20px] border border-border/70 bg-card p-4 text-center shadow-elevation-card">
+              <p className="text-[15px] text-muted-foreground">
                 {isRu ? "На сегодня свободных слотов пока нет." : "No available slots for today yet."}
               </p>
             </div>
@@ -317,7 +317,7 @@ export function HomeScreen() {
                 <button
                   key={master.id}
                   onClick={() => navigate("search")}
-                  className="w-[220px] shrink-0 rounded-[22px] border border-border/70 bg-card p-3 text-left shadow-[0_8px_24px_rgba(15,23,42,0.05)] transition hover:-translate-y-[1px] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]"
+                  className="w-[220px] shrink-0 rounded-[22px] border border-border/70 bg-card p-3 text-left shadow-elevation-card transition hover:-translate-y-[1px] hover:shadow-elevation-nav"
                 >
                   <div className="flex items-start gap-3">
                     <img
@@ -328,7 +328,7 @@ export function HomeScreen() {
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <div className="truncate text-[14px] font-semibold leading-tight text-slate-900">
+                        <div className="truncate text-[14px] font-semibold leading-tight text-foreground">
                           {master.name}
                         </div>
                         {master.verified && (
@@ -336,7 +336,7 @@ export function HomeScreen() {
                         )}
                       </div>
 
-                      <div className="mt-0.5 truncate text-[14px] text-slate-500">
+                      <div className="mt-0.5 truncate text-[14px] text-muted-foreground">
                         {master.specialization}
                       </div>
 
@@ -346,7 +346,7 @@ export function HomeScreen() {
                           {master.nextAvailable || (isRu ? "Сегодня" : "Today")}
                         </span>
 
-                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1 text-[15px] font-medium text-slate-600">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-surface-2 px-2 py-1 text-[15px] font-medium text-muted-foreground">
                           <MapPin className="h-2.5 w-2.5" />
                           {typeof master.distance === "number"
                             ? master.distance < 1
@@ -366,7 +366,7 @@ export function HomeScreen() {
                       {master.priceFrom.toLocaleString("ru-RU")} ₽
                     </div>
 
-                    <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.22)]">
+                    <div className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1.5 text-[14px] font-semibold text-white shadow-primary-glow">
                       {isRu ? "Запись" : "Book"}
                       <ArrowRight className="h-3 w-3" />
                     </div>
@@ -399,17 +399,17 @@ export function HomeScreen() {
                 <button
                   key={promo.id}
                   onClick={() => navigate("search")}
-                  className={`group w-full overflow-hidden rounded-[24px] border bg-gradient-to-r p-4 text-left shadow-[0_8px_24px_rgba(15,23,42,0.05)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)] ${promo.classes}`}
+                  className={`group w-full overflow-hidden rounded-[24px] border bg-gradient-to-r p-4 text-left shadow-elevation-card transition-all hover:-translate-y-0.5 hover:shadow-elevation-nav ${promo.classes}`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
                       <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[14px] font-semibold">
                         {promo.badge}
                       </div>
-                      <h3 className="mt-3 text-[16px] font-semibold leading-tight text-slate-900">
+                      <h3 className="mt-3 text-[16px] font-semibold leading-tight text-foreground">
                         {promo.title}
                       </h3>
-                      <p className="mt-1.5 text-[15px] leading-4 text-slate-500">{promo.description}</p>
+                      <p className="mt-1.5 text-[15px] leading-4 text-muted-foreground">{promo.description}</p>
                     </div>
 
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[16px] bg-card/80 shadow-sm">
@@ -417,7 +417,7 @@ export function HomeScreen() {
                     </div>
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1 text-[15px] font-semibold text-slate-900">
+                  <div className="mt-4 inline-flex items-center gap-1 text-[15px] font-semibold text-foreground">
                     {isRu ? "Смотреть предложения" : "View offers"}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </div>

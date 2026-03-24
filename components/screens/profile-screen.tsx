@@ -152,9 +152,9 @@ export function ProfileScreen() {
       case 'violet':
         return 'bg-violet-50 text-violet-600 border-violet-100';
       case 'slate':
-        return 'bg-slate-100 text-slate-600 border-slate-200';
+        return 'bg-surface-2 text-muted-foreground border-border';
       default:
-        return 'bg-[#f7f7f5] text-slate-600 border-border/70';
+        return 'bg-surface-2 text-muted-foreground border-border/70';
     }
   };
 
@@ -162,10 +162,10 @@ export function ProfileScreen() {
     <div className="app-shell">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
+          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-elevation-nav">
             <div className="flex items-start gap-2.5 px-0.5 pb-1.5 pt-0.5">
               <div className="relative shrink-0">
-                <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-emerald-100 bg-emerald-50 shadow-[0_4px_14px_rgba(15,23,42,0.03)]">
+                <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-emerald-100 bg-emerald-50 shadow-premium-sm">
                   <User className="h-5 w-5 text-emerald-600" />
                 </div>
 
@@ -176,7 +176,7 @@ export function ProfileScreen() {
 
               <div className="min-w-0 flex-1 pt-0.5">
                 <div className="flex items-center gap-1.5">
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[16px] font-bold tracking-tight text-foreground">
                     {profileName}
                   </h1>
                   <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[15px] font-medium text-emerald-700">
@@ -191,7 +191,7 @@ export function ProfileScreen() {
                   </span>
                 </div>
 
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[14px] leading-[1.4] text-muted-foreground">
                   {isRu
                     ? 'Управляйте профилем, записями, заявками'
                     : 'Manage profile, bookings, requests'}
@@ -200,7 +200,7 @@ export function ProfileScreen() {
 
               <button
                 onClick={() => navigate('notifications')}
-                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card hover:text-emerald-600"
+                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-surface-2 text-muted-foreground transition hover:bg-card hover:text-emerald-600"
                 aria-label={isRu ? 'Уведомления' : 'Notifications'}
               >
                 <Bell className="h-4 w-4" />
@@ -211,30 +211,30 @@ export function ProfileScreen() {
             </div>
 
             <div className="mt-1 grid grid-cols-3 gap-2">
-              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
-                <p className="text-[16px] font-bold tracking-tight text-slate-900">
+              <div className="rounded-[12px] border border-border/70 bg-surface-1 p-2 text-center">
+                <p className="text-[16px] font-bold tracking-tight text-foreground">
                   {favorites.length}
                 </p>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[15px] text-muted-foreground">
                   {isRu ? 'Избранное' : 'Favorites'}
                 </p>
               </div>
 
-              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
-                <p className="text-[16px] font-bold tracking-tight text-slate-900">
+              <div className="rounded-[12px] border border-border/70 bg-surface-1 p-2 text-center">
+                <p className="text-[16px] font-bold tracking-tight text-foreground">
                   {upcomingCount}
                 </p>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[15px] text-muted-foreground">
                   {isRu ? 'Записи' : 'Bookings'}
                 </p>
               </div>
 
-              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
+              <div className="rounded-[12px] border border-border/70 bg-surface-1 p-2 text-center">
                 <div className="flex items-center justify-center gap-0.5">
                   <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                  <p className="text-[16px] font-bold tracking-tight text-slate-900">4.9</p>
+                  <p className="text-[16px] font-bold tracking-tight text-foreground">4.9</p>
                 </div>
-                <p className="mt-0.5 text-[15px] text-slate-500">
+                <p className="mt-0.5 text-[15px] text-muted-foreground">
                   {isRu ? 'Рейтинг' : 'Rating'}
                 </p>
               </div>
@@ -244,29 +244,29 @@ export function ProfileScreen() {
       </header>
 
       <main className="mx-auto max-w-2xl space-y-3 px-3 py-3">
-        <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+        <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-elevation-card">
           <div className="flex items-center gap-1.5 mb-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-600">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-surface-2 text-muted-foreground">
               <Settings2 className="h-3 w-3" />
             </div>
-            <h2 className="text-[14px] font-semibold text-slate-900">
+            <h2 className="text-[14px] font-semibold text-foreground">
               {t('settings')}
             </h2>
           </div>
 
           <div className="space-y-2">
-            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
+            <div className="rounded-[14px] border border-border/70 bg-surface-1 p-2.5">
               <div className="flex items-center justify-between gap-2.5">
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-slate-500">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-muted-foreground">
                     <Globe className="h-3.5 w-3.5" />
                   </div>
 
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium text-slate-900">
+                    <p className="text-[15px] font-medium text-foreground">
                       {t('language')}
                     </p>
-                    <p className="text-[15px] text-slate-500">
+                    <p className="text-[15px] text-muted-foreground">
                       {language === 'ru' ? 'Русский' : 'English'}
                     </p>
                   </div>
@@ -277,8 +277,8 @@ export function ProfileScreen() {
                     onClick={() => setLanguage('ru')}
                     className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
                       language === 'ru'
-                        ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
-                        : 'text-slate-500'
+                        ? 'bg-emerald-500 text-white shadow-primary-glow'
+                        : 'text-muted-foreground'
                     }`}
                   >
                     RU
@@ -287,8 +287,8 @@ export function ProfileScreen() {
                     onClick={() => setLanguage('en')}
                     className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
                       language === 'en'
-                        ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
-                        : 'text-slate-500'
+                        ? 'bg-emerald-500 text-white shadow-primary-glow'
+                        : 'text-muted-foreground'
                     }`}
                   >
                     EN
@@ -297,18 +297,18 @@ export function ProfileScreen() {
               </div>
             </div>
 
-            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
+            <div className="rounded-[14px] border border-border/70 bg-surface-1 p-2.5">
               <div className="flex items-center justify-between gap-2.5">
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-slate-500">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-muted-foreground">
                     <Briefcase className="h-3.5 w-3.5" />
                   </div>
 
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium text-slate-900">
+                    <p className="text-[15px] font-medium text-foreground">
                       {isRu ? 'Режим' : 'Mode'}
                     </p>
-                    <p className="text-[15px] text-slate-500">
+                    <p className="text-[15px] text-muted-foreground">
                       {userRole === 'client'
                         ? isRu
                           ? 'Клиент'
@@ -325,8 +325,8 @@ export function ProfileScreen() {
                     onClick={() => setUserRole('client')}
                     className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
                       userRole === 'client'
-                        ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
-                        : 'text-slate-500'
+                        ? 'bg-emerald-500 text-white shadow-primary-glow'
+                        : 'text-muted-foreground'
                     }`}
                   >
                     {isRu ? 'Клиент' : 'Client'}
@@ -335,8 +335,8 @@ export function ProfileScreen() {
                     onClick={() => setUserRole('master')}
                     className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
                       userRole === 'master'
-                        ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
-                        : 'text-slate-500'
+                        ? 'bg-emerald-500 text-white shadow-primary-glow'
+                        : 'text-muted-foreground'
                     }`}
                   >
                     {isRu ? 'Мастер' : 'Master'}
@@ -345,20 +345,20 @@ export function ProfileScreen() {
               </div>
             </div>
 
-            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
+            <div className="rounded-[14px] border border-border/70 bg-surface-1 p-2.5">
               <div className="flex items-center justify-between gap-2.5">
                 <div className="flex min-w-0 items-center gap-2.5">
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-slate-500">
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-muted-foreground">
                     {theme === 'dark' ? <Moon className="h-3.5 w-3.5" /> : <Sun className="h-3.5 w-3.5" />}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[15px] font-medium text-slate-900">{t('theme')}</p>
-                    <p className="text-[15px] text-slate-500">{theme === 'dark' ? t('darkMode') : t('lightMode')}</p>
+                    <p className="text-[15px] font-medium text-foreground">{t('theme')}</p>
+                    <p className="text-[15px] text-muted-foreground">{theme === 'dark' ? t('darkMode') : t('lightMode')}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[14px] font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[14px] font-semibold text-foreground transition hover:state-hover"
                 >
                   {theme === 'dark' ? (isRu ? 'Светлая' : 'Light') : (isRu ? 'Темная' : 'Dark')}
                 </button>
@@ -369,16 +369,16 @@ export function ProfileScreen() {
 
         {menuSections.map((section, sectionIndex) => (
           <section key={sectionIndex}>
-            <h2 className="mb-2 px-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-slate-400">
+            <h2 className="mb-2 px-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
               {section.title}
             </h2>
 
-            <div className="overflow-hidden rounded-[18px] border border-border/70 bg-card shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+            <div className="overflow-hidden rounded-[18px] border border-border/70 bg-card shadow-elevation-card">
               {section.items.map((item, itemIndex) => (
                 <button
                   key={itemIndex}
                   onClick={item.onClick}
-                  className={`flex w-full items-center gap-2.5 px-2.5 py-2.5 text-left transition hover:bg-[#fafaf8] ${
+                  className={`flex w-full items-center gap-2.5 px-2.5 py-2.5 text-left transition hover:bg-surface-1 ${
                     itemIndex !== section.items.length - 1 ? 'border-b border-border/70' : ''
                   }`}
                 >
@@ -391,17 +391,17 @@ export function ProfileScreen() {
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <p className="text-[15px] font-medium text-slate-900">
+                    <p className="text-[15px] font-medium text-foreground">
                       {item.label}
                     </p>
                     {item.value && (
-                      <p className="mt-0.5 text-[15px] text-slate-500">
+                      <p className="mt-0.5 text-[15px] text-muted-foreground">
                         {item.value}
                       </p>
                     )}
                   </div>
 
-                  <ChevronRight className="h-4 w-4 text-slate-400" />
+                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
                 </button>
               ))}
             </div>
@@ -413,7 +413,7 @@ export function ProfileScreen() {
           {isRu ? 'Выйти' : 'Log out'}
         </button>
 
-        <p className="pb-1 text-center text-[15px] text-slate-400">Sloty v1.0.0</p>
+        <p className="pb-1 text-center text-[15px] text-muted-foreground">Sloty v1.0.0</p>
       </main>
 
       <BottomNav />

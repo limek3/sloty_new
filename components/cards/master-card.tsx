@@ -224,8 +224,8 @@ function FavoriteButton({
       className={[
         "absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-xl border backdrop-blur-md transition-all duration-200 hover:scale-105",
         liked
-          ? "border-rose-200 bg-rose-500 text-white shadow-[0_8px_20px_rgba(244,63,94,0.30)]"
-          : "border-white/30 bg-white/90 text-muted-foreground shadow-premium-sm hover:text-foreground",
+          ? "border-rose-200 bg-rose-500 text-white shadow-premium"
+          : "border-white/30 bg-card/90 text-muted-foreground shadow-premium-sm hover:text-foreground",
       ].join(" ")}
       aria-label="Добавить в избранное"
     >
@@ -302,11 +302,11 @@ function HeroSlider({
           <div className="flex items-end justify-between gap-3">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-3">
-                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border-2 border-white/30 bg-white/20 shadow-lg backdrop-blur-sm">
+                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border-2 border-white/30 bg-card/20 shadow-lg backdrop-blur-sm">
                   {avatar ? (
                     <img src={avatar} alt={name} className="h-full w-full object-cover" />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-white/20 text-sm font-bold text-white">
+                    <div className="flex h-full w-full items-center justify-center bg-card/20 text-sm font-bold text-white">
                       {name.slice(0, 1)}
                     </div>
                   )}
@@ -328,7 +328,7 @@ function HeroSlider({
                     key={index}
                     className={[
                       "block h-1.5 rounded-full transition-all duration-300",
-                      index === activeIndex ? "w-4 bg-white" : "w-1.5 bg-white/50",
+                      index === activeIndex ? "w-4 bg-card" : "w-1.5 bg-card/50",
                     ].join(" ")}
                   />
                 ))}
@@ -428,11 +428,11 @@ function NearbyCard({ master, onClick }: { master: any; onClick?: () => void }) 
           <div className="flex items-end justify-between gap-3">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-3">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border-2 border-white/30 bg-white/20 shadow-lg backdrop-blur-sm">
+                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border-2 border-white/30 bg-card/20 shadow-lg backdrop-blur-sm">
                   {avatar ? (
                     <img src={avatar} alt={name} className="h-full w-full object-cover" />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-white/20 text-sm font-bold text-white">
+                    <div className="flex h-full w-full items-center justify-center bg-card/20 text-sm font-bold text-white">
                       {name.slice(0, 1)}
                     </div>
                   )}
@@ -523,7 +523,7 @@ function CompactCard({ master, onClick }: { master: any; onClick?: () => void })
             "absolute right-2.5 top-2.5 flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200",
             liked
               ? "bg-rose-500 text-white shadow-lg"
-              : "bg-white/90 text-muted-foreground backdrop-blur-sm hover:text-foreground",
+              : "bg-card/90 text-muted-foreground backdrop-blur-sm hover:text-foreground",
           ].join(" ")}
           aria-label="Like"
         >
@@ -630,7 +630,7 @@ function SearchCard({ master, onClick }: { master: any; onClick?: () => void }) 
           {tags.length > 0 ? tags.map((tag, index) => (
             <span
               key={`${tag}-${index}`}
-              className="inline-flex items-center rounded-full border border-border bg-white px-2.5 py-1 text-[14px] font-medium text-secondary-foreground"
+              className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[14px] font-medium text-secondary-foreground"
             >
               {tag}
             </span>
@@ -641,7 +641,7 @@ function SearchCard({ master, onClick }: { master: any; onClick?: () => void }) 
 
         <div className="flex shrink-0 items-center gap-2">
           <div className="rounded-full bg-emerald-50 px-3 py-1.5 text-[16px] font-bold text-success">{price}</div>
-          <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-white text-muted-foreground shadow-premium-sm">
+          <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-card text-muted-foreground shadow-premium-sm">
             <ChevronRight className="h-4 w-4" />
           </div>
         </div>
