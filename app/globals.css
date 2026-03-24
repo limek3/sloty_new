@@ -162,6 +162,12 @@
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
+  .safe-bottom-keyboard {
+    padding-bottom: calc(env(safe-area-inset-bottom) + env(keyboard-inset-height, 0px));
+  }
+  .keyboard-inset-bottom {
+    margin-bottom: env(keyboard-inset-height, 0px);
+  }
   .safe-left {
     padding-left: env(safe-area-inset-left);
   }

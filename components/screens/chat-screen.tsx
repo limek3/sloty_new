@@ -120,7 +120,7 @@ export function ChatScreen() {
   }
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-[#f6f6f3] safe-top safe-bottom">
+    <div className="fixed inset-0 flex flex-col bg-[#f6f6f3] safe-top safe-bottom safe-bottom-keyboard">
       <header className="shrink-0 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
           <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
@@ -244,7 +244,7 @@ export function ChatScreen() {
           </div>
         </div>
 
-        <div className="mt-2">
+        <div className="mt-2 keyboard-inset-bottom">
           <div className="mb-2 flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
             {quickReplies.map((reply) => (
               <button
