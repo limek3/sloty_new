@@ -92,7 +92,7 @@ function SearchMasterCard({
           <div className="flex items-start gap-2">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1">
-                <p className="truncate text-[14px] font-semibold leading-tight text-slate-900">
+                <p className="truncate ty-subtitle font-semibold leading-tight text-slate-900">
                   {master.name}
                 </p>
                 {master.verified && (
@@ -100,7 +100,7 @@ function SearchMasterCard({
                 )}
               </div>
 
-              <p className="mt-0.5 truncate text-[14px] text-slate-500">
+              <p className="mt-0.5 truncate ty-subtitle text-slate-500">
                 {master.specialization}
               </p>
             </div>
@@ -122,18 +122,18 @@ function SearchMasterCard({
           </div>
 
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fff3e7] px-2 py-0.5 text-[14px] text-[#b86419]">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fff3e7] px-2 py-0.5 ty-subtitle text-[#b86419]">
               <Star className="h-3 w-3 fill-current" />
               <span className="font-semibold">{master.rating}</span>
               <span className="text-[#d1945f]">({master.reviewCount})</span>
             </div>
 
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#f3f4f6] px-2 py-0.5 text-[14px] text-slate-600">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#f3f4f6] px-2 py-0.5 ty-subtitle text-slate-600">
               <MapPin className="h-3 w-3" />
               <span>{formatDistance(master.distance, language)}</span>
             </div>
 
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#ebfbf3] px-2 py-0.5 text-[14px] text-emerald-700">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#ebfbf3] px-2 py-0.5 ty-subtitle text-emerald-700">
               <Clock3 className="h-3 w-3" />
               <span>{isRu ? 'Сегодня' : 'Today'}</span>
             </div>
@@ -146,14 +146,14 @@ function SearchMasterCard({
           {master.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border/70 bg-[#fafaf8] px-2 py-1 text-[15px] text-slate-700"
+              className="rounded-full border border-border/70 bg-[#fafaf8] px-2 py-1 ty-body text-slate-700"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="shrink-0 rounded-full bg-[#ebfbf3] px-2 py-1 text-[15px] font-semibold text-emerald-700">
+        <div className="shrink-0 rounded-full bg-[#ebfbf3] px-2 py-1 ty-body font-semibold text-emerald-700">
           {formatPrice(master.priceFrom, language)}
         </div>
 
@@ -210,7 +210,7 @@ function SearchMasterGridCard({
 
       <div className="pt-2">
         <div className="flex items-center gap-1">
-          <p className="min-w-0 flex-1 truncate text-[15px] font-semibold text-slate-900">
+          <p className="min-w-0 flex-1 truncate ty-body font-semibold text-slate-900">
             {master.name}
           </p>
           {master.verified && (
@@ -218,17 +218,17 @@ function SearchMasterGridCard({
           )}
         </div>
 
-        <p className="mt-0.5 truncate text-[15px] text-slate-500">
+        <p className="mt-0.5 truncate ty-body text-slate-500">
           {master.specialization}
         </p>
 
         <div className="mt-1.5 flex items-center justify-between gap-1.5">
-          <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fff3e7] px-1.5 py-0.5 text-[15px] text-[#b86419]">
+          <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fff3e7] px-1.5 py-0.5 ty-body text-[#b86419]">
             <Star className="h-2.5 w-2.5 fill-current" />
             <span className="font-semibold">{master.rating}</span>
           </div>
 
-          <div className="rounded-full bg-[#ebfbf3] px-2 py-0.5 text-[14px] font-semibold text-emerald-700">
+          <div className="rounded-full bg-[#ebfbf3] px-2 py-0.5 ty-subtitle font-semibold text-emerald-700">
             {formatPrice(master.priceFrom, language)}
           </div>
         </div>
@@ -343,7 +343,7 @@ export function SearchScreen() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isRu ? 'Поиск мастеров, услуг...' : 'Search masters, services...'}
-                  className="h-10 w-full rounded-[14px] border border-border/70 bg-[#f7f7f5] pl-9 pr-8 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+                  className="h-10 w-full rounded-[14px] border border-border/70 bg-[#f7f7f5] pl-9 pr-8 ty-body text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
                 />
                 {searchQuery && (
                   <button
@@ -374,7 +374,7 @@ export function SearchScreen() {
                 value={selectedCategory ?? 'all'}
                 onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] px-3 text-[15px] shadow-none">
+                <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] px-3 ty-body shadow-none">
                   <div className="flex min-w-0 items-center gap-1.5">
                     <span className="truncate font-medium text-slate-800">
                       {selectedCategoryData
@@ -403,7 +403,7 @@ export function SearchScreen() {
                     value={sortBy}
                     onValueChange={(value) => setSortBy(value as typeof sortBy)}
                   >
-                    <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-card px-3 text-[15px] shadow-none">
+                    <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-card px-3 ty-body shadow-none">
                       <div className="flex min-w-0 items-center gap-1.5">
                         <ArrowUpDown className="h-3.5 w-3.5 text-slate-400" />
                         <span className="truncate font-medium text-slate-800">
@@ -427,7 +427,7 @@ export function SearchScreen() {
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => setViewMode('list')}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[15px] font-medium transition ${
+                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border ty-body font-medium transition ${
                         viewMode === 'list'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                           : 'border-border/70 bg-card text-slate-700'
@@ -439,7 +439,7 @@ export function SearchScreen() {
 
                     <button
                       onClick={() => setViewMode('grid')}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[15px] font-medium transition ${
+                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border ty-body font-medium transition ${
                         viewMode === 'grid'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                           : 'border-border/70 bg-card text-slate-700'
@@ -458,14 +458,14 @@ export function SearchScreen() {
 
       <main className="mx-auto max-w-2xl px-3 pt-3">
         <div className="mb-2.5 flex items-center gap-1.5">
-          <div className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 text-[14px] font-medium text-slate-700 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
+          <div className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 ty-subtitle font-medium text-slate-700 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
             {isRu ? 'Найдено' : 'Found'}: <span className="ml-0.5 font-semibold">{filteredMasters.length}</span>
           </div>
 
           {(searchQuery || selectedCategory) && (
             <button
               onClick={clearAll}
-              className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 text-[14px] font-medium text-slate-600"
+              className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 ty-subtitle font-medium text-slate-600"
             >
               {isRu ? 'Сбросить' : 'Reset'}
             </button>
@@ -478,11 +478,11 @@ export function SearchScreen() {
               <Frown className="h-6 w-6 text-slate-400" />
             </div>
 
-            <h3 className="mt-4 text-[15px] font-semibold text-slate-900">
+            <h3 className="mt-4 ty-body font-semibold text-slate-900">
               {isRu ? 'Ничего не найдено' : 'No results found'}
             </h3>
 
-            <p className="mt-1.5 max-w-xs text-[14px] leading-[1.4] text-slate-500">
+            <p className="mt-1.5 max-w-xs ty-subtitle leading-[1.4] text-slate-500">
               {isRu
                 ? 'Попробуйте изменить запрос или выбрать другую категорию.'
                 : 'Try adjusting your query or selecting another category.'}
@@ -490,7 +490,7 @@ export function SearchScreen() {
 
             <button
               onClick={clearAll}
-              className="mt-4 rounded-[12px] bg-emerald-500 px-4 py-2 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] transition hover:bg-emerald-600"
+              className="mt-4 rounded-[12px] bg-emerald-500 px-4 py-2 ty-subtitle font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] transition hover:bg-emerald-600"
             >
               {isRu ? 'Сбросить фильтры' : 'Clear filters'}
             </button>

@@ -37,7 +37,7 @@ export function RequestDetailScreen() {
       <div className="min-h-screen bg-[#f6f6f3] px-4 safe-top safe-bottom">
         <div className="flex min-h-screen items-center justify-center">
           <div className="rounded-[16px] border border-border/70 bg-card px-4 py-6 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <p className="text-[14px] text-slate-500">{t('error')}</p>
+            <p className="ty-subtitle text-slate-500">{t('error')}</p>
           </div>
         </div>
       </div>
@@ -89,12 +89,12 @@ export function RequestDetailScreen() {
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                     <FileText className="h-3.5 w-3.5" />
                   </div>
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate ty-body font-bold tracking-tight text-slate-900">
                     {isRu ? 'Заявка' : 'Request'}
                   </h1>
                 </div>
 
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 ty-subtitle leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Подробности заявки и информация по откликам'
                     : 'Request details and response information'}
@@ -102,7 +102,7 @@ export function RequestDetailScreen() {
               </div>
 
               <span
-                className={`shrink-0 rounded-full border px-2 py-0.5 text-[15px] font-medium ${getStatusColor(
+                className={`shrink-0 rounded-full border px-2 py-0.5 ty-body font-medium ${getStatusColor(
                   request.status
                 )}`}
               >
@@ -115,30 +115,30 @@ export function RequestDetailScreen() {
 
       <main className="mx-auto max-w-2xl space-y-2.5 px-3 py-3">
         <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-          <span className="inline-flex rounded-full border border-border/70 bg-[#fafaf8] px-2 py-0.5 text-[15px] font-medium text-slate-700">
+          <span className="inline-flex rounded-full border border-border/70 bg-[#fafaf8] px-2 py-0.5 ty-body font-medium text-slate-700">
             {request.category}
           </span>
 
-          <h2 className="mt-2 text-[15px] font-bold leading-[1.4] tracking-tight text-slate-900">
+          <h2 className="mt-2 ty-body font-bold leading-[1.4] tracking-tight text-slate-900">
             {request.title}
           </h2>
 
-          <p className="mt-2 text-[14px] leading-[1.5] text-slate-600">
+          <p className="mt-2 ty-subtitle leading-[1.5] text-slate-600">
             {request.description}
           </p>
         </section>
 
         <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-[15px] font-bold text-emerald-700">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-100 ty-body font-bold text-emerald-700">
               {request.authorName.charAt(0)}
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[15px] font-semibold text-slate-900">
+              <p className="truncate ty-body font-semibold text-slate-900">
                 {request.authorName}
               </p>
-              <p className="text-[15px] text-slate-500">{request.createdAt}</p>
+              <p className="ty-body text-slate-500">{request.createdAt}</p>
             </div>
 
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#f7f7f5] text-slate-500">
@@ -149,15 +149,15 @@ export function RequestDetailScreen() {
 
         <section className="grid grid-cols-2 gap-2">
           <div className="rounded-[14px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <p className="text-[15px] text-slate-500">{t('budget')}</p>
-            <p className="mt-1 text-[16px] font-bold tracking-tight text-emerald-600">
+            <p className="ty-body text-slate-500">{t('budget')}</p>
+            <p className="mt-1 ty-body font-bold tracking-tight text-emerald-600">
               {formatPrice(request.budget)}
             </p>
           </div>
 
           <div className="rounded-[14px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <p className="text-[15px] text-slate-500">{t('responses')}</p>
-            <p className="mt-1 text-[16px] font-bold tracking-tight text-slate-900">
+            <p className="ty-body text-slate-500">{t('responses')}</p>
+            <p className="mt-1 ty-body font-bold tracking-tight text-slate-900">
               {request.responsesCount}
             </p>
           </div>
@@ -170,8 +170,8 @@ export function RequestDetailScreen() {
                 <MapPin className="h-3 w-3" />
               </div>
               <div>
-                <p className="text-[7px] text-slate-400">{t('location')}</p>
-                <p className="text-[14px] font-medium text-slate-800">{request.location}</p>
+                <p className="ty-overline text-slate-400">{t('location')}</p>
+                <p className="ty-subtitle font-medium text-slate-800">{request.location}</p>
               </div>
             </div>
 
@@ -182,8 +182,8 @@ export function RequestDetailScreen() {
                     <Calendar className="h-3 w-3" />
                   </div>
                   <div>
-                    <p className="text-[7px] text-slate-400">{t('preferredDate')}</p>
-                    <p className="text-[14px] font-medium text-slate-800">
+                    <p className="ty-overline text-slate-400">{t('preferredDate')}</p>
+                    <p className="ty-subtitle font-medium text-slate-800">
                       {request.preferredDate}
                     </p>
                   </div>
@@ -195,8 +195,8 @@ export function RequestDetailScreen() {
                       <Clock className="h-3 w-3" />
                     </div>
                     <div>
-                      <p className="text-[7px] text-slate-400">{t('preferredTime')}</p>
-                      <p className="text-[14px] font-medium text-slate-800">
+                      <p className="ty-overline text-slate-400">{t('preferredTime')}</p>
+                      <p className="ty-subtitle font-medium text-slate-800">
                         {request.preferredTime}
                       </p>
                     </div>
@@ -209,11 +209,11 @@ export function RequestDetailScreen() {
 
         {userRole === 'master' && request.responsesCount > 0 && (
           <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <h3 className="text-[15px] font-semibold text-slate-900">
+            <h3 className="ty-body font-semibold text-slate-900">
               {isRu ? 'Другие отклики' : 'Other responses'}
             </h3>
 
-            <p className="mt-1 text-[14px] leading-[1.4] text-slate-500">
+            <p className="mt-1 ty-subtitle leading-[1.4] text-slate-500">
               {isRu
                 ? `${request.responsesCount} мастеров уже откликнулись`
                 : `${request.responsesCount} masters have already responded`}
@@ -226,7 +226,7 @@ export function RequestDetailScreen() {
         <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 safe-bottom">
           <div className="rounded-[18px] border border-border/70 bg-card p-2 shadow-[0_8px_26px_rgba(15,23,42,0.08)]">
             <Button
-              className="h-10 w-full gap-1.5 rounded-[12px] bg-emerald-500 text-[15px] font-semibold text-white shadow-[0_12px_26px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+              className="h-10 w-full gap-1.5 rounded-[12px] bg-emerald-500 ty-body font-semibold text-white shadow-[0_12px_26px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
               onClick={() => {
                 navigate('chats');
               }}

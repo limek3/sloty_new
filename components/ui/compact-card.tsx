@@ -79,12 +79,12 @@ export function CompactListItem({
       )}
 
       <div className="min-w-0 flex-1">
-        <p className="truncate text-[10px] font-medium text-slate-900">{title}</p>
-        {subtitle && <p className="mt-0.5 truncate text-[8px] text-slate-500">{subtitle}</p>}
+        <p className="truncate ty-caption font-medium text-slate-900">{title}</p>
+        {subtitle && <p className="mt-0.5 truncate ty-overline text-slate-500">{subtitle}</p>}
       </div>
 
       {value && (
-        <div className="shrink-0 text-[10px] font-medium text-slate-600">{value}</div>
+        <div className="shrink-0 ty-caption font-medium text-slate-600">{value}</div>
       )}
 
       {showArrow && onClick && (
@@ -135,10 +135,10 @@ export function QuickActionCard({
       </div>
 
       <div className="mt-2">
-        <p className="text-[10px] font-semibold text-slate-900 transition group-hover:text-emerald-600">
+        <p className="ty-caption font-semibold text-slate-900 transition group-hover:text-emerald-600">
           {title}
         </p>
-        <p className="mt-0.5 text-[8px] leading-[1.4] text-slate-500">{description}</p>
+        <p className="mt-0.5 ty-overline leading-[1.4] text-slate-500">{description}</p>
       </div>
     </button>
   );
@@ -159,13 +159,13 @@ export function SectionHeader({ title, icon, action, className }: SectionHeaderP
     <div className={cn('mb-2 flex items-center justify-between', className)}>
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-emerald-600">{icon}</span>}
-        <h2 className="text-[11px] font-semibold tracking-tight text-foreground">{title}</h2>
+        <h2 className="ty-caption font-semibold tracking-tight text-foreground">{title}</h2>
       </div>
 
       {action && (
         <button
           onClick={action.onClick}
-          className="inline-flex items-center gap-0.5 rounded-full border border-black/6 bg-white px-2 py-0.5 text-[8px] font-medium text-slate-700 transition hover:bg-slate-50"
+          className="inline-flex items-center gap-0.5 rounded-full border border-black/6 bg-white px-2 py-0.5 ty-overline font-medium text-slate-700 transition hover:bg-slate-50"
         >
           {action.label}
           <ChevronRight className="h-2.5 w-2.5" />
@@ -192,16 +192,16 @@ export function EmptyState({ icon, title, description, action }: EmptyStateProps
         {icon}
       </div>
 
-      <h3 className="mt-3 text-[12px] font-semibold text-slate-900">{title}</h3>
+      <h3 className="mt-3 ty-caption font-semibold text-slate-900">{title}</h3>
 
-      <p className="mx-auto mt-1.5 max-w-xs text-[9px] leading-[1.4] text-slate-500">
+      <p className="mx-auto mt-1.5 max-w-xs ty-overline leading-[1.4] text-slate-500">
         {description}
       </p>
 
       {action && (
         <button
           onClick={action.onClick}
-          className="mt-3 rounded-[12px] bg-emerald-500 px-4 py-2 text-[9px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] transition hover:bg-emerald-600"
+          className="mt-3 rounded-[12px] bg-emerald-500 px-4 py-2 ty-overline font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] transition hover:bg-emerald-600"
         >
           {action.label}
         </button>

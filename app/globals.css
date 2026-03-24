@@ -51,6 +51,37 @@
   --chart-4: oklch(0.68 0.08 160);
   --chart-5: oklch(0.74 0.06 150);
 
+
+
+  /* Semantic typography scale (mobile-first) */
+  --type-display-size: 1.75rem;
+  --type-display-line: 2.1rem;
+  --type-display-track: -0.02em;
+
+  --type-title-size: 1.25rem;
+  --type-title-line: 1.65rem;
+  --type-title-track: -0.015em;
+
+  --type-subtitle-size: 0.9375rem;
+  --type-subtitle-line: 1.35rem;
+  --type-subtitle-track: -0.005em;
+
+  --type-body-size: 0.9375rem;
+  --type-body-line: 1.45rem;
+  --type-body-track: 0em;
+
+  --type-caption-size: 0.8125rem;
+  --type-caption-line: 1.2rem;
+  --type-caption-track: 0.01em;
+
+  --type-overline-size: 0.75rem;
+  --type-overline-line: 1rem;
+  --type-overline-track: 0.08em;
+
+  --type-button-size: 0.9375rem;
+  --type-button-line: 1.2rem;
+  --type-button-track: 0.01em;
+
   /* Premium radius - Generous, soft corners */
   --radius: 1rem;
   
@@ -145,8 +176,74 @@
   }
 }
 
+
+@media (min-width: 768px) {
+  :root {
+    --type-display-size: 2.25rem;
+    --type-display-line: 2.75rem;
+    --type-title-size: 1.5rem;
+    --type-title-line: 2rem;
+    --type-subtitle-size: 1rem;
+    --type-subtitle-line: 1.45rem;
+    --type-body-size: 1rem;
+    --type-body-line: 1.55rem;
+    --type-caption-size: 0.875rem;
+    --type-caption-line: 1.25rem;
+    --type-overline-size: 0.75rem;
+    --type-overline-line: 1rem;
+    --type-button-size: 1rem;
+    --type-button-line: 1.25rem;
+  }
+}
+
 /* Premium Utilities */
+
 @layer utilities {
+  .ty-display {
+    font-size: var(--type-display-size);
+    line-height: var(--type-display-line);
+    letter-spacing: var(--type-display-track);
+    font-weight: 700;
+  }
+
+  .ty-title {
+    font-size: var(--type-title-size);
+    line-height: var(--type-title-line);
+    letter-spacing: var(--type-title-track);
+  }
+
+  .ty-subtitle {
+    font-size: var(--type-subtitle-size);
+    line-height: var(--type-subtitle-line);
+    letter-spacing: var(--type-subtitle-track);
+  }
+
+  .ty-body {
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-line);
+    letter-spacing: var(--type-body-track);
+  }
+
+  .ty-caption {
+    font-size: var(--type-caption-size);
+    line-height: var(--type-caption-line);
+    letter-spacing: var(--type-caption-track);
+  }
+
+  .ty-overline {
+    font-size: var(--type-overline-size);
+    line-height: var(--type-overline-line);
+    letter-spacing: var(--type-overline-track);
+    text-transform: uppercase;
+  }
+
+  .ty-button {
+    font-size: var(--type-button-size);
+    line-height: var(--type-button-line);
+    letter-spacing: var(--type-button-track);
+    font-weight: 600;
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

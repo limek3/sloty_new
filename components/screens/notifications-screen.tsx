@@ -93,31 +93,31 @@ export function NotificationsScreen() {
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                     <Bell className="h-3.5 w-3.5" />
                   </div>
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate ty-body font-bold tracking-tight text-slate-900">
                     {t('notifications')}
                   </h1>
                 </div>
 
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 ty-subtitle leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Все важные обновления в одном месте'
                     : 'All important updates in one place'}
                 </p>
               </div>
 
-              <div className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[15px] font-semibold text-emerald-700">
+              <div className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 ty-body font-semibold text-emerald-700">
                 {isRu ? 'Новых: ' : 'Unread: '}
                 {unreadCount}
               </div>
             </div>
 
             <div className="mt-1 flex items-center justify-between rounded-[10px] border border-border/70 bg-[#fafaf8] px-2.5 py-1.5">
-              <div className="flex items-center gap-1 text-[15px] text-slate-600">
+              <div className="flex items-center gap-1 ty-body text-slate-600">
                 <Sparkles className="h-3 w-3 text-emerald-600" />
                 <span>{isRu ? 'Быстрый доступ к событиям' : 'Quick access to updates'}</span>
               </div>
 
-              <div className="text-[15px] font-medium text-slate-400">
+              <div className="ty-body font-medium text-slate-400">
                 {items.length} {isRu ? 'уведомления' : 'notifications'}
               </div>
             </div>
@@ -142,7 +142,7 @@ export function NotificationsScreen() {
 
             <div className="min-w-0 flex-1">
               <div className="flex items-center justify-between gap-2">
-                <p className="truncate text-[15px] font-semibold text-slate-900">
+                <p className="truncate ty-body font-semibold text-slate-900">
                   {item.title}
                 </p>
                 {item.unread && (
@@ -150,11 +150,11 @@ export function NotificationsScreen() {
                 )}
               </div>
 
-              <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+              <p className="mt-0.5 ty-subtitle leading-[1.4] text-slate-500">
                 {item.text}
               </p>
 
-              <p className="mt-1 text-[7px] text-slate-400">{item.time}</p>
+              <p className="mt-1 ty-overline text-slate-400">{item.time}</p>
             </div>
 
             <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f7f7f5] text-slate-400 transition group-hover:bg-emerald-50 group-hover:text-emerald-600">
@@ -168,7 +168,7 @@ export function NotificationsScreen() {
             <Bell className="h-3.5 w-3.5" />
           </div>
 
-          <p className="text-[14px] leading-[1.4] text-slate-500">
+          <p className="ty-subtitle leading-[1.4] text-slate-500">
             {isRu
               ? 'Нажмите на уведомление, чтобы сразу открыть нужный раздел.'
               : 'Tap a notification to instantly open the relevant section.'}
