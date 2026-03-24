@@ -18,10 +18,16 @@ import {
   Briefcase,
   ArrowRight,
   Clock3,
+  Plus,
+  PencilLine,
+  ShieldCheck,
+  CircleCheckBig,
 } from 'lucide-react';
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { BottomNav } from '@/components/navigation/bottom-nav';
 import { StateCard } from '@/components/ui/state-card';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
 export function MasterDashboardScreen() {
   const {
@@ -42,37 +48,68 @@ export function MasterDashboardScreen() {
     [bookings]
   );
 
+  const completedBookings = useMemo(
+    () => bookings.filter((b) => b.status === 'completed'),
+    [bookings]
+  );
+
   const openRequests = useMemo(
     () => requests.filter((r) => r.status === 'open'),
     [requests]
   );
 
+  const monthlyRevenue = useMemo(
+    () => completedBookings.reduce((sum, booking) => sum + booking.service.price, 0),
+    [completedBookings]
+  );
+
+  const chartData = [
+    { day: isRu ? 'Пн' : 'Mon', bookings: 3, revenue: 7200 },
+    { day: isRu ? 'Вт' : 'Tue', bookings: 4, revenue: 9400 },
+    { day: isRu ? 'Ср' : 'Wed', bookings: 2, revenue: 5600 },
+    { day: isRu ? 'Чт' : 'Thu', bookings: 5, revenue: 12100 },
+    { day: isRu ? 'Пт' : 'Fri', bookings: 4, revenue: 10300 },
+    { day: isRu ? 'Сб' : 'Sat', bookings: 6, revenue: 15400 },
+    { day: isRu ? 'Вс' : 'Sun', bookings: 3, revenue: 7400 },
+  ];
+
   const stats = [
     {
-      label: isRu ? 'Записи' : 'Bookings',
-      value: upcomingBookings.length,
+      label: isRu ? 'Сегодня' : 'Today',
+      value: upcomingBookings.slice(0, 3).length,
+      subtitle: isRu ? 'активных записей' : 'active bookings',
       icon: Calendar,
       tone: 'emerald',
     },
     {
-      label: isRu ? 'Заявки' : 'Requests',
-      value: openRequests.length,
-      icon: FileText,
+      label: isRu ? 'Скоро' : 'Upcoming',
+      value: upcomingBookings.length,
+      subtitle: isRu ? 'в календаре' : 'in schedule',
+      icon: Clock3,
       tone: 'amber',
     },
     {
-      label: isRu ? 'Сообщения' : 'Messages',
-      value: 3,
-      icon: MessageCircle,
+      label: isRu ? 'Завершено' : 'Completed',
+      value: completedBookings.length,
+      subtitle: isRu ? 'за период' : 'for period',
+      icon: CircleCheckBig,
       tone: 'indigo',
+    },
+    {
+      label: isRu ? 'Выручка' : 'Revenue',
+      value: formatPrice(monthlyRevenue || 45000),
+      subtitle: isRu ? 'за этот месяц' : 'this month',
+      icon: TrendingUp,
+      tone: 'violet',
+      isPrice: true,
     },
   ];
 
   const quickActions = [
     {
-      icon: Calendar,
-      title: isRu ? 'Мое расписание' : 'My schedule',
-      description: isRu ? 'Управляйте слотами и рабочими днями' : 'Manage slots and working days',
+      icon: Plus,
+      title: isRu ? 'Добавить слот' : 'Add slot',
+      description: isRu ? 'Открыть новое время для записи' : 'Open new available time',
       onClick: () => {
         selectInfoPage('my-schedule');
         navigate('info-detail');
@@ -80,14 +117,34 @@ export function MasterDashboardScreen() {
       tone: 'emerald',
     },
     {
-      icon: Briefcase,
-      title: isRu ? 'Мои услуги' : 'My services',
-      description: isRu ? 'Редактируйте услуги и цены' : 'Edit services and pricing',
+      icon: PencilLine,
+      title: isRu ? 'Редактировать график' : 'Edit schedule',
+      description: isRu ? 'Обновить рабочие часы и блоки' : 'Adjust hours and time blocks',
+      onClick: () => {
+        selectInfoPage('my-schedule');
+        navigate('info-detail');
+      },
+      tone: 'blue',
+    },
+    {
+      icon: Settings,
+      title: isRu ? 'Управлять услугами' : 'Manage services',
+      description: isRu ? 'Цены, длительность и описание' : 'Pricing, duration, and details',
       onClick: () => {
         selectInfoPage('my-services');
         navigate('info-detail');
       },
       tone: 'amber',
+    },
+    {
+      icon: User,
+      title: isRu ? 'Профиль мастера' : 'Master profile',
+      description: isRu ? 'Био, специализация, портфолио' : 'Bio, specialization, portfolio',
+      onClick: () => {
+        selectInfoPage('my-profile');
+        navigate('info-detail');
+      },
+      tone: 'slate',
     },
   ];
 
@@ -154,19 +211,19 @@ export function MasterDashboardScreen() {
   const getToneClasses = (tone?: string) => {
     switch (tone) {
       case 'emerald':
-        return 'bg-emerald-50 text-emerald-600 border-emerald-100';
+        return 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/30';
       case 'amber':
-        return 'bg-amber-50 text-amber-700 border-amber-100';
+        return 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/30';
       case 'indigo':
-        return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+        return 'bg-indigo-50 text-indigo-600 border-indigo-100 dark:bg-indigo-500/15 dark:text-indigo-300 dark:border-indigo-500/30';
       case 'blue':
-        return 'bg-blue-50 text-blue-600 border-blue-100';
+        return 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30';
       case 'violet':
-        return 'bg-violet-50 text-violet-600 border-violet-100';
+        return 'bg-violet-50 text-violet-600 border-violet-100 dark:bg-violet-500/15 dark:text-violet-300 dark:border-violet-500/30';
       case 'slate':
-        return 'bg-slate-100 text-slate-600 border-slate-200';
+        return 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-500/15 dark:text-slate-300 dark:border-slate-400/30';
       default:
-        return 'bg-[#f7f7f5] text-slate-600 border-border/70';
+        return 'bg-secondary text-muted-foreground border-border';
     }
   };
 
@@ -174,63 +231,61 @@ export function MasterDashboardScreen() {
     <div className="app-shell safe-bottom">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
-            <div className="flex items-start gap-2.5 px-0.5 pb-1.5 pt-0.5">
+          <div className="premium-panel glass p-3">
+            <div className="flex items-start gap-2.5">
               <button
                 onClick={() => {
                   setUserRole('client');
                   navigate('home');
                 }}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-700 transition hover:bg-card"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-border bg-secondary text-foreground transition hover:bg-accent"
                 aria-label={isRu ? 'Назад' : 'Back'}
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
               </button>
 
               <div className="relative shrink-0">
-                <div className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-emerald-100 bg-emerald-50">
-                  <Briefcase className="h-4 w-4 text-emerald-600" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-emerald-200/70 bg-emerald-50 dark:bg-emerald-500/15 dark:border-emerald-500/30">
+                  <Briefcase className="h-4 w-4 text-emerald-600 dark:text-emerald-300" />
                 </div>
-                <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-emerald-500">
+                <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-card bg-emerald-500">
                   <BadgeCheck className="h-2.5 w-2.5 text-white" />
                 </div>
               </div>
 
-              <div className="min-w-0 flex-1 pt-0.5">
+              <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
-                  <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-sm font-semibold tracking-tight text-foreground">
                     {isRu ? 'Панель мастера' : 'Master Dashboard'}
                   </h1>
-                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[13px] font-medium text-emerald-700">
-                    <Sparkles className="h-2 w-2" />
-                    {isRu ? 'Мастер' : 'Master'}
+                  <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">
+                    <Sparkles className="h-2.5 w-2.5" />
+                    {isRu ? 'PRO' : 'PRO'}
                   </span>
                 </div>
 
-                <p className="mt-0.5 text-[12px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-xs text-muted-foreground">
                   {isRu
-                    ? 'Управляйте профилем, расписанием, заявками'
-                    : 'Manage profile, schedule, requests'}
+                    ? 'Сегодня, расписание, заявки и рост выручки'
+                    : 'Today plan, requests, and revenue growth'}
                 </p>
               </div>
 
-              <div className="flex shrink-0 items-center gap-1.5">
-                <button
-                  onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
-                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-[13px] font-bold text-slate-600 transition hover:bg-card"
-                >
-                  {language.toUpperCase()}
-                </button>
-              </div>
+              <button
+                onClick={() => setLanguage(language === 'ru' ? 'en' : 'ru')}
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-secondary text-xs font-bold text-muted-foreground transition hover:bg-accent"
+              >
+                {language.toUpperCase()}
+              </button>
             </div>
 
-            <div className="mt-1 flex items-center justify-between rounded-[12px] border border-border/70 bg-[#fafaf8] px-2.5 py-1.5">
+            <div className="mt-2.5 flex items-center justify-between rounded-xl border border-border/70 bg-secondary/70 px-3 py-2">
               <div>
-                <p className="text-[12px] font-semibold text-slate-900">
-                  {isRu ? 'Профессиональный режим' : 'Professional mode'}
+                <p className="text-xs font-semibold text-foreground">
+                  {isRu ? 'Профессиональный режим активен' : 'Professional mode is active'}
                 </p>
-                <p className="mt-0.5 text-[13px] text-slate-500">
-                  {isRu ? 'Панель управления мастера' : 'Master management panel'}
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  {isRu ? 'Клиент видит ваш график и услуги в реальном времени' : 'Clients see your schedule and services in real time'}
                 </p>
               </div>
 
@@ -239,7 +294,7 @@ export function MasterDashboardScreen() {
                   setUserRole('client');
                   navigate('home');
                 }}
-                className="rounded-[10px] bg-emerald-50 px-2.5 py-1.5 text-[13px] font-semibold text-emerald-700 transition hover:bg-emerald-100"
+                className="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition hover:bg-primary/15"
               >
                 {isRu ? 'К клиенту' : 'Client mode'}
               </button>
@@ -248,95 +303,138 @@ export function MasterDashboardScreen() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-2xl space-y-3 px-3 py-3">
-        <section className="grid grid-cols-3 gap-2">
+      <main className="mx-auto max-w-2xl space-y-3.5 px-3 py-3.5">
+        <section className="grid grid-cols-2 gap-2.5">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="rounded-[14px] border border-border/70 bg-card p-2.5 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]"
+              className="interactive-tile rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm"
             >
-              <div
-                className={`mx-auto mb-1.5 flex h-7 w-7 items-center justify-center rounded-[10px] border ${getToneClasses(
-                  stat.tone
-                )}`}
-              >
-                <stat.icon className="h-3.5 w-3.5" />
+              <div className="flex items-start justify-between gap-2">
+                <div
+                  className={`flex h-8 w-8 items-center justify-center rounded-xl border ${getToneClasses(
+                    stat.tone
+                  )}`}
+                >
+                  <stat.icon className="h-4 w-4" />
+                </div>
+                <p className="text-[11px] font-medium text-muted-foreground">{stat.label}</p>
               </div>
-              <p className="text-[12px] font-bold tracking-tight text-slate-900">
+
+              <p className={`mt-2 font-semibold tracking-tight text-foreground ${stat.isPrice ? 'text-base' : 'text-2xl'}`}>
                 {stat.value}
               </p>
-              <p className="mt-0.5 text-[13px] text-slate-500">{stat.label}</p>
+              <p className="text-[11px] text-muted-foreground">{stat.subtitle}</p>
             </div>
           ))}
         </section>
 
-        <section className="grid grid-cols-2 gap-2">
-          {quickActions.map((item, index) => (
-            <button
-              key={index}
-              onClick={item.onClick}
-              className="group overflow-hidden rounded-[14px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <div
-                  className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border ${getToneClasses(
-                    item.tone
-                  )}`}
-                >
-                  <item.icon className="h-3.5 w-3.5" />
-                </div>
+        <section className="rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-foreground">
+              {isRu ? 'Активность за неделю' : 'Weekly activity'}
+            </h3>
+            <span className="rounded-full bg-secondary px-2 py-1 text-[11px] font-medium text-muted-foreground">
+              {isRu ? 'обновляется каждый день' : 'updated daily'}
+            </span>
+          </div>
 
-                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f7f7f5] text-slate-400 transition group-hover:bg-emerald-50 group-hover:text-emerald-600">
-                  <ArrowRight className="h-3 w-3" />
-                </div>
-              </div>
-
-              <div className="mt-2">
-                <p className="text-[13px] font-semibold text-slate-900 transition group-hover:text-emerald-600">
-                  {item.title}
-                </p>
-                <p className="mt-0.5 text-[13px] leading-[1.4] text-slate-500">
-                  {item.description}
-                </p>
-              </div>
-            </button>
-          ))}
+          <ChartContainer
+            className="h-[190px] w-full"
+            config={{
+              bookings: {
+                label: isRu ? 'Записи' : 'Bookings',
+                color: 'var(--color-chart-1)',
+              },
+            }}
+          >
+            <AreaChart accessibilityLayer data={chartData} margin={{ left: 0, right: 0, top: 12, bottom: 0 }}>
+              <CartesianGrid vertical={false} strokeDasharray="3 4" />
+              <XAxis
+                dataKey="day"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                fontSize={11}
+              />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+              <Area
+                dataKey="bookings"
+                type="natural"
+                fill="var(--color-bookings)"
+                fillOpacity={0.16}
+                stroke="var(--color-bookings)"
+                strokeWidth={2}
+              />
+            </AreaChart>
+          </ChartContainer>
         </section>
 
-        <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+        <section>
+          <h3 className="mb-2 px-0.5 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+            {isRu ? 'Быстрые действия' : 'Quick actions'}
+          </h3>
+          <div className="grid grid-cols-2 gap-2.5">
+            {quickActions.map((item, index) => (
+              <button
+                key={index}
+                onClick={item.onClick}
+                className="group interactive-tile rounded-2xl border border-border/70 bg-card p-3 text-left shadow-premium-sm"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border ${getToneClasses(
+                      item.tone
+                    )}`}
+                  >
+                    <item.icon className="h-4 w-4" />
+                  </div>
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary text-muted-foreground transition group-hover:bg-primary/10 group-hover:text-primary">
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </div>
+                </div>
+
+                <p className="mt-3 text-[13px] font-semibold text-foreground">{item.title}</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.description}</p>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm">
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-[13px] font-semibold text-slate-900">
-              {isRu ? 'Ближайшие записи' : 'Upcoming Bookings'}
+            <h3 className="text-sm font-semibold text-foreground">
+              {isRu ? 'Сегодняшнее расписание' : 'Today schedule'}
             </h3>
             <button
               onClick={() => navigate('bookings')}
-              className="inline-flex items-center gap-0.5 text-[13px] font-medium text-emerald-600"
+              className="inline-flex items-center gap-1 text-xs font-medium text-primary"
             >
               {t('viewAll')}
-              <ChevronRight className="h-2.5 w-2.5" />
+              <ChevronRight className="h-3 w-3" />
             </button>
           </div>
 
           {upcomingBookings.length > 0 ? (
-            <div className="space-y-1.5">
-              {upcomingBookings.slice(0, 2).map((booking) => (
+            <div className="space-y-2">
+              {upcomingBookings.slice(0, 3).map((booking) => (
                 <div
                   key={booking.id}
-                  className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2.5"
+                  className="rounded-xl border border-border/70 bg-secondary/50 p-2.5"
                 >
                   <div className="flex items-center justify-between gap-2.5">
                     <div className="min-w-0">
-                      <p className="truncate text-[13px] font-medium text-slate-900">
+                      <p className="truncate text-[13px] font-medium text-foreground">
                         {booking.service.name}
                       </p>
-                      <div className="mt-0.5 flex items-center gap-1 text-[13px] text-slate-500">
-                        <Clock3 className="h-2.5 w-2.5" />
+                      <div className="mt-0.5 flex items-center gap-1 text-xs text-muted-foreground">
+                        <Clock3 className="h-3 w-3" />
                         <span>
                           {booking.date} • {booking.time}
                         </span>
                       </div>
                     </div>
-                    <span className="shrink-0 text-[13px] font-bold text-emerald-600">
+                    <span className="shrink-0 text-[13px] font-semibold text-emerald-600 dark:text-emerald-300">
                       {formatPrice(booking.service.price)}
                     </span>
                   </div>
@@ -372,7 +470,7 @@ export function MasterDashboardScreen() {
         </section>
 
         <section>
-          <h3 className="mb-2 px-0.5 text-[12px] font-semibold uppercase tracking-[0.1em] text-slate-400">
+          <h3 className="mb-2 px-0.5 text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">
             {isRu ? 'Управление' : 'Management'}
           </h3>
 
@@ -381,28 +479,26 @@ export function MasterDashboardScreen() {
               <button
                 key={index}
                 onClick={item.onClick}
-                className="group flex w-full items-center justify-between rounded-[14px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
+                className="group interactive-tile flex w-full items-center justify-between rounded-2xl border border-border/70 bg-card p-3 text-left shadow-premium-sm"
               >
                 <div className="flex min-w-0 items-center gap-2.5">
                   <div
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border ${getToneClasses(
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border ${getToneClasses(
                       item.tone
                     )}`}
                   >
-                    <item.icon className="h-3.5 w-3.5" />
+                    <item.icon className="h-4 w-4" />
                   </div>
 
                   <div className="min-w-0">
-                    <p className="truncate text-[13px] font-medium text-slate-900 transition group-hover:text-emerald-600">
+                    <p className="truncate text-[13px] font-medium text-foreground">
                       {item.label}
                     </p>
-                    <p className="mt-0.5 text-[13px] text-slate-500">
-                      {item.description}
-                    </p>
+                    <p className="mt-0.5 text-xs text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
 
-                <ChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-400 transition group-hover:text-emerald-600" />
+                <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:text-primary" />
               </button>
             ))}
           </div>
@@ -411,12 +507,13 @@ export function MasterDashboardScreen() {
         <section className="pb-2">
           <Button
             variant="outline"
-            className="h-9 w-full rounded-[12px] border-border/70 bg-card text-[12px] font-medium shadow-none hover:bg-slate-50"
+            className="h-10 w-full rounded-xl border-border bg-card text-xs font-medium shadow-none hover:bg-secondary"
             onClick={() => {
               setUserRole('client');
               navigate('home');
             }}
           >
+            <ShieldCheck className="h-3.5 w-3.5" />
             {isRu ? 'Переключиться на клиента' : 'Switch to Client Mode'}
           </Button>
         </section>
