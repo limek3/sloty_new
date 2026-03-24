@@ -532,8 +532,8 @@ function CompactCard({ master, onClick }: { master: any; onClick?: () => void })
       </div>
 
       <div className="p-3">
-        <div className="truncate text-[13px] font-bold text-foreground">{name}</div>
-        <div className="truncate text-[11px] text-muted-foreground">{subtitle}</div>
+        <div className="truncate text-[16px] font-bold text-foreground">{name}</div>
+        <div className="truncate text-[14px] text-muted-foreground">{subtitle}</div>
 
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-sm font-semibold text-foreground">
@@ -583,7 +583,7 @@ function SearchCard({ master, onClick }: { master: any; onClick?: () => void }) 
                 <div className="truncate text-[16px] font-bold leading-tight text-foreground">{name}</div>
                 {verified && <BadgeCheck className="h-4 w-4 shrink-0 text-success" />}
               </div>
-              <div className="mt-0.5 truncate text-[13px] text-muted-foreground">{subtitle}</div>
+              <div className="mt-0.5 truncate text-[16px] text-muted-foreground">{subtitle}</div>
             </div>
 
             <button
@@ -603,7 +603,7 @@ function SearchCard({ master, onClick }: { master: any; onClick?: () => void }) 
             </button>
           </div>
 
-          <div className="mt-2.5 flex flex-wrap items-center gap-2 text-[12px]">
+          <div className="mt-2.5 flex flex-wrap items-center gap-2 text-[15px]">
             <div className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 font-semibold text-amber-700">
               <Star className="h-3.5 w-3.5 fill-current" />
               <span>{rating}</span>
@@ -630,17 +630,17 @@ function SearchCard({ master, onClick }: { master: any; onClick?: () => void }) 
           {tags.length > 0 ? tags.map((tag, index) => (
             <span
               key={`${tag}-${index}`}
-              className="inline-flex items-center rounded-full border border-border bg-white px-2.5 py-1 text-[11px] font-medium text-secondary-foreground"
+              className="inline-flex items-center rounded-full border border-border bg-white px-2.5 py-1 text-[14px] font-medium text-secondary-foreground"
             >
               {tag}
             </span>
           )) : (
-            <span className="text-[12px] text-muted-foreground">Свободные слоты сегодня</span>
+            <span className="text-[15px] text-muted-foreground">Свободные слоты сегодня</span>
           )}
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
-          <div className="rounded-full bg-emerald-50 px-3 py-1.5 text-[13px] font-bold text-success">{price}</div>
+          <div className="rounded-full bg-emerald-50 px-3 py-1.5 text-[16px] font-bold text-success">{price}</div>
           <div className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-white text-muted-foreground shadow-premium-sm">
             <ChevronRight className="h-4 w-4" />
           </div>

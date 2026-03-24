@@ -61,7 +61,7 @@ export function CreateRequestScreen() {
           </h1>
 
           <p
-            className="animate-slide-up mt-1.5 max-w-sm text-center text-[9px] leading-[1.4] text-slate-500"
+            className="animate-slide-up mt-1.5 max-w-sm text-center text-[14px] leading-[1.4] text-slate-500"
             style={{ animationDelay: '0.1s' }}
           >
             {isRu
@@ -70,7 +70,7 @@ export function CreateRequestScreen() {
           </p>
 
           <Button
-            className="animate-slide-up mt-5 h-10 w-full max-w-sm rounded-[12px] bg-emerald-500 text-[10px] font-semibold text-white shadow-[0_12px_26px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+            className="animate-slide-up mt-5 h-10 w-full max-w-sm rounded-[12px] bg-emerald-500 text-[15px] font-semibold text-white shadow-[0_12px_26px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
             style={{ animationDelay: '0.2s' }}
             onClick={() => navigate('requests')}
           >
@@ -82,14 +82,14 @@ export function CreateRequestScreen() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f6f6f3] pb-24 safe-top safe-bottom">
+    <div className="app-shell safe-bottom">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-black/5 bg-white p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
+          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
             <div className="flex items-start gap-2.5 px-0.5 pb-1 pt-0.5">
               <button
                 onClick={goBack}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-black/6 bg-[#f7f7f5] text-slate-700 transition hover:bg-white"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-700 transition hover:bg-card"
                 aria-label={isRu ? 'Назад' : 'Back'}
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
@@ -100,12 +100,12 @@ export function CreateRequestScreen() {
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                     <Sparkles className="h-3.5 w-3.5" />
                   </div>
-                  <h1 className="truncate text-[13px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
                     {t('newRequest')}
                   </h1>
                 </div>
 
-                <p className="mt-0.5 text-[9px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Опишите задачу, и мастера сами откликнутся'
                     : 'Describe your request and masters will respond'}
@@ -117,10 +117,10 @@ export function CreateRequestScreen() {
       </header>
 
       <main className="mx-auto max-w-2xl space-y-2.5 px-3 py-3">
-        <div className="rounded-[18px] border border-black/6 bg-white p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+        <div className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
           <div className="space-y-3">
             <div className="space-y-1">
-              <Label htmlFor="title" className="text-[9px] font-medium text-slate-700">
+              <Label htmlFor="title" className="text-[14px] font-medium text-slate-700">
                 {t('requestTitle')} *
               </Label>
               <Input
@@ -132,12 +132,12 @@ export function CreateRequestScreen() {
                     ? 'Например: Нужен маникюр на свадьбу'
                     : 'E.g. Need a manicure for wedding'
                 }
-                className="h-9 rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none"
+                className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none"
               />
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="description" className="text-[9px] font-medium text-slate-700">
+              <Label htmlFor="description" className="text-[14px] font-medium text-slate-700">
                 {t('requestDescription')} *
               </Label>
               <Textarea
@@ -149,16 +149,16 @@ export function CreateRequestScreen() {
                     ? 'Опишите подробно, что вам нужно, какие пожелания...'
                     : 'Describe in detail what you need, preferences...'
                 }
-                className="min-h-20 resize-none rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none"
+                className="min-h-20 resize-none rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none"
               />
             </div>
 
             <div className="space-y-1">
-              <Label className="text-[9px] font-medium text-slate-700">
+              <Label className="text-[14px] font-medium text-slate-700">
                 {t('categories')} *
               </Label>
               <Select value={category} onValueChange={setCategory}>
-                <SelectTrigger className="h-9 rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none">
+                <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none">
                   <SelectValue
                     placeholder={isRu ? 'Выберите категорию' : 'Select category'}
                   />
@@ -177,7 +177,7 @@ export function CreateRequestScreen() {
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="budget" className="text-[9px] font-medium text-slate-700">
+              <Label htmlFor="budget" className="text-[14px] font-medium text-slate-700">
                 {t('budget')} (₽) *
               </Label>
               <Input
@@ -186,12 +186,12 @@ export function CreateRequestScreen() {
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
                 placeholder={isRu ? 'Ваш бюджет в рублях' : 'Your budget in rubles'}
-                className="h-9 rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none"
+                className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none"
               />
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="location" className="text-[9px] font-medium text-slate-700">
+              <Label htmlFor="location" className="text-[14px] font-medium text-slate-700">
                 {t('location')} *
               </Label>
               <Input
@@ -199,13 +199,13 @@ export function CreateRequestScreen() {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder={isRu ? 'Район, метро или адрес' : 'District, metro or address'}
-                className="h-9 rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none"
+                className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-2.5">
               <div className="space-y-1">
-                <Label htmlFor="date" className="text-[9px] font-medium text-slate-700">
+                <Label htmlFor="date" className="text-[14px] font-medium text-slate-700">
                   {t('preferredDate')}
                 </Label>
                 <Input
@@ -213,12 +213,12 @@ export function CreateRequestScreen() {
                   type="date"
                   value={preferredDate}
                   onChange={(e) => setPreferredDate(e.target.value)}
-                  className="h-9 rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none"
+                  className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none"
                 />
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="time" className="text-[9px] font-medium text-slate-700">
+                <Label htmlFor="time" className="text-[14px] font-medium text-slate-700">
                   {t('preferredTime')}
                 </Label>
                 <Input
@@ -226,12 +226,12 @@ export function CreateRequestScreen() {
                   type="time"
                   value={preferredTime}
                   onChange={(e) => setPreferredTime(e.target.value)}
-                  className="h-9 rounded-[12px] border-black/6 bg-[#fafaf8] text-[10px] shadow-none"
+                  className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] text-[15px] shadow-none"
                 />
               </div>
             </div>
 
-            <div className="rounded-[12px] bg-[#f7f7f5] px-2.5 py-2 text-[8px] leading-[1.4] text-slate-500">
+            <div className="rounded-[12px] bg-[#f7f7f5] px-2.5 py-2 text-[15px] leading-[1.4] text-slate-500">
               {isRu
                 ? '* Обязательные поля. После публикации заявки мастера смогут откликаться на неё.'
                 : '* Required fields. After publishing, masters will be able to respond.'}
@@ -241,9 +241,9 @@ export function CreateRequestScreen() {
       </main>
 
       <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 safe-bottom">
-        <div className="rounded-[18px] border border-black/6 bg-white p-2 shadow-[0_8px_26px_rgba(15,23,42,0.08)]">
+        <div className="rounded-[18px] border border-border/70 bg-card p-2 shadow-[0_8px_26px_rgba(15,23,42,0.08)]">
           <Button
-            className="h-10 w-full rounded-[12px] bg-emerald-500 text-[10px] font-semibold text-white shadow-[0_12px_26px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+            className="h-10 w-full rounded-[12px] bg-emerald-500 text-[15px] font-semibold text-white shadow-[0_12px_26px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
             disabled={!isValid}
             onClick={handleSubmit}
           >
