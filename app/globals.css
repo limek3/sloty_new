@@ -1,0 +1,436 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'leaflet/dist/leaflet.css';
+
+:root {
+  /* Premium Light Theme - Soft, airy, and luxurious */
+  
+  /* Base backgrounds - warm whites and creams */
+  --background: oklch(0.992 0.002 90);
+  --foreground: oklch(0.145 0.015 265);
+  
+  /* Card surfaces - pure white with subtle warmth */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0.015 265);
+  
+  /* Popover - crisp white */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0.015 265);
+  
+  /* Primary - unified green accent */
+  --primary: oklch(0.62 0.17 155);
+  --primary-foreground: oklch(0.995 0 0);
+
+  /* Secondary - Soft warm gray remains the same */
+  --secondary: oklch(0.968 0.003 90);
+  --secondary-foreground: oklch(0.28 0.01 155);
+
+  /* Muted - Subtle gray for backgrounds */
+  --muted: oklch(0.965 0.003 90);
+  --muted-foreground: oklch(0.46 0.01 155);
+
+  /* Accent - Light green wash to complement the primary */
+  --accent: oklch(0.95 0.10 155);
+  --accent-foreground: oklch(0.38 0.10 155);
+
+  /* Destructive - Warm red remains unchanged */
+  --destructive: oklch(0.58 0.22 22);
+  --destructive-foreground: oklch(0.995 0 0);
+
+  /* Borders - Subtle warm gray */
+  --border: oklch(0.925 0.004 90);
+  --input: oklch(0.925 0.004 90);
+  /* Ring now uses the primary green tone */
+  --ring: var(--primary);
+
+  /* Chart colors - Harmonious green palette */
+  --chart-1: oklch(0.62 0.17 155);
+  --chart-2: oklch(0.54 0.14 170);
+  --chart-3: oklch(0.56 0.12 140);
+  --chart-4: oklch(0.68 0.08 160);
+  --chart-5: oklch(0.74 0.06 150);
+
+  /* Premium radius - Generous, soft corners */
+  --radius: 1rem;
+  
+  /* Premium surface layers */
+  --surface-1: oklch(0.995 0.002 90);
+  --surface-2: oklch(0.978 0.003 90);
+  --surface-3: oklch(0.962 0.004 90);
+  
+  /* Success - Soft emerald */
+  --success: oklch(0.62 0.17 155);
+  --success-foreground: oklch(0.995 0 0);
+  
+  /* Warning - Warm amber */
+  --warning: oklch(0.78 0.14 70);
+  --warning-foreground: oklch(0.22 0.06 70);
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-full: 9999px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
+
+/* Premium Utilities */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Safe area insets for mobile */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Premium glass effect - light only */
+  .glass {
+    background: oklch(1 0 0 / 0.82);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Premium text gradient */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, oklch(0.58 0.14 280) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Premium shadow utilities */
+  .shadow-premium-sm {
+    box-shadow: 
+      0 1px 2px oklch(0.145 0.015 265 / 0.03),
+      0 4px 8px oklch(0.145 0.015 265 / 0.04);
+  }
+  
+  .shadow-premium {
+    box-shadow: 
+      0 1px 3px oklch(0.145 0.015 265 / 0.02),
+      0 6px 16px oklch(0.145 0.015 265 / 0.05),
+      0 12px 32px oklch(0.145 0.015 265 / 0.03);
+  }
+  
+  .shadow-premium-lg {
+    box-shadow: 
+      0 2px 4px oklch(0.145 0.015 265 / 0.02),
+      0 8px 24px oklch(0.145 0.015 265 / 0.06),
+      0 20px 48px oklch(0.145 0.015 265 / 0.04);
+  }
+  
+  .shadow-premium-xl {
+    box-shadow: 
+      0 4px 8px oklch(0.145 0.015 265 / 0.02),
+      0 12px 32px oklch(0.145 0.015 265 / 0.07),
+      0 28px 64px oklch(0.145 0.015 265 / 0.05);
+  }
+  
+  /* Primary accent shadow */
+  .shadow-primary-glow {
+    /* Match the unified green primary tone for glow effects */
+    box-shadow: 
+      0 4px 12px oklch(0.62 0.17 155 / 0.15),
+      0 12px 28px oklch(0.62 0.17 155 / 0.20);
+  }
+}
+
+/* Premium Animation Keyframes */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from { 
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.4), transparent);
+  background-size: 200% 100%;
+}
+
+/* Leaflet Map Styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: oklch(0.975 0.003 90);
+  font: inherit;
+}
+
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+.custom-master-marker {
+  background: transparent;
+  border: none;
+}
+
+.custom-user-marker {
+  background: transparent;
+  border: none;
+}
+
+/* Premium Action Button Aurora Effect */
+@keyframes premiumGradientShift {
+  0% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: scale(1.02);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+}
+
+@keyframes premiumGlow {
+  0%, 100% {
+    opacity: 0.7;
+    filter: blur(16px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(20px);
+  }
+}
+
+.premium-action-glow {
+  position: absolute;
+  inset: -15%;
+  pointer-events: none;
+  will-change: transform, opacity;
+  background: radial-gradient(
+    ellipse at center,
+    oklch(0.50 0.18 265 / 0.25) 0%,
+    oklch(0.58 0.14 280 / 0.15) 40%,
+    transparent 70%
+  );
+  animation: premiumGlow 4s ease-in-out infinite;
+}
+
+.premium-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    oklch(1 0 0 / 0.15) 0%,
+    transparent 40%
+  );
+  border-radius: inherit;
+}
+
+/* Premium Card Hover State */
+.premium-card {
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 8px oklch(0.145 0.015 265 / 0.03),
+    0 12px 32px oklch(0.145 0.015 265 / 0.06),
+    0 24px 56px oklch(0.145 0.015 265 / 0.04);
+}
+
+/* Premium Button Styles */
+.premium-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    oklch(1 0 0 / 0.12) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+.premium-button:hover {
+  transform: translateY(-1px);
+}
+
+.premium-button:active {
+  transform: translateY(0);
+}
+
+/* Focus States */
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Selection Colors */
+::selection {
+  background: oklch(0.50 0.18 265 / 0.15);
+  color: oklch(0.145 0.015 265);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Text rendering */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 430px) {
+  :root {
+    --radius: 0.95rem;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  .shadow-premium-sm {
+    box-shadow:
+      0 1px 2px oklch(0.145 0.015 265 / 0.025),
+      0 3px 8px oklch(0.145 0.015 265 / 0.035);
+  }
+
+  .shadow-premium {
+    box-shadow:
+      0 1px 3px oklch(0.145 0.015 265 / 0.02),
+      0 5px 14px oklch(0.145 0.015 265 / 0.045),
+      0 10px 24px oklch(0.145 0.015 265 / 0.03);
+  }
+}
