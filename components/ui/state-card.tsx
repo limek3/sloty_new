@@ -43,7 +43,7 @@ export function StateCard({
   return (
     <Empty
       className={cn(
-        'rounded-[18px] border border-border/70 bg-card px-4 py-10 shadow-[0_6px_20px_rgba(15,23,42,0.04)]',
+        'rounded-[18px] border border-border/70 bg-card px-4 py-8 shadow-[0_6px_20px_rgba(15,23,42,0.04)]',
         className,
       )}
     >
@@ -60,9 +60,9 @@ export function StateCard({
           <ResolvedIcon className="h-5 w-5" />
         </EmptyMedia>
 
-        <EmptyTitle className="text-[15px] font-semibold text-slate-900">{title}</EmptyTitle>
+        <EmptyTitle className="text-[14px] font-semibold text-slate-900">{title}</EmptyTitle>
 
-        <EmptyDescription className="max-w-xs text-[14px] leading-[1.4] text-slate-500">
+        <EmptyDescription className="max-w-xs text-[13px] leading-[1.4] text-slate-500">
           {description}
         </EmptyDescription>
       </EmptyHeader>
@@ -70,7 +70,7 @@ export function StateCard({
       <EmptyContent className="mt-1.5 w-auto max-w-none gap-2 sm:flex-row">
         <Button
           onClick={primaryAction.onClick}
-          className="h-9 rounded-[12px] bg-emerald-500 px-3 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+          className="h-9 rounded-[12px] bg-emerald-500 px-3 text-[13px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
         >
           {primaryAction.label}
         </Button>
@@ -79,7 +79,7 @@ export function StateCard({
           <Button
             variant="outline"
             onClick={secondaryAction.onClick}
-            className="h-9 rounded-[12px] border-border/70 px-3 text-[14px] font-semibold"
+            className="h-9 rounded-[12px] border-border/70 px-3 text-[13px] font-semibold"
           >
             {secondaryAction.label}
           </Button>

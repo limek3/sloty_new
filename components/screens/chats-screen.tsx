@@ -52,19 +52,19 @@ export function ChatsScreen() {
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                     <MessageCircle className="h-3.5 w-3.5" />
                   </div>
-                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                     {t('chats')}
                   </h1>
                 </div>
 
-                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[12px] leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Общайтесь с мастерами и следите за сообщениями'
                     : 'Chat with masters and track messages'}
                 </p>
               </div>
 
-              <div className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[15px] font-semibold text-emerald-700">
+              <div className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[13px] font-semibold text-emerald-700">
                 {isRu ? 'Новых: ' : 'Unread: '}
                 {unreadTotal}
               </div>
@@ -77,7 +77,7 @@ export function ChatsScreen() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={isRu ? 'Поиск по чатам...' : 'Search chats...'}
-                className="h-9 w-full rounded-[12px] border border-border/70 bg-[#f7f7f5] pl-9 pr-3 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+                className="h-9 w-full rounded-[12px] border border-border/70 bg-[#f7f7f5] pl-9 pr-3 text-[13px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ export function ChatsScreen() {
                         />
                       </div>
                     ) : (
-                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-emerald-100 text-[15px] font-bold text-emerald-700">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-emerald-100 text-[13px] font-bold text-emerald-700">
                         {chat.participantName.charAt(0)}
                       </div>
                     )}
@@ -127,21 +127,21 @@ export function ChatsScreen() {
                     <div className="flex items-start justify-between gap-2.5">
                       <div className="min-w-0">
                         <h3
-                          className={`truncate text-[15px] font-semibold ${
+                          className={`truncate text-[13px] font-semibold ${
                             hasUnread ? 'text-slate-900' : 'text-slate-800'
                           }`}
                         >
                           {chat.participantName}
                         </h3>
 
-                        <div className="mt-0.5 flex items-center gap-0.5 text-[15px] text-slate-400">
+                        <div className="mt-0.5 flex items-center gap-0.5 text-[13px] text-slate-400">
                           <Sparkles className="h-2.5 w-2.5" />
                           <span>{isRu ? 'Активный чат' : 'Active chat'}</span>
                         </div>
                       </div>
 
                       <div className="shrink-0 text-right">
-                        <div className="text-[15px] font-medium text-slate-400">
+                        <div className="text-[13px] font-medium text-slate-400">
                           {chat.lastMessageTime}
                         </div>
                         {!hasUnread && (
@@ -155,7 +155,7 @@ export function ChatsScreen() {
 
                     <div className="mt-1 flex items-center gap-1.5">
                       <p
-                        className={`min-w-0 flex-1 truncate text-[14px] ${
+                        className={`min-w-0 flex-1 truncate text-[12px] ${
                           hasUnread
                             ? 'font-medium text-slate-700'
                             : 'text-slate-500'

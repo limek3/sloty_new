@@ -141,14 +141,14 @@ export function ChatScreen() {
                     />
                   </div>
                 ) : (
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-emerald-100 text-[15px] font-bold text-emerald-700">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-emerald-100 text-[13px] font-bold text-emerald-700">
                     {chat.participantName.charAt(0)}
                   </div>
                 )}
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1">
-                    <h2 className="truncate text-[14px] font-bold tracking-tight text-slate-900">
+                    <h2 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                       {chat.participantName}
                     </h2>
                     <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-emerald-500">
@@ -156,7 +156,7 @@ export function ChatScreen() {
                     </span>
                   </div>
 
-                  <p className="mt-0.5 truncate text-[15px] text-slate-500">
+                  <p className="mt-0.5 truncate text-[13px] text-slate-500">
                     {isRu ? 'В сети недавно' : 'Online recently'}
                   </p>
                 </div>
@@ -180,12 +180,12 @@ export function ChatScreen() {
             </div>
 
             <div className="mt-1 flex items-center justify-between rounded-[10px] border border-border/70 bg-[#fafaf8] px-2.5 py-1.5">
-              <div className="flex items-center gap-1 text-[15px] text-slate-600">
+              <div className="flex items-center gap-1 text-[13px] text-slate-600">
                 <Sparkles className="h-3 w-3 text-emerald-600" />
                 <span>{isRu ? 'Чат активен' : 'Chat is active'}</span>
               </div>
 
-              <div className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[15px] font-medium text-emerald-700">
+              <div className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[13px] font-medium text-emerald-700">
                 <CalendarDays className="h-2.5 w-2.5" />
                 {isRu ? 'Сегодня' : 'Today'}
               </div>
@@ -196,7 +196,7 @@ export function ChatScreen() {
 
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-3 pb-3 pt-2.5">
         <div className="mb-2 flex items-center justify-center">
-          <div className="rounded-full border border-border/70 bg-card px-2 py-0.5 text-[15px] font-medium text-slate-500 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
+          <div className="rounded-full border border-border/70 bg-card px-2 py-0.5 text-[13px] font-medium text-slate-500 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
             {isRu ? 'Сегодня' : 'Today'}
           </div>
         </div>
@@ -228,7 +228,7 @@ export function ChatScreen() {
                         : 'rounded-bl-[6px] border border-border/70 bg-card text-slate-800'
                     }`}
                   >
-                    <p className="text-[15px] leading-[1.5]">{msg.text}</p>
+                    <p className="text-[13px] leading-[1.5]">{msg.text}</p>
 
                     <div
                       className={`mt-1 flex items-center justify-end gap-1 text-xs ${
@@ -271,7 +271,7 @@ export function ChatScreen() {
               <button
                 key={template.id}
                 onClick={() => selectedChatId && applyQuickReplyTemplate(selectedChatId, template.value)}
-                className="shrink-0 rounded-full border border-border/70 bg-card px-2 py-1 text-[15px] font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700"
+                className="shrink-0 rounded-full border border-border/70 bg-card px-2 py-1 text-[13px] font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700"
               >
                 {template.label}
               </button>
@@ -311,7 +311,7 @@ export function ChatScreen() {
                   placeholder={t('typeMessage')}
                   rows={1}
                   disabled={!chat || composerMode === 'sending'}
-                  className="max-h-24 min-h-[36px] w-full resize-none rounded-[12px] border border-border/70 bg-[#fafaf8] px-2.5 py-2 pr-9 text-[14px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+                  className="max-h-24 min-h-[36px] w-full resize-none rounded-[12px] border border-border/70 bg-[#fafaf8] px-2.5 py-2 pr-9 text-[12px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
                 />
 
                 <button
