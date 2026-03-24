@@ -1,7 +1,19 @@
 'use client';
 
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
-import type { Language, Theme, UserRole, AppScreen, Master, Booking, ServiceRequest, Chat, InfoPage } from './types';
+import type {
+  Language,
+  Theme,
+  UserRole,
+  AppScreen,
+  Master,
+  Booking,
+  ServiceRequest,
+  Chat,
+  InfoPage,
+  ChatThreadState,
+  ChatMessage,
+} from './types';
 import { translations, type TranslationKey } from './i18n';
 import { masters as mockMasters, bookings as mockBookings, serviceRequests as mockRequests, chats as mockChats } from './mock-data';
 
@@ -22,6 +34,7 @@ interface AppState {
   bookings: Booking[];
   requests: ServiceRequest[];
   chats: Chat[];
+  chatThreads: Record<string, ChatThreadState>;
   
   // Selected State
   selectedMasterId: string | null;
@@ -72,6 +85,10 @@ interface AppContextType extends AppState {
   // Chat Actions
   selectChat: (id: string) => void;
   openChatWithMaster: (masterId: string) => void;
+  setChatDraft: (chatId: string, draft: string) => void;
+  sendChatMessage: (chatId: string) => void;
+  retryChatMessage: (chatId: string) => void;
+  applyQuickReplyTemplate: (chatId: string, text: string) => void;
   selectInfoPage: (page: InfoPage) => void;
   
   // Search Actions
@@ -81,6 +98,40 @@ interface AppContextType extends AppState {
 }
 
 const AppContext = createContext<AppContextType | null>(null);
+
+const formatTime = (lang: Language) =>
+  new Date().toLocaleTimeString(lang === 'ru' ? 'ru-RU' : 'en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+const buildStarterMessages = (lang: Language): ChatMessage[] => [
+  {
+    id: 'seed-1',
+    text: lang === 'ru' ? 'Здравствуйте! Интересуют ваши услуги.' : 'Hello! I am interested in your services.',
+    isOwn: true,
+    time: '10:30',
+    status: 'delivered',
+  },
+  {
+    id: 'seed-2',
+    text: lang === 'ru' ? 'Здравствуйте! Конечно, чем могу помочь?' : 'Hello! Sure, how can I help?',
+    isOwn: false,
+    time: '10:32',
+    status: 'delivered',
+  },
+];
+
+const buildInitialThreads = (chats: Chat[], lang: Language): Record<string, ChatThreadState> =>
+  chats.reduce<Record<string, ChatThreadState>>((acc, chat) => {
+    acc[chat.id] = {
+      messages: buildStarterMessages(lang),
+      draft: '',
+      composerState: 'disabled',
+      isLoading: false,
+    };
+    return acc;
+  }, {});
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AppState>({
@@ -95,6 +146,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     bookings: mockBookings,
     requests: mockRequests,
     chats: mockChats,
+    chatThreads: buildInitialThreads(mockChats, 'ru'),
     selectedMasterId: null,
     selectedRequestId: null,
     selectedChatId: null,
@@ -121,6 +173,32 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setState(prev => ({ ...prev, language: savedLanguage }));
     }
   }, []);
+
+  useEffect(() => {
+    if (!state.selectedChatId) return;
+    const thread = state.chatThreads[state.selectedChatId];
+    if (!thread?.isLoading) return;
+
+    const timer = window.setTimeout(() => {
+      setState(prev => {
+        if (!prev.selectedChatId) return prev;
+        const activeThread = prev.chatThreads[prev.selectedChatId];
+        if (!activeThread?.isLoading) return prev;
+        return {
+          ...prev,
+          chatThreads: {
+            ...prev.chatThreads,
+            [prev.selectedChatId]: {
+              ...activeThread,
+              isLoading: false,
+            },
+          },
+        };
+      });
+    }, 650);
+
+    return () => window.clearTimeout(timer);
+  }, [state.selectedChatId, state.chatThreads]);
 
   // Translation helper
   const t = useCallback((key: TranslationKey): string => {
@@ -266,14 +344,42 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // Chat Actions
   const selectChat = useCallback((id: string) => {
-    setState(prev => ({ ...prev, selectedChatId: id }));
+    setState(prev => ({
+      ...prev,
+      selectedChatId: id,
+      chatThreads: prev.chatThreads[id]
+        ? prev.chatThreads
+        : {
+            ...prev.chatThreads,
+            [id]: {
+              messages: buildStarterMessages(prev.language),
+              draft: '',
+              composerState: 'disabled',
+              isLoading: false,
+            },
+          },
+    }));
   }, []);
 
   const openChatWithMaster = useCallback((masterId: string) => {
     setState(prev => {
       const existingChat = prev.chats.find(c => c.participantId === masterId);
       if (existingChat) {
-        return { ...prev, selectedChatId: existingChat.id };
+        return {
+          ...prev,
+          selectedChatId: existingChat.id,
+          chatThreads: prev.chatThreads[existingChat.id]
+            ? prev.chatThreads
+            : {
+                ...prev.chatThreads,
+                [existingChat.id]: {
+                  messages: buildStarterMessages(prev.language),
+                  draft: '',
+                  composerState: 'disabled',
+                  isLoading: true,
+                },
+              },
+        };
       }
       
       const master = prev.masters.find(m => m.id === masterId);
@@ -293,6 +399,171 @@ export function AppProvider({ children }: { children: ReactNode }) {
         ...prev,
         chats: [newChat, ...prev.chats],
         selectedChatId: newChat.id,
+        chatThreads: {
+          ...prev.chatThreads,
+          [newChat.id]: {
+            messages: [],
+            draft: '',
+            composerState: 'disabled',
+            isLoading: true,
+          },
+        },
+      };
+    });
+  }, []);
+
+  const setChatDraft = useCallback((chatId: string, draft: string) => {
+    setState(prev => {
+      const thread = prev.chatThreads[chatId];
+      if (!thread) return prev;
+      return {
+        ...prev,
+        chatThreads: {
+          ...prev.chatThreads,
+          [chatId]: {
+            ...thread,
+            draft,
+            composerState: thread.composerState === 'error' ? 'retry' : thread.composerState,
+          },
+        },
+      };
+    });
+  }, []);
+
+  const sendChatMessage = useCallback((chatId: string) => {
+    const outgoingId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    setState(prev => {
+      const thread = prev.chatThreads[chatId];
+      if (!thread || !thread.draft.trim()) return prev;
+
+      const outgoing: ChatMessage = {
+        id: outgoingId,
+        text: thread.draft.trim(),
+        isOwn: true,
+        time: formatTime(prev.language),
+        status: 'sent',
+      };
+
+      return {
+        ...prev,
+        chats: prev.chats.map(chat =>
+          chat.id === chatId
+            ? { ...chat, lastMessage: outgoing.text, lastMessageTime: prev.language === 'ru' ? 'сейчас' : 'now' }
+            : chat
+        ),
+        chatThreads: {
+          ...prev.chatThreads,
+          [chatId]: {
+            ...thread,
+            messages: [...thread.messages, outgoing],
+            draft: '',
+            composerState: 'sending',
+            failedMessage: undefined,
+            isLoading: false,
+          },
+        },
+      };
+    });
+
+    setTimeout(() => {
+      const shouldFail = Math.random() < 0.2;
+      if (shouldFail) {
+        setState(prev => {
+          const thread = prev.chatThreads[chatId];
+          if (!thread) return prev;
+          const failedMessage = thread.messages.find(msg => msg.id === outgoingId);
+          return {
+            ...prev,
+            chatThreads: {
+              ...prev.chatThreads,
+              [chatId]: {
+                ...thread,
+                messages: thread.messages.map<ChatMessage>(msg =>
+                  msg.id === outgoingId ? { ...msg, status: 'failed' } : msg
+                ),
+                composerState: 'error',
+                failedMessage,
+              },
+            },
+          };
+        });
+        return;
+      }
+
+      setState(prev => {
+        const thread = prev.chatThreads[chatId];
+        if (!thread) return prev;
+        const ackText =
+          prev.language === 'ru'
+            ? 'Спасибо! Уточню детали и отвечу вам.'
+            : 'Thanks! I will check the details and reply to you.';
+        return {
+          ...prev,
+          chats: prev.chats.map(chat =>
+            chat.id === chatId
+              ? { ...chat, lastMessage: ackText, lastMessageTime: prev.language === 'ru' ? 'сейчас' : 'now' }
+              : chat
+          ),
+          chatThreads: {
+            ...prev.chatThreads,
+            [chatId]: {
+              ...thread,
+              messages: [
+                ...thread.messages.map<ChatMessage>(msg =>
+                  msg.id === outgoingId ? { ...msg, status: 'delivered' } : msg
+                ),
+                {
+                  id: `${Date.now()}-reply`,
+                  text: ackText,
+                  isOwn: false,
+                  time: formatTime(prev.language),
+                  status: 'delivered',
+                } as ChatMessage,
+              ],
+              composerState: 'disabled',
+              failedMessage: undefined,
+              isLoading: false,
+            },
+          },
+        };
+      });
+    }, 1000);
+  }, []);
+
+  const retryChatMessage = useCallback((chatId: string) => {
+    setState(prev => {
+      const thread = prev.chatThreads[chatId];
+      if (!thread?.failedMessage) return prev;
+      return {
+        ...prev,
+        chatThreads: {
+          ...prev.chatThreads,
+          [chatId]: {
+            ...thread,
+            draft: thread.failedMessage.text,
+            composerState: 'retry',
+            messages: thread.messages.filter(msg => msg.id !== thread.failedMessage?.id),
+            failedMessage: undefined,
+          },
+        },
+      };
+    });
+  }, []);
+
+  const applyQuickReplyTemplate = useCallback((chatId: string, text: string) => {
+    setState(prev => {
+      const thread = prev.chatThreads[chatId];
+      if (!thread) return prev;
+      return {
+        ...prev,
+        chatThreads: {
+          ...prev.chatThreads,
+          [chatId]: {
+            ...thread,
+            draft: text,
+            composerState: thread.composerState === 'error' ? 'retry' : thread.composerState,
+          },
+        },
       };
     });
   }, []);
@@ -333,6 +604,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     createRequest,
     selectChat,
     openChatWithMaster,
+    setChatDraft,
+    sendChatMessage,
+    retryChatMessage,
+    applyQuickReplyTemplate,
     selectInfoPage,
     setSearchQuery,
     setSelectedCategory,
