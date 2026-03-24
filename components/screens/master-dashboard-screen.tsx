@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BottomNav } from '@/components/navigation/bottom-nav';
+import { StateCard } from '@/components/ui/state-card';
 
 export function MasterDashboardScreen() {
   const {
@@ -302,21 +303,21 @@ export function MasterDashboardScreen() {
           ))}
         </section>
 
-        {upcomingBookings.length > 0 && (
-          <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <div className="mb-2 flex items-center justify-between">
-              <h3 className="text-[15px] font-semibold text-slate-900">
-                {isRu ? 'Ближайшие записи' : 'Upcoming Bookings'}
-              </h3>
-              <button
-                onClick={() => navigate('bookings')}
-                className="inline-flex items-center gap-0.5 text-[15px] font-medium text-emerald-600"
-              >
-                {t('viewAll')}
-                <ChevronRight className="h-2.5 w-2.5" />
-              </button>
-            </div>
+        <section className="rounded-[18px] border border-border/70 bg-card p-2.5 shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+          <div className="mb-2 flex items-center justify-between">
+            <h3 className="text-[15px] font-semibold text-slate-900">
+              {isRu ? 'Ближайшие записи' : 'Upcoming Bookings'}
+            </h3>
+            <button
+              onClick={() => navigate('bookings')}
+              className="inline-flex items-center gap-0.5 text-[15px] font-medium text-emerald-600"
+            >
+              {t('viewAll')}
+              <ChevronRight className="h-2.5 w-2.5" />
+            </button>
+          </div>
 
+          {upcomingBookings.length > 0 ? (
             <div className="space-y-1.5">
               {upcomingBookings.slice(0, 2).map((booking) => (
                 <div
@@ -342,8 +343,33 @@ export function MasterDashboardScreen() {
                 </div>
               ))}
             </div>
-          </section>
-        )}
+          ) : (
+            <StateCard
+              icon={Calendar}
+              className="border-0 bg-transparent px-2 py-6 shadow-none"
+              title={isRu ? 'Записей пока нет' : 'No bookings yet'}
+              description={
+                isRu
+                  ? 'Добавьте услуги и откройте расписание, чтобы получать новые записи.'
+                  : 'Add services and open your schedule to receive new bookings.'
+              }
+              primaryAction={{
+                label: isRu ? 'Управлять расписанием' : 'Manage schedule',
+                onClick: () => {
+                  selectInfoPage('my-schedule');
+                  navigate('info-detail');
+                },
+              }}
+              secondaryAction={{
+                label: isRu ? 'Редактировать услуги' : 'Edit services',
+                onClick: () => {
+                  selectInfoPage('my-services');
+                  navigate('info-detail');
+                },
+              }}
+            />
+          )}
+        </section>
 
         <section>
           <h3 className="mb-2 px-0.5 text-[14px] font-semibold uppercase tracking-[0.1em] text-slate-400">

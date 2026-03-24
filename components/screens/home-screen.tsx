@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useApp } from "@/lib/app-context";
 import { categories } from "@/lib/mock-data";
 import { BottomNav } from "@/components/navigation/bottom-nav";
+import { StateCard } from "@/components/ui/state-card";
 import {
   Search,
   Bell,
@@ -41,7 +42,7 @@ type CategoryLike = {
 };
 
 export function HomeScreen() {
-  const { t, navigate, masters, userName, language, setLanguage, setSelectedCategory } = useApp();
+  const { t, navigate, masters, userName, language, userRole, setLanguage, setSelectedCategory } = useApp();
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
 
   const isRu = language === "ru";
@@ -306,11 +307,31 @@ export function HomeScreen() {
           </div>
 
           {availableTodayMasters.length === 0 ? (
-            <div className="rounded-[20px] border border-border/70 bg-card p-4 text-center shadow-[0_8px_24px_rgba(15,23,42,0.05)]">
-              <p className="text-[15px] text-slate-500">
-                {isRu ? "На сегодня свободных слотов пока нет." : "No available slots for today yet."}
-              </p>
-            </div>
+            <StateCard
+              icon={CalendarClock}
+              className="rounded-[20px] p-4"
+              title={isRu ? "Свободных слотов на сегодня нет" : "No available slots today"}
+              description={
+                isRu
+                  ? "Попробуйте изменить категорию или посмотреть мастеров рядом."
+                  : "Try changing category or browsing nearby masters."
+              }
+              primaryAction={{
+                label: isRu ? "Сменить категорию" : "Change category",
+                onClick: () => setActiveCategoryId(null),
+              }}
+              secondaryAction={{
+                label:
+                  userRole === "master"
+                    ? isRu
+                      ? "Панель мастера"
+                      : "Master dashboard"
+                    : isRu
+                      ? "Открыть поиск"
+                      : "Open search",
+                onClick: () => navigate(userRole === "master" ? "master-dashboard" : "search"),
+              }}
+            />
           ) : (
             <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide">
               {availableTodayMasters.map((master) => (
