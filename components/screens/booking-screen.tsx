@@ -168,7 +168,8 @@ export function BookingScreen() {
         </div>
 
         <Button
-          className="w-full max-w-sm h-11 text-sm font-semibold rounded-xl animate-slide-up"
+          size="mobile"
+          className="w-full max-w-sm rounded-xl text-sm animate-slide-up"
           style={{ animationDelay: '0.3s' }}
           onClick={handleFinish}
         >
@@ -183,17 +184,20 @@ export function BookingScreen() {
       {/* Header */}
       <header className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="flex items-center gap-3 px-4 py-3">
-          <button
+          <Button
+            type="button"
+            size="toolbar"
+            variant="secondary"
             onClick={() => {
               if (step === 'service') goBack();
               else if (step === 'date') setStep('service');
               else if (step === 'time') setStep('date');
               else if (step === 'confirm') setStep('time');
             }}
-            className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-foreground hover:bg-secondary/80 transition-colors"
+            className="rounded-xl"
           >
-            <ArrowLeft className="w-4 h-4" />
-          </button>
+            <ArrowLeft />
+          </Button>
           <div className="flex-1 min-w-0">
             <p className="text-xs text-muted-foreground truncate">{master.name}</p>
             <h1 className="text-sm font-semibold text-foreground">
@@ -268,21 +272,27 @@ export function BookingScreen() {
           <div className="animate-slide-up">
             {/* Month Navigation */}
             <div className="flex items-center justify-between mb-4">
-              <button
+              <Button
+                type="button"
+                size="toolbar"
+                variant="secondary"
                 onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1))}
-                className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground"
               >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
+                <ChevronLeft />
+              </Button>
               <h2 className="text-sm font-semibold text-foreground">
                 {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
               </h2>
-              <button
+              <Button
+                type="button"
+                size="toolbar"
+                variant="secondary"
                 onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1))}
-                className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground"
               >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+                <ChevronRight />
+              </Button>
             </div>
 
             {/* Day Names */}
@@ -398,7 +408,8 @@ export function BookingScreen() {
       {step === 'confirm' && (
         <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/95 backdrop-blur-md border-t border-border safe-bottom">
           <Button
-            className="w-full h-11 text-sm font-semibold rounded-xl"
+            size="mobile"
+            className="w-full rounded-xl text-sm"
             onClick={handleConfirm}
           >
             {t('confirmBooking')}

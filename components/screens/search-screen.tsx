@@ -27,6 +27,8 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 type Master = {
   id: string;
@@ -328,22 +330,25 @@ export function SearchScreen() {
         <div className="mx-auto max-w-2xl">
           <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
             <div className="flex items-center gap-2">
-              <button
+              <Button
+                size="toolbar"
+                variant="outline"
                 onClick={() => navigate('map')}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border border-border/70 bg-[#f7f7f5] text-emerald-600 transition hover:bg-emerald-50"
+                className="shrink-0 rounded-[14px] border-border/70 bg-[#f7f7f5] text-emerald-600 hover:bg-emerald-50"
                 aria-label={isRu ? 'Открыть карту' : 'Open map'}
               >
-                <Map className="h-4 w-4" />
-              </button>
+                <Map />
+              </Button>
 
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                <input
+                <Input
                   type="text"
+                  inputSize="sm"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isRu ? 'Поиск мастеров, услуг...' : 'Search masters, services...'}
-                  className="h-10 w-full rounded-[14px] border border-border/70 bg-[#f7f7f5] pl-9 pr-8 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+                  className="rounded-[14px] border-border/70 bg-[#f7f7f5] pl-9 pr-8 text-[15px] text-slate-900 placeholder:text-slate-400 focus-visible:border-emerald-200 focus-visible:bg-card focus-visible:ring-0"
                 />
                 {searchQuery && (
                   <button
@@ -356,17 +361,19 @@ export function SearchScreen() {
                 )}
               </div>
 
-              <button
+              <Button
+                size="toolbar"
+                variant="outline"
                 onClick={() => setShowFilters((prev) => !prev)}
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border transition ${
+                className={`shrink-0 rounded-[14px] border-border/70 transition ${
                   showFilters
                     ? 'border-emerald-200 bg-emerald-50 text-emerald-600'
-                    : 'border-border/70 bg-[#f7f7f5] text-slate-500'
+                    : 'bg-[#f7f7f5] text-slate-500'
                 }`}
                 aria-label={isRu ? 'Фильтры' : 'Filters'}
               >
-                <SlidersHorizontal className="h-4 w-4" />
-              </button>
+                <SlidersHorizontal />
+              </Button>
             </div>
 
             <div className="mt-2 grid grid-cols-[1fr_auto] gap-2">
@@ -425,29 +432,33 @@ export function SearchScreen() {
                   </Select>
 
                   <div className="flex items-center gap-1.5">
-                    <button
+                    <Button
+                      size="mobile"
+                      variant="outline"
                       onClick={() => setViewMode('list')}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[15px] font-medium transition ${
+                      className={`h-10 flex-1 rounded-[12px] border text-[15px] transition ${
                         viewMode === 'list'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                           : 'border-border/70 bg-card text-slate-700'
                       }`}
                     >
-                      <List className="h-3.5 w-3.5" />
+                      <List />
                       {isRu ? 'Список' : 'List'}
-                    </button>
+                    </Button>
 
-                    <button
+                    <Button
+                      size="mobile"
+                      variant="outline"
                       onClick={() => setViewMode('grid')}
-                      className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[15px] font-medium transition ${
+                      className={`h-10 flex-1 rounded-[12px] border text-[15px] transition ${
                         viewMode === 'grid'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
                           : 'border-border/70 bg-card text-slate-700'
                       }`}
                     >
-                      <Grid2X2 className="h-3.5 w-3.5" />
+                      <Grid2X2 />
                       {isRu ? 'Сетка' : 'Grid'}
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>

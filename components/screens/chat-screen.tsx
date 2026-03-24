@@ -247,24 +247,30 @@ export function ChatScreen() {
         <div className="mt-2">
           <div className="mb-2 flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
             {quickReplies.map((reply) => (
-              <button
+              <Button
                 key={reply}
+                type="button"
+                size="chip"
+                variant="outline"
                 onClick={() => handleQuickReply(reply)}
-                className="shrink-0 rounded-full border border-border/70 bg-card px-2 py-1 text-[15px] font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700"
+                className="shrink-0 border-border/70 bg-card text-[15px] text-slate-600 hover:bg-emerald-50 hover:text-emerald-700"
               >
                 {reply}
-              </button>
+              </Button>
             ))}
           </div>
 
           <div className="rounded-[18px] border border-border/70 bg-card p-2 shadow-[0_8px_26px_rgba(15,23,42,0.06)]">
             <div className="flex items-end gap-1.5">
-              <button
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
+              <Button
+                type="button"
+                size="toolbar"
+                variant="outline"
+                className="shrink-0 rounded-[12px] border-border/70 bg-[#f7f7f5] text-slate-500 hover:bg-card"
                 aria-label={isRu ? 'Прикрепить' : 'Attach'}
               >
-                <Paperclip className="h-3.5 w-3.5" />
-              </button>
+                <Paperclip />
+              </Button>
 
               <div className="relative min-w-0 flex-1">
                 <textarea
@@ -290,12 +296,13 @@ export function ChatScreen() {
               </div>
 
               <Button
-                size="icon"
-                className="h-9 w-9 shrink-0 rounded-[12px] bg-emerald-500 text-white shadow-[0_10px_24px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+                type="button"
+                size="toolbar"
+                className="shrink-0 rounded-[12px] bg-emerald-500 text-white shadow-[0_10px_24px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
                 onClick={handleSend}
                 disabled={!message.trim()}
               >
-                <Send className="h-3.5 w-3.5" />
+                <Send />
               </Button>
             </div>
 

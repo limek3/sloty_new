@@ -24,6 +24,12 @@ const buttonVariants = cva(
         default: 'h-11 px-5 py-2.5 has-[>svg]:px-4',
         sm: 'h-10 rounded-lg gap-1.5 px-4 has-[>svg]:px-3',
         lg: 'h-12 rounded-xl px-7 has-[>svg]:px-5',
+        mobile:
+          'h-10 min-h-10 px-4 text-sm font-semibold has-[>svg]:px-3 [&_svg:not([class*=\'size-\'])]:size-4',
+        toolbar:
+          'size-10 min-h-10 min-w-10 rounded-xl p-0 [&_svg:not([class*=\'size-\'])]:size-4',
+        chip:
+          'h-10 min-h-10 rounded-full px-3 text-sm font-medium has-[>svg]:px-2.5 [&_svg:not([class*=\'size-\'])]:size-4',
         icon: 'size-11',
         'icon-sm': 'size-10',
         'icon-lg': 'size-12',

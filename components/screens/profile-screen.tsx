@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useApp } from '@/lib/app-context';
 import { BottomNav } from '@/components/navigation/bottom-nav';
+import { Button } from '@/components/ui/button';
 import {
   User,
   Heart,
@@ -198,16 +199,18 @@ export function ProfileScreen() {
                 </p>
               </div>
 
-              <button
+              <Button
                 onClick={() => navigate('notifications')}
-                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card hover:text-emerald-600"
+                size="toolbar"
+                variant="outline"
+                className="relative shrink-0 rounded-[12px] border-border/70 bg-[#f7f7f5] text-slate-500 hover:bg-card hover:text-emerald-600"
                 aria-label={isRu ? 'Уведомления' : 'Notifications'}
               >
-                <Bell className="h-4 w-4" />
+                <Bell />
                 <span className="absolute -right-0.5 -top-0.5 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-rose-500 px-0.5 text-[7px] font-bold text-white">
                   2
                 </span>
-              </button>
+              </Button>
             </div>
 
             <div className="mt-1 grid grid-cols-3 gap-2">
@@ -273,26 +276,32 @@ export function ProfileScreen() {
                 </div>
 
                 <div className="flex items-center rounded-[10px] border border-border/70 bg-card p-0.5">
-                  <button
+                  <Button
+                    type="button"
+                    size="chip"
+                    variant="ghost"
                     onClick={() => setLanguage('ru')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`h-10 min-w-10 rounded-[8px] px-2 text-[14px] transition ${
                       language === 'ru'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
                     }`}
                   >
                     RU
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    type="button"
+                    size="chip"
+                    variant="ghost"
                     onClick={() => setLanguage('en')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`h-10 min-w-10 rounded-[8px] px-2 text-[14px] transition ${
                       language === 'en'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
                     }`}
                   >
                     EN
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -321,26 +330,32 @@ export function ProfileScreen() {
                 </div>
 
                 <div className="flex items-center rounded-[10px] border border-border/70 bg-card p-0.5">
-                  <button
+                  <Button
+                    type="button"
+                    size="chip"
+                    variant="ghost"
                     onClick={() => setUserRole('client')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`h-10 rounded-[8px] px-2 text-[14px] transition ${
                       userRole === 'client'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
                     }`}
                   >
                     {isRu ? 'Клиент' : 'Client'}
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                    type="button"
+                    size="chip"
+                    variant="ghost"
                     onClick={() => setUserRole('master')}
-                    className={`rounded-[8px] px-2 py-1 text-[14px] font-semibold transition ${
+                    className={`h-10 rounded-[8px] px-2 text-[14px] transition ${
                       userRole === 'master'
                         ? 'bg-emerald-500 text-white shadow-[0_6px_14px_rgba(16,185,129,0.2)]'
                         : 'text-slate-500'
                     }`}
                   >
                     {isRu ? 'Мастер' : 'Master'}
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -356,12 +371,15 @@ export function ProfileScreen() {
                     <p className="text-[15px] text-slate-500">{theme === 'dark' ? t('darkMode') : t('lightMode')}</p>
                   </div>
                 </div>
-                <button
+                <Button
+                  type="button"
+                  size="mobile"
+                  variant="outline"
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[14px] font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="rounded-[10px] border-border/70 bg-card text-[14px] text-slate-700 hover:bg-slate-50"
                 >
                   {theme === 'dark' ? (isRu ? 'Светлая' : 'Light') : (isRu ? 'Темная' : 'Dark')}
-                </button>
+                </Button>
               </div>
             </div>
           </div>
