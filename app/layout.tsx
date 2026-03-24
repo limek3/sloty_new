@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import './globals.css'
+import { Providers } from './providers'
 
 const inter = Inter({
   subsets: ['latin', 'cyrillic'],
@@ -39,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className="light">
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
-        {children}
+        <Providers>{children}</Providers>
         <Analytics />
         <Script
           src={`https://api-maps.yandex.ru/2.1/?apikey=${process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY}&lang=ru_RU`}
