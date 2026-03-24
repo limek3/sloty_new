@@ -11,8 +11,8 @@ import {
   CheckCheck,
   Circle,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { StateCard } from '@/components/ui/state-card';
 
 export function ChatsScreen() {
   const { t, language, chats, navigate, selectChat } = useApp();
@@ -175,26 +175,19 @@ export function ChatsScreen() {
             })}
           </div>
         ) : (
-          <div className="rounded-[18px] border border-border/70 bg-card px-4 py-10 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f2]">
-              <MessageCircle className="h-6 w-6 text-slate-400" />
-            </div>
-
-            <h3 className="mt-3 text-[15px] font-semibold text-slate-900">
-              {t('noChats')}
-            </h3>
-
-            <p className="mx-auto mt-1.5 max-w-xs text-[14px] leading-[1.4] text-slate-500">
-              {t('startChat')}
-            </p>
-
-            <Button
-              onClick={() => navigate('search')}
-              className="mt-3 h-9 rounded-[12px] bg-emerald-500 px-3 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
-            >
-              {t('findMaster')}
-            </Button>
-          </div>
+          <StateCard
+            icon={MessageCircle}
+            title={t('noChats')}
+            description={t('startChat')}
+            primaryAction={{
+              label: isRu ? 'Начать разговор' : 'Start conversation',
+              onClick: () => navigate('search'),
+            }}
+            secondaryAction={{
+              label: isRu ? 'Смотреть заявки' : 'Browse requests',
+              onClick: () => navigate('requests'),
+            }}
+          />
         )}
       </main>
 

@@ -14,10 +14,14 @@ import {
   MessageCircle,
   Navigation,
   ChevronRight,
+  ImagePlus,
+  MessageSquareOff,
+  AlertTriangle,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Image from 'next/image';
+import { StateCard } from '@/components/ui/state-card';
 
 export function MasterProfileScreen() {
   const {
@@ -45,8 +49,16 @@ export function MasterProfileScreen() {
 
   if (!master) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f6f6f3]">
-        <p className="text-[14px] text-slate-500">{t('error')}</p>
+      <div className="min-h-screen bg-[#f6f6f3] p-4">
+        <StateCard
+          tone="error"
+          icon={AlertTriangle}
+          title={isRu ? 'Профиль не найден' : 'Profile not found'}
+          description={isRu ? 'Вернитесь назад и попробуйте открыть другого мастера.' : 'Go back and open another master profile.'}
+          primaryAction={{ label: isRu ? 'Назад' : 'Go back', onClick: goBack }}
+          secondaryAction={{ label: isRu ? 'К поиску' : 'Open search', onClick: () => navigate('search') }}
+          className="mx-auto mt-16 max-w-md"
+        />
       </div>
     );
   }
@@ -240,40 +252,54 @@ export function MasterProfileScreen() {
 
             {/* Services Tab */}
             <TabsContent value="services" className="mt-3 space-y-2 pb-32">
-              {master.services.map((service) => (
-                <button
-                  key={service.id}
-                  onClick={() => handleBook(service.id)}
-                  className="group w-full rounded-[16px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
-                >
-                  <div className="flex items-center justify-between gap-2.5">
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-[15px] font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
-                        {service.name}
-                      </h3>
+              {master.services.length > 0 ? (
+                master.services.map((service) => (
+                  <button
+                    key={service.id}
+                    onClick={() => handleBook(service.id)}
+                    className="group w-full rounded-[16px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
+                  >
+                    <div className="flex items-center justify-between gap-2.5">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-[15px] font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                          {service.name}
+                        </h3>
 
-                      {service.description && (
-                        <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.4] text-slate-500">
-                          {service.description}
-                        </p>
-                      )}
+                        {service.description && (
+                          <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.4] text-slate-500">
+                            {service.description}
+                          </p>
+                        )}
 
-                      <div className="mt-1.5 flex flex-wrap items-center gap-2">
-                        <span className="text-[14px] font-bold text-emerald-600">
-                          {formatPrice(service.price)}
-                        </span>
+                        <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                          <span className="text-[14px] font-bold text-emerald-600">
+                            {formatPrice(service.price)}
+                          </span>
 
-                        <span className="flex items-center gap-0.5 text-[14px] text-slate-500">
-                          <Clock className="h-3 w-3" />
-                          {service.duration} {t('min')}
-                        </span>
+                          <span className="flex items-center gap-0.5 text-[14px] text-slate-500">
+                            <Clock className="h-3 w-3" />
+                            {service.duration} {t('min')}
+                          </span>
+                        </div>
                       </div>
-                    </div>
 
-                    <ChevronRight className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-emerald-600 transition-colors" />
-                  </div>
-                </button>
-              ))}
+                      <ChevronRight className="h-4 w-4 shrink-0 text-slate-400 group-hover:text-emerald-600 transition-colors" />
+                    </div>
+                  </button>
+                ))
+              ) : (
+                <StateCard
+                  icon={Clock}
+                  title={isRu ? 'Услуги пока не добавлены' : 'No services yet'}
+                  description={
+                    isRu
+                      ? 'Пока нельзя записаться. Попробуйте выбрать другого мастера.'
+                      : 'Booking is unavailable yet. Try another master.'
+                  }
+                  primaryAction={{ label: isRu ? 'Найти другого мастера' : 'Find another master', onClick: () => navigate('search') }}
+                  secondaryAction={{ label: isRu ? 'Задать вопрос в чате' : 'Ask in chat', onClick: handleChat }}
+                />
+              )}
             </TabsContent>
 
             {/* Reviews Tab */}
@@ -316,11 +342,17 @@ export function MasterProfileScreen() {
                   </div>
                 ))
               ) : (
-                <div className="text-center py-10">
-                  <p className="text-[14px] text-slate-500">
-                    {isRu ? 'Отзывов пока нет' : 'No reviews yet'}
-                  </p>
-                </div>
+                <StateCard
+                  icon={MessageSquareOff}
+                  title={isRu ? 'Отзывов пока нет' : 'No reviews yet'}
+                  description={
+                    isRu
+                      ? 'Вы можете уточнить детали у мастера в чате перед записью.'
+                      : 'You can ask the master in chat before booking.'
+                  }
+                  primaryAction={{ label: isRu ? 'Открыть чат' : 'Open chat', onClick: handleChat }}
+                  secondaryAction={{ label: isRu ? 'Перейти к услугам' : 'View services', onClick: () => setActiveTab('services') }}
+                />
               )}
             </TabsContent>
 
@@ -343,11 +375,17 @@ export function MasterProfileScreen() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-10">
-                  <p className="text-[14px] text-slate-500">
-                    {isRu ? 'Портфолио пока пусто' : 'No portfolio yet'}
-                  </p>
-                </div>
+                <StateCard
+                  icon={ImagePlus}
+                  title={isRu ? 'Портфолио пока пусто' : 'No portfolio yet'}
+                  description={
+                    isRu
+                      ? 'Посмотрите услуги и рейтинг, чтобы выбрать подходящего мастера.'
+                      : 'Check services and rating to choose the right master.'
+                  }
+                  primaryAction={{ label: isRu ? 'Смотреть услуги' : 'View services', onClick: () => setActiveTab('services') }}
+                  secondaryAction={{ label: isRu ? 'Назад к поиску' : 'Back to search', onClick: () => navigate('search') }}
+                />
               )}
             </TabsContent>
 

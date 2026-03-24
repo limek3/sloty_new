@@ -14,9 +14,10 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { StateCard } from '@/components/ui/state-card';
 
 export function RequestsScreen() {
-  const { t, language, requests, navigate, selectRequest } = useApp();
+  const { t, language, requests, navigate, selectRequest, userRole } = useApp();
 
   const [activeTab, setActiveTab] = useState<'browse' | 'my'>('browse');
 
@@ -199,35 +200,39 @@ export function RequestsScreen() {
             ))}
           </div>
         ) : (
-          <div className="rounded-[18px] border border-border/70 bg-card px-4 py-10 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f2]">
-              <FileText className="h-6 w-6 text-slate-400" />
-            </div>
-
-            <h3 className="mt-3 text-[15px] font-semibold text-slate-900">
-              {activeTab === 'my'
+          <StateCard
+            icon={FileText}
+            title={
+              activeTab === 'my'
                 ? isRu
                   ? 'У вас пока нет заявок'
                   : 'You have no requests yet'
                 : isRu
-                  ? 'Заявок пока нет'
-                  : 'No requests yet'}
-            </h3>
-
-            <p className="mx-auto mt-1.5 max-w-xs text-[14px] leading-[1.4] text-slate-500">
-              {isRu
-                ? 'Создайте заявку, чтобы получить отклики от мастеров'
-                : 'Create a request to get responses from masters'}
-            </p>
-
-            <Button
-              onClick={() => navigate('create-request')}
-              className="mt-3 h-9 rounded-[12px] bg-emerald-500 px-3 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
-            >
-              <Plus className="mr-1 h-3.5 w-3.5" />
-              {t('createRequest')}
-            </Button>
-          </div>
+                  ? userRole === 'master'
+                    ? 'Подходящих заявок пока нет'
+                    : 'Заявок пока нет'
+                  : userRole === 'master'
+                    ? 'No matching requests yet'
+                    : 'No requests yet'
+            }
+            description={
+              isRu
+                ? userRole === 'master'
+                  ? 'Измените категорию или позже проверьте новые заявки от клиентов.'
+                  : 'Создайте заявку, чтобы получить отклики от мастеров.'
+                : userRole === 'master'
+                  ? 'Try another category or check back later for new client requests.'
+                  : 'Create a request to get responses from masters.'
+            }
+            primaryAction={{
+              label: userRole === 'master' ? (isRu ? 'Смотреть все заявки' : 'Browse requests') : t('createRequest'),
+              onClick: () => (userRole === 'master' ? setActiveTab('browse') : navigate('create-request')),
+            }}
+            secondaryAction={{
+              label: isRu ? 'На главную' : 'Go to dashboard',
+              onClick: () => navigate(userRole === 'master' ? 'master-dashboard' : 'home'),
+            }}
+          />
         )}
       </main>
 

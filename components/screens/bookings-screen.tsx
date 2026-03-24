@@ -7,10 +7,11 @@ import { BottomNav } from '@/components/navigation/bottom-nav';
 import { Calendar, Clock, MapPin, MessageCircle, ChevronLeft, History, CalendarCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { StateCard } from '@/components/ui/state-card';
 
 export function BookingsScreen() {
   const {
-    t, language, bookings,
+    t, language, bookings, userRole,
     navigate, selectMaster, openChatWithMaster
   } = useApp();
 
@@ -168,23 +169,33 @@ export function BookingsScreen() {
             {displayBookings.map(renderBookingCard)}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center rounded-xl border border-border bg-card py-10 text-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
-              <Calendar className="h-6 w-6 text-muted-foreground" />
-            </div>
-            <h3 className="mt-3 text-sm font-semibold text-foreground">{t('noBookings')}</h3>
-            <p className="mt-1.5 max-w-xs text-xs text-muted-foreground">
-              {language === 'ru'
-                ? 'Найдите мастера и запишитесь на услугу'
-                : 'Find a master and book a service'}
-            </p>
-            <Button 
-              onClick={() => navigate('search')} 
-              className="mt-4 h-9 rounded-xl text-xs"
-            >
-              {t('findMaster')}
-            </Button>
-          </div>
+          <StateCard
+            icon={Calendar}
+            title={
+              activeTab === 'upcoming'
+                ? t('noBookings')
+                : language === 'ru'
+                  ? 'История записей пуста'
+                  : 'No past bookings yet'
+            }
+            description={
+              language === 'ru'
+                ? userRole === 'master'
+                  ? 'Добавьте услуги и откройте расписание, чтобы клиенты могли записаться.'
+                  : 'Найдите мастера и запишитесь на услугу.'
+                : userRole === 'master'
+                  ? 'Add services and open your schedule so clients can book you.'
+                  : 'Find a master and book a service.'
+            }
+            primaryAction={{
+              label: userRole === 'master' ? (language === 'ru' ? 'Открыть услуги' : 'Open services') : t('findMaster'),
+              onClick: () => navigate(userRole === 'master' ? 'profile' : 'search'),
+            }}
+            secondaryAction={{
+              label: language === 'ru' ? 'К заявкам' : 'Go to requests',
+              onClick: () => navigate('requests'),
+            }}
+          />
         )}
       </main>
 

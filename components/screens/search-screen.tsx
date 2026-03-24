@@ -27,6 +27,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from '@/components/ui/select';
+import { StateCard } from '@/components/ui/state-card';
 
 type Master = {
   id: string;
@@ -473,28 +474,23 @@ export function SearchScreen() {
         </div>
 
         {filteredMasters.length === 0 ? (
-          <div className="flex flex-col items-center justify-center rounded-[18px] border border-border/70 bg-card px-5 py-10 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <div className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f2]">
-              <Frown className="h-6 w-6 text-slate-400" />
-            </div>
-
-            <h3 className="mt-4 text-[15px] font-semibold text-slate-900">
-              {isRu ? 'Ничего не найдено' : 'No results found'}
-            </h3>
-
-            <p className="mt-1.5 max-w-xs text-[14px] leading-[1.4] text-slate-500">
-              {isRu
+          <StateCard
+            icon={Frown}
+            title={isRu ? 'Ничего не найдено' : 'No results found'}
+            description={
+              isRu
                 ? 'Попробуйте изменить запрос или выбрать другую категорию.'
-                : 'Try adjusting your query or selecting another category.'}
-            </p>
-
-            <button
-              onClick={clearAll}
-              className="mt-4 rounded-[12px] bg-emerald-500 px-4 py-2 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] transition hover:bg-emerald-600"
-            >
-              {isRu ? 'Сбросить фильтры' : 'Clear filters'}
-            </button>
-          </div>
+                : 'Try adjusting your query or selecting another category.'
+            }
+            primaryAction={{
+              label: isRu ? 'Сбросить фильтры' : 'Clear filters',
+              onClick: clearAll,
+            }}
+            secondaryAction={{
+              label: isRu ? 'Сменить категорию' : 'Change category',
+              onClick: () => setSelectedCategory(null),
+            }}
+          />
         ) : viewMode === 'grid' ? (
           <div className="grid grid-cols-2 gap-2.5">
             {filteredMasters.map((master) => (
