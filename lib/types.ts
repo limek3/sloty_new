@@ -100,12 +100,37 @@ export interface Chat {
   relatedRequestId?: string;
 }
 
+export interface ChatMessage {
+  id: string;
+  text: string;
+  isOwn: boolean;
+  time: string;
+  status: 'sent' | 'delivered' | 'failed';
+}
+
 export interface Message {
   id: string;
   senderId: string;
   text: string;
   timestamp: string;
   isRead: boolean;
+}
+
+export type ComposerState = 'disabled' | 'sending' | 'error' | 'retry' | 'ready';
+
+export interface QuickReplyTemplate {
+  id: string;
+  label: string;
+  value: string;
+  category: 'time' | 'pricing' | 'availability' | 'general';
+}
+
+export interface ChatThreadState {
+  messages: ChatMessage[];
+  draft: string;
+  composerState: ComposerState;
+  failedMessage?: ChatMessage;
+  isLoading: boolean;
 }
 
 export type InfoPage =

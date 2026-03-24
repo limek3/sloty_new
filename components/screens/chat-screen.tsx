@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState, useEffect } from 'react';
+import { useMemo, useRef, useEffect } from 'react';
 import { useApp } from '@/lib/app-context';
 import {
   ArrowLeft,
@@ -13,106 +13,103 @@ import {
   Circle,
   CalendarDays,
   Sparkles,
+  AlertCircle,
+  RotateCcw,
+  Loader2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
-type ChatMessage = {
-  id: string;
-  text: string;
-  isOwn: boolean;
-  time: string;
-};
-
 export function ChatScreen() {
-  const { t, language, chats, selectedChatId, goBack } = useApp();
+  const {
+    t,
+    language,
+    userRole,
+    chats,
+    selectedChatId,
+    chatThreads,
+    navigate,
+    goBack,
+    setChatDraft,
+    sendChatMessage,
+    retryChatMessage,
+    applyQuickReplyTemplate,
+  } = useApp();
 
   const isRu = language === 'ru';
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
-
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      text: isRu ? 'Здравствуйте! Интересуют ваши услуги.' : 'Hello! I am interested in your services.',
-      isOwn: true,
-      time: '10:30',
-    },
-    {
-      id: '2',
-      text: isRu ? 'Здравствуйте! Конечно, чем могу помочь?' : 'Hello! Sure, how can I help?',
-      isOwn: false,
-      time: '10:32',
-    },
-    {
-      id: '3',
-      text: isRu ? 'Хотела бы записаться на маникюр.' : 'I would like to book a manicure.',
-      isOwn: true,
-      time: '10:33',
-    },
-    {
-      id: '4',
-      text: isRu ? 'Отлично! Когда вам удобно?' : 'Great! When would be convenient for you?',
-      isOwn: false,
-      time: '10:35',
-    },
-  ]);
 
   const chat = useMemo(
     () => chats.find((c) => c.id === selectedChatId),
     [chats, selectedChatId]
   );
+  const thread = selectedChatId ? chatThreads[selectedChatId] : null;
+  const composerMode = useMemo(() => {
+    if (!chat || !thread) return 'disabled';
+    if (thread.composerState === 'sending') return 'sending';
+    if (thread.composerState === 'error') return 'error';
+    if (thread.composerState === 'retry') return 'retry';
+    if (!thread.draft.trim()) return 'disabled';
+    return 'ready';
+  }, [chat, thread]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [thread?.messages]);
 
-  const quickReplies = isRu
-    ? ['Сегодня вечером', 'Завтра', 'Какая стоимость?', 'Есть окна?']
-    : ['This evening', 'Tomorrow', 'What is the price?', 'Any free slots?'];
+  const quickReplyTemplates = isRu
+    ? [
+        { id: 'time-evening', label: 'Сегодня вечером', value: 'Сегодня вечером', category: 'time' },
+        { id: 'time-tomorrow', label: 'Завтра', value: 'Завтра', category: 'time' },
+        { id: 'price', label: 'Какая стоимость?', value: 'Какая стоимость?', category: 'pricing' },
+        { id: 'slots', label: 'Есть окна?', value: 'Есть свободные окна?', category: 'availability' },
+      ]
+    : [
+        { id: 'time-evening', label: 'This evening', value: 'This evening', category: 'time' },
+        { id: 'time-tomorrow', label: 'Tomorrow', value: 'Tomorrow', category: 'time' },
+        { id: 'price', label: 'What is the price?', value: 'What is the price?', category: 'pricing' },
+        { id: 'slots', label: 'Any free slots?', value: 'Any free slots?', category: 'availability' },
+      ];
 
-  const handleSend = () => {
-    if (!message.trim()) return;
-
-    const newMessage: ChatMessage = {
-      id: Date.now().toString(),
-      text: message.trim(),
-      isOwn: true,
-      time: new Date().toLocaleTimeString(isRu ? 'ru-RU' : 'en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
-    };
-
-    setMessages((prev) => [...prev, newMessage]);
-    setMessage('');
-
-    setTimeout(() => {
-      const reply: ChatMessage = {
-        id: `${Date.now()}-reply`,
-        text: isRu
-          ? 'Спасибо! Уточню детали и отвечу вам.'
-          : 'Thanks! I will check the details and reply to you.',
-        isOwn: false,
-        time: new Date().toLocaleTimeString(isRu ? 'ru-RU' : 'en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
-      };
-      setMessages((prev) => [...prev, reply]);
-    }, 1200);
-  };
-
-  const handleQuickReply = (text: string) => {
-    setMessage(text);
-  };
+  const contextualActions = isRu
+    ? userRole === 'master'
+      ? [
+          { id: 'share-availability', label: 'Поделиться окнами', text: 'Отправляю доступные окна на этой неделе.' },
+          { id: 'send-services', label: 'Отправить услуги', text: 'Отправляю актуальный список услуг и цены.' },
+        ]
+      : [
+          { id: 'book-slot', label: 'Забронировать слот', text: 'Хочу забронировать ближайший свободный слот.' },
+          { id: 'share-availability', label: 'Запросить окна', text: 'Подскажите, пожалуйста, ближайшие свободные окна.' },
+          { id: 'send-services', label: 'Запросить услуги', text: 'Пришлите, пожалуйста, полный список услуг.' },
+        ]
+    : userRole === 'master'
+      ? [
+          { id: 'share-availability', label: 'Share availability', text: 'Sharing my available slots for this week.' },
+          { id: 'send-services', label: 'Send service list', text: 'Sharing my current services and pricing list.' },
+        ]
+      : [
+          { id: 'book-slot', label: 'Book a slot', text: 'I would like to book your nearest available slot.' },
+          { id: 'share-availability', label: 'Request availability', text: 'Could you share your nearest available slots?' },
+          { id: 'send-services', label: 'Request services', text: 'Please share your full service list.' },
+        ];
 
   if (!chat) {
     return (
       <div className="min-h-screen bg-[#f6f6f3] px-4 safe-top safe-bottom">
         <div className="flex min-h-screen items-center justify-center">
           <div className="rounded-[16px] border border-border/70 bg-card px-4 py-6 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <p className="text-[14px] text-slate-500">{t('error')}</p>
+            <p className="text-sm text-slate-700">
+              {isRu ? 'Чат недоступен или участник не найден.' : 'Chat is unavailable or participant was not found.'}
+            </p>
+            <p className="mt-1 text-xs text-slate-500">
+              {isRu ? 'Проверьте список чатов и откройте диалог снова.' : 'Go back to chats and reopen the conversation.'}
+            </p>
+            <Button
+              onClick={() => navigate('chats')}
+              className="mt-3 h-9 rounded-[12px] bg-emerald-500 px-3 text-sm font-semibold text-white hover:bg-emerald-600"
+            >
+              {isRu ? 'К списку чатов' : 'Back to chats'}
+            </Button>
           </div>
         </div>
       </div>
@@ -206,14 +203,20 @@ export function ChatScreen() {
 
         <div className="scrollbar-hide flex-1 overflow-y-auto">
           <div className="space-y-2 pb-2">
-            {messages.map((msg) => (
+            {thread?.isLoading ? (
+              <div className="rounded-[14px] border border-border/70 bg-card px-3 py-4 text-center text-sm text-slate-500">
+                <Loader2 className="mx-auto mb-2 h-4 w-4 animate-spin text-slate-400" />
+                {isRu ? 'Загружаем сообщения…' : 'Loading messages…'}
+              </div>
+            ) : thread && thread.messages.length > 0 ? (
+              thread.messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex ${msg.isOwn ? 'justify-end' : 'justify-start'}`}
               >
                 <div className={`max-w-[82%] ${msg.isOwn ? 'items-end' : 'items-start'} flex flex-col`}>
                   {!msg.isOwn && (
-                    <div className="mb-0.5 px-1 text-[7px] font-medium text-slate-400">
+                    <div className="mb-1 px-1 text-xs font-medium text-slate-500">
                       {chat.participantName}
                     </div>
                   )}
@@ -228,17 +231,35 @@ export function ChatScreen() {
                     <p className="text-[15px] leading-[1.5]">{msg.text}</p>
 
                     <div
-                      className={`mt-0.5 flex items-center justify-end gap-0.5 text-[7px] ${
+                      className={`mt-1 flex items-center justify-end gap-1 text-xs ${
                         msg.isOwn ? 'text-white/75' : 'text-slate-400'
                       }`}
                     >
                       <span>{msg.time}</span>
-                      {msg.isOwn && <CheckCheck className="h-2.5 w-2.5" />}
+                      {msg.isOwn && (
+                        <>
+                          {msg.status === 'failed' ? (
+                            <AlertCircle className="h-3.5 w-3.5" />
+                          ) : (
+                            <CheckCheck className="h-3.5 w-3.5" />
+                          )}
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            ))
+            ) : (
+              <div className="rounded-[14px] border border-dashed border-border/70 bg-card px-3 py-5 text-center">
+                <p className="text-sm font-medium text-slate-700">
+                  {isRu ? 'Сообщений пока нет' : 'No messages yet'}
+                </p>
+                <p className="mt-1 text-xs text-slate-500">
+                  {isRu ? 'Начните диалог с шаблона или своего сообщения.' : 'Start the conversation with a template or your own message.'}
+                </p>
+              </div>
+            )}
 
             <div ref={messagesEndRef} />
           </div>
@@ -246,13 +267,24 @@ export function ChatScreen() {
 
         <div className="mt-2">
           <div className="mb-2 flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
-            {quickReplies.map((reply) => (
+            {quickReplyTemplates.map((template) => (
               <button
-                key={reply}
-                onClick={() => handleQuickReply(reply)}
+                key={template.id}
+                onClick={() => selectedChatId && applyQuickReplyTemplate(selectedChatId, template.value)}
                 className="shrink-0 rounded-full border border-border/70 bg-card px-2 py-1 text-[15px] font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700"
               >
-                {reply}
+                {template.label}
+              </button>
+            ))}
+          </div>
+          <div className="mb-2 flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
+            {contextualActions.map((action) => (
+              <button
+                key={action.id}
+                onClick={() => selectedChatId && applyQuickReplyTemplate(selectedChatId, action.text)}
+                className="shrink-0 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-1 text-[13px] font-medium text-emerald-700 transition hover:bg-emerald-100"
+              >
+                {action.label}
               </button>
             ))}
           </div>
@@ -268,16 +300,17 @@ export function ChatScreen() {
 
               <div className="relative min-w-0 flex-1">
                 <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  value={thread?.draft ?? ''}
+                  onChange={(e) => selectedChatId && setChatDraft(selectedChatId, e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
                       e.preventDefault();
-                      handleSend();
+                      if (selectedChatId) sendChatMessage(selectedChatId);
                     }
                   }}
                   placeholder={t('typeMessage')}
                   rows={1}
+                  disabled={!chat || composerMode === 'sending'}
                   className="max-h-24 min-h-[36px] w-full resize-none rounded-[12px] border border-border/70 bg-[#fafaf8] px-2.5 py-2 pr-9 text-[14px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
                 />
 
@@ -292,17 +325,35 @@ export function ChatScreen() {
               <Button
                 size="icon"
                 className="h-9 w-9 shrink-0 rounded-[12px] bg-emerald-500 text-white shadow-[0_10px_24px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
-                onClick={handleSend}
-                disabled={!message.trim()}
+                onClick={() => selectedChatId && sendChatMessage(selectedChatId)}
+                disabled={composerMode === 'disabled' || composerMode === 'sending'}
               >
-                <Send className="h-3.5 w-3.5" />
+                {composerMode === 'sending' ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Send className="h-3.5 w-3.5" />
+                )}
               </Button>
             </div>
 
-            <div className="mt-1.5 px-0.5 text-[7px] text-slate-400">
-              {isRu
-                ? 'Enter — отправить, Shift + Enter — новая строка'
-                : 'Enter — send, Shift + Enter — new line'}
+            <div className="mt-2 flex items-center justify-between gap-2 px-0.5 text-xs text-slate-500">
+              <span>
+                {isRu
+                  ? 'Enter — отправить, Shift + Enter — новая строка'
+                  : 'Enter — send, Shift + Enter — new line'}
+              </span>
+              {composerMode === 'error' && selectedChatId && (
+                <button
+                  onClick={() => retryChatMessage(selectedChatId)}
+                  className="inline-flex items-center gap-1 rounded-full border border-rose-200 bg-rose-50 px-2 py-0.5 text-xs font-medium text-rose-700"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                  {isRu ? 'Повторить' : 'Retry'}
+                </button>
+              )}
+              {composerMode === 'retry' && (
+                <span className="text-amber-700">{isRu ? 'Готово к повторной отправке' : 'Ready to resend'}</span>
+              )}
             </div>
           </div>
         </div>
