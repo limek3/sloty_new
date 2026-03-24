@@ -66,6 +66,35 @@
   /* Warning - Warm amber */
   --warning: oklch(0.78 0.14 70);
   --warning-foreground: oklch(0.22 0.06 70);
+
+  /* Semantic aliases for cross-screen consistency */
+  --surface: var(--card);
+  --surface-secondary: var(--surface-2);
+  --surface-tertiary: var(--surface-3);
+  --text-primary: var(--foreground);
+  --text-secondary: var(--muted-foreground);
+  --text-muted: color-mix(in oklab, var(--muted-foreground) 82%, var(--background));
+  --primary-hover: color-mix(in oklab, var(--primary) 90%, black);
+  --accent-soft: color-mix(in oklab, var(--primary) 12%, var(--surface));
+  --accent-strong: color-mix(in oklab, var(--primary) 22%, var(--surface));
+
+  /* Spacing scale */
+  --space-xs: 0.375rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+
+  /* Radius scale */
+  --radius-sm-token: 0.625rem;
+  --radius-md-token: 0.875rem;
+  --radius-lg-token: 1.125rem;
+
+  /* Shadow scale */
+  --shadow-soft: 0 1px 2px oklch(0.145 0.015 265 / 0.03), 0 4px 8px oklch(0.145 0.015 265 / 0.04);
+  --shadow-medium: 0 1px 3px oklch(0.145 0.015 265 / 0.02), 0 6px 16px oklch(0.145 0.015 265 / 0.05), 0 12px 32px oklch(0.145 0.015 265 / 0.03);
+  --shadow-elevated: 0 2px 4px oklch(0.145 0.015 265 / 0.02), 0 10px 30px oklch(0.145 0.015 265 / 0.07), 0 24px 56px oklch(0.145 0.015 265 / 0.05);
 }
 
 .dark {
@@ -88,6 +117,14 @@
   --surface-1: oklch(0.23 0.006 255);
   --surface-2: oklch(0.265 0.006 255);
   --surface-3: oklch(0.305 0.008 255);
+  --success: oklch(0.69 0.15 155);
+  --success-foreground: oklch(0.18 0.004 255);
+  --warning: oklch(0.76 0.13 72);
+  --warning-foreground: oklch(0.18 0.004 255);
+  --text-muted: color-mix(in oklab, var(--muted-foreground) 86%, var(--background));
+  --accent-soft: color-mix(in oklab, var(--primary) 16%, var(--surface-1));
+  --accent-strong: color-mix(in oklab, var(--primary) 28%, var(--surface-1));
+  --primary-hover: color-mix(in oklab, var(--primary) 88%, white);
 }
 
 @theme inline {
@@ -124,6 +161,15 @@
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-tertiary: var(--surface-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-strong: var(--accent-strong);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -142,6 +188,22 @@
 
   html {
     font-size: 15px;
+  }
+
+  h1 {
+    @apply text-[22px] leading-tight font-semibold tracking-tight text-foreground;
+  }
+
+  h2 {
+    @apply text-[18px] leading-tight font-semibold tracking-tight text-foreground;
+  }
+
+  h3 {
+    @apply text-[16px] leading-snug font-semibold text-foreground;
+  }
+
+  h4 {
+    @apply text-[14px] leading-snug font-semibold text-foreground;
   }
 }
 
@@ -192,23 +254,15 @@
   
   /* Premium shadow utilities */
   .shadow-premium-sm {
-    box-shadow: 
-      0 1px 2px oklch(0.145 0.015 265 / 0.03),
-      0 4px 8px oklch(0.145 0.015 265 / 0.04);
+    box-shadow: var(--shadow-soft);
   }
   
   .shadow-premium {
-    box-shadow: 
-      0 1px 3px oklch(0.145 0.015 265 / 0.02),
-      0 6px 16px oklch(0.145 0.015 265 / 0.05),
-      0 12px 32px oklch(0.145 0.015 265 / 0.03);
+    box-shadow: var(--shadow-medium);
   }
   
   .shadow-premium-lg {
-    box-shadow: 
-      0 2px 4px oklch(0.145 0.015 265 / 0.02),
-      0 8px 24px oklch(0.145 0.015 265 / 0.06),
-      0 20px 48px oklch(0.145 0.015 265 / 0.04);
+    box-shadow: var(--shadow-elevated);
   }
   
   .shadow-premium-xl {
@@ -245,6 +299,33 @@
   .interactive-tile {
     @apply transition-all active:scale-[0.99] hover:-translate-y-0.5;
   }
+
+  /* Design-system utilities */
+  .ds-surface {
+    @apply border border-border/70 bg-card;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .ds-surface-elevated {
+    @apply border border-border/70 bg-card;
+    box-shadow: var(--shadow-medium);
+  }
+
+  .ds-stack-xs { gap: var(--space-xs); }
+  .ds-stack-sm { gap: var(--space-sm); }
+  .ds-stack-md { gap: var(--space-md); }
+  .ds-stack-lg { gap: var(--space-lg); }
+  .ds-stack-xl { gap: var(--space-xl); }
+
+  .ds-text-heading { @apply text-[16px] font-semibold tracking-tight text-foreground; }
+  .ds-text-title { @apply text-[14px] font-semibold text-foreground; }
+  .ds-text-body { @apply text-[13px] leading-5 text-foreground/90; }
+  .ds-text-secondary { @apply text-[13px] text-muted-foreground; }
+  .ds-text-caption { @apply text-[12px] text-muted-foreground; }
+
+  .ds-interactive {
+    @apply transition-all duration-200 hover:-translate-y-[1px] active:translate-y-0 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-50;
+  }
 }
 
 /* Dark-mode bridge for hardcoded light utility classes in legacy screens */
@@ -267,6 +348,23 @@
 .dark .text-slate-500,
 .dark .text-slate-400 {
   color: oklch(0.72 0.01 255) !important;
+}
+
+/* Legacy color bridge for green/rose palette classes across screens */
+.bg-emerald-50 { background-color: color-mix(in oklab, var(--primary) 12%, var(--card)) !important; }
+.bg-emerald-100 { background-color: color-mix(in oklab, var(--primary) 16%, var(--card)) !important; }
+.bg-emerald-500 { background-color: var(--primary) !important; }
+.bg-emerald-600 { background-color: var(--primary-hover) !important; }
+.text-emerald-600, .text-emerald-700 { color: var(--primary) !important; }
+.border-emerald-100, .border-emerald-200 { border-color: color-mix(in oklab, var(--primary) 28%, var(--border)) !important; }
+.bg-rose-500 { background-color: var(--destructive) !important; }
+.text-rose-500, .text-rose-600 { color: var(--destructive) !important; }
+.bg-slate-100 { background-color: color-mix(in oklab, var(--muted) 72%, var(--card)) !important; }
+.text-slate-900 { color: var(--text-primary) !important; }
+.text-slate-800, .text-slate-700, .text-slate-600 { color: color-mix(in oklab, var(--text-primary) 78%, var(--text-secondary)) !important; }
+.text-slate-500, .text-slate-400 { color: var(--text-secondary) !important; }
+.bg-\[\#f7f7f5\], .bg-\[\#fafaf8\], .bg-\[\#f6f6f3\], .bg-\[\#f5f5f2\] {
+  background-color: color-mix(in oklab, var(--card) 84%, var(--muted)) !important;
 }
 
 .dark .border-black\/5,
