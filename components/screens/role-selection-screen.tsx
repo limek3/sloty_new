@@ -32,10 +32,10 @@ export function RoleSelectionScreen() {
         {/* Language Toggle */}
         <button
           onClick={toggleLanguage}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
+          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-secondary hover:bg-secondary/80 transition-colors"
         >
-          <Globe className="w-3.5 h-3.5 text-muted-foreground" />
-          <span className="text-xs font-medium text-foreground">
+          <Globe className="w-4 h-4 text-muted-foreground" />
+          <span className="text-sm font-medium text-foreground">
             {language === 'ru' ? 'RU' : 'EN'}
           </span>
         </button>
@@ -43,14 +43,14 @@ export function RoleSelectionScreen() {
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-secondary hover:bg-secondary/80 transition-colors"
+          className="flex items-center gap-2 px-3 py-2 rounded-xl bg-secondary hover:bg-secondary/80 transition-colors"
         >
           {theme === 'light' ? (
-            <Sun className="w-3.5 h-3.5 text-muted-foreground" />
+            <Sun className="w-4 h-4 text-muted-foreground" />
           ) : (
-            <Moon className="w-3.5 h-3.5 text-muted-foreground" />
+            <Moon className="w-4 h-4 text-muted-foreground" />
           )}
-          <span className="text-xs font-medium text-foreground">
+          <span className="text-sm font-medium text-foreground">
             {theme === 'light' ? t('lightMode') : t('darkMode')}
           </span>
         </button>
@@ -78,10 +78,10 @@ export function RoleSelectionScreen() {
         </div>
 
         {/* Title */}
-        <h1 className="text-lg font-bold text-foreground mb-1 text-center animate-slide-up">
+        <h1 className="text-2xl font-bold text-foreground mb-2 text-center animate-slide-up">
           {t('selectRole')}
         </h1>
-        <p className="text-sm text-muted-foreground text-center mb-8 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+        <p className="text-base text-muted-foreground text-center mb-8 animate-slide-up" style={{ animationDelay: '0.1s' }}>
           {t('tagline')}
         </p>
 
@@ -105,10 +105,10 @@ export function RoleSelectionScreen() {
                 <User className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-semibold text-foreground mb-0.5">
+                <h3 className="text-lg font-semibold text-foreground mb-0.5">
                   {t('iAmClient')}
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {t('clientDescription')}
                 </p>
               </div>
@@ -145,10 +145,10 @@ export function RoleSelectionScreen() {
                 <Briefcase className="w-5 h-5" />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-semibold text-foreground mb-0.5">
+                <h3 className="text-lg font-semibold text-foreground mb-0.5">
                   {t('iAmMaster')}
                 </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {t('masterDescription')}
                 </p>
               </div>
@@ -174,7 +174,7 @@ export function RoleSelectionScreen() {
         <Button
           onClick={handleContinue}
           disabled={!selectedRole}
-          className="w-full h-11 text-sm font-semibold rounded-xl disabled:opacity-50"
+          className="w-full h-12 text-base font-semibold rounded-xl disabled:opacity-50"
           size="lg"
         >
           {t('continue')}

@@ -42,29 +42,29 @@ export function ChatsScreen() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f6f6f3] pb-24 safe-top">
+    <div className="app-shell">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-black/5 bg-white p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
+          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
             <div className="flex items-start justify-between gap-2.5 px-0.5 pb-1.5 pt-0.5">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-1.5">
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                     <MessageCircle className="h-3.5 w-3.5" />
                   </div>
-                  <h1 className="truncate text-[13px] font-bold tracking-tight text-slate-900">
+                  <h1 className="truncate text-[16px] font-bold tracking-tight text-slate-900">
                     {t('chats')}
                   </h1>
                 </div>
 
-                <p className="mt-0.5 text-[9px] leading-[1.4] text-slate-500">
+                <p className="mt-0.5 text-[14px] leading-[1.4] text-slate-500">
                   {isRu
                     ? 'Общайтесь с мастерами и следите за сообщениями'
                     : 'Chat with masters and track messages'}
                 </p>
               </div>
 
-              <div className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[8px] font-semibold text-emerald-700">
+              <div className="shrink-0 rounded-full bg-emerald-50 px-2 py-0.5 text-[15px] font-semibold text-emerald-700">
                 {isRu ? 'Новых: ' : 'Unread: '}
                 {unreadTotal}
               </div>
@@ -77,7 +77,7 @@ export function ChatsScreen() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={isRu ? 'Поиск по чатам...' : 'Search chats...'}
-                className="h-9 w-full rounded-[12px] border border-black/6 bg-[#f7f7f5] pl-9 pr-3 text-[10px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-white"
+                className="h-9 w-full rounded-[12px] border border-border/70 bg-[#f7f7f5] pl-9 pr-3 text-[15px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
               />
             </div>
           </div>
@@ -94,7 +94,7 @@ export function ChatsScreen() {
                 <button
                   key={chat.id}
                   onClick={() => handleChatClick(chat.id)}
-                  className="group flex w-full items-center gap-2.5 rounded-[18px] border border-black/6 bg-white p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
+                  className="group flex w-full items-center gap-2.5 rounded-[18px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
                 >
                   <div className="relative shrink-0">
                     {chat.participantAvatar ? (
@@ -107,7 +107,7 @@ export function ChatsScreen() {
                         />
                       </div>
                     ) : (
-                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-emerald-100 text-[10px] font-bold text-emerald-700">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-emerald-100 text-[15px] font-bold text-emerald-700">
                         {chat.participantName.charAt(0)}
                       </div>
                     )}
@@ -127,21 +127,21 @@ export function ChatsScreen() {
                     <div className="flex items-start justify-between gap-2.5">
                       <div className="min-w-0">
                         <h3
-                          className={`truncate text-[10px] font-semibold ${
+                          className={`truncate text-[15px] font-semibold ${
                             hasUnread ? 'text-slate-900' : 'text-slate-800'
                           }`}
                         >
                           {chat.participantName}
                         </h3>
 
-                        <div className="mt-0.5 flex items-center gap-0.5 text-[8px] text-slate-400">
+                        <div className="mt-0.5 flex items-center gap-0.5 text-[15px] text-slate-400">
                           <Sparkles className="h-2.5 w-2.5" />
                           <span>{isRu ? 'Активный чат' : 'Active chat'}</span>
                         </div>
                       </div>
 
                       <div className="shrink-0 text-right">
-                        <div className="text-[8px] font-medium text-slate-400">
+                        <div className="text-[15px] font-medium text-slate-400">
                           {chat.lastMessageTime}
                         </div>
                         {!hasUnread && (
@@ -155,7 +155,7 @@ export function ChatsScreen() {
 
                     <div className="mt-1 flex items-center gap-1.5">
                       <p
-                        className={`min-w-0 flex-1 truncate text-[9px] ${
+                        className={`min-w-0 flex-1 truncate text-[14px] ${
                           hasUnread
                             ? 'font-medium text-slate-700'
                             : 'text-slate-500'
@@ -175,22 +175,22 @@ export function ChatsScreen() {
             })}
           </div>
         ) : (
-          <div className="rounded-[18px] border border-black/6 bg-white px-4 py-10 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+          <div className="rounded-[18px] border border-border/70 bg-card px-4 py-10 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#f5f5f2]">
               <MessageCircle className="h-6 w-6 text-slate-400" />
             </div>
 
-            <h3 className="mt-3 text-[12px] font-semibold text-slate-900">
+            <h3 className="mt-3 text-[15px] font-semibold text-slate-900">
               {t('noChats')}
             </h3>
 
-            <p className="mx-auto mt-1.5 max-w-xs text-[9px] leading-[1.4] text-slate-500">
+            <p className="mx-auto mt-1.5 max-w-xs text-[14px] leading-[1.4] text-slate-500">
               {t('startChat')}
             </p>
 
             <Button
               onClick={() => navigate('search')}
-              className="mt-3 h-9 rounded-[12px] bg-emerald-500 px-3 text-[9px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+              className="mt-3 h-9 rounded-[12px] bg-emerald-500 px-3 text-[14px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
             >
               {t('findMaster')}
             </Button>

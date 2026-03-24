@@ -111,8 +111,8 @@ export function ChatScreen() {
     return (
       <div className="min-h-screen bg-[#f6f6f3] px-4 safe-top safe-bottom">
         <div className="flex min-h-screen items-center justify-center">
-          <div className="rounded-[16px] border border-black/6 bg-white px-4 py-6 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
-            <p className="text-[9px] text-slate-500">{t('error')}</p>
+          <div className="rounded-[16px] border border-border/70 bg-card px-4 py-6 text-center shadow-[0_6px_20px_rgba(15,23,42,0.04)]">
+            <p className="text-[14px] text-slate-500">{t('error')}</p>
           </div>
         </div>
       </div>
@@ -123,11 +123,11 @@ export function ChatScreen() {
     <div className="fixed inset-0 flex flex-col bg-[#f6f6f3] safe-top safe-bottom">
       <header className="shrink-0 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-black/5 bg-white p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
+          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
             <div className="flex items-start gap-2.5 px-0.5 pb-1 pt-0.5">
               <button
                 onClick={goBack}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-black/6 bg-[#f7f7f5] text-slate-700 transition hover:bg-white"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-700 transition hover:bg-card"
                 aria-label={isRu ? 'Назад' : 'Back'}
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
@@ -144,14 +144,14 @@ export function ChatScreen() {
                     />
                   </div>
                 ) : (
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-emerald-100 text-[10px] font-bold text-emerald-700">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-emerald-100 text-[15px] font-bold text-emerald-700">
                     {chat.participantName.charAt(0)}
                   </div>
                 )}
 
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1">
-                    <h2 className="truncate text-[11px] font-bold tracking-tight text-slate-900">
+                    <h2 className="truncate text-[14px] font-bold tracking-tight text-slate-900">
                       {chat.participantName}
                     </h2>
                     <span className="flex h-3.5 w-3.5 items-center justify-center rounded-full bg-emerald-500">
@@ -159,7 +159,7 @@ export function ChatScreen() {
                     </span>
                   </div>
 
-                  <p className="mt-0.5 truncate text-[8px] text-slate-500">
+                  <p className="mt-0.5 truncate text-[15px] text-slate-500">
                     {isRu ? 'В сети недавно' : 'Online recently'}
                   </p>
                 </div>
@@ -167,14 +167,14 @@ export function ChatScreen() {
 
               <div className="flex shrink-0 items-center gap-1.5">
                 <button
-                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-black/6 bg-[#f7f7f5] text-slate-500 transition hover:bg-white hover:text-emerald-600"
+                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card hover:text-emerald-600"
                   aria-label={isRu ? 'Позвонить' : 'Call'}
                 >
                   <Phone className="h-3.5 w-3.5" />
                 </button>
 
                 <button
-                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-black/6 bg-[#f7f7f5] text-slate-500 transition hover:bg-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
                   aria-label={isRu ? 'Ещё' : 'More'}
                 >
                   <MoreVertical className="h-3.5 w-3.5" />
@@ -182,13 +182,13 @@ export function ChatScreen() {
               </div>
             </div>
 
-            <div className="mt-1 flex items-center justify-between rounded-[10px] border border-black/6 bg-[#fafaf8] px-2.5 py-1.5">
-              <div className="flex items-center gap-1 text-[8px] text-slate-600">
+            <div className="mt-1 flex items-center justify-between rounded-[10px] border border-border/70 bg-[#fafaf8] px-2.5 py-1.5">
+              <div className="flex items-center gap-1 text-[15px] text-slate-600">
                 <Sparkles className="h-3 w-3 text-emerald-600" />
                 <span>{isRu ? 'Чат активен' : 'Chat is active'}</span>
               </div>
 
-              <div className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[8px] font-medium text-emerald-700">
+              <div className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[15px] font-medium text-emerald-700">
                 <CalendarDays className="h-2.5 w-2.5" />
                 {isRu ? 'Сегодня' : 'Today'}
               </div>
@@ -199,7 +199,7 @@ export function ChatScreen() {
 
       <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-hidden px-3 pb-3 pt-2.5">
         <div className="mb-2 flex items-center justify-center">
-          <div className="rounded-full border border-black/6 bg-white px-2 py-0.5 text-[8px] font-medium text-slate-500 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
+          <div className="rounded-full border border-border/70 bg-card px-2 py-0.5 text-[15px] font-medium text-slate-500 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
             {isRu ? 'Сегодня' : 'Today'}
           </div>
         </div>
@@ -222,10 +222,10 @@ export function ChatScreen() {
                     className={`rounded-[14px] px-2.5 py-2 shadow-[0_4px_16px_rgba(15,23,42,0.03)] ${
                       msg.isOwn
                         ? 'rounded-br-[6px] bg-emerald-500 text-white'
-                        : 'rounded-bl-[6px] border border-black/6 bg-white text-slate-800'
+                        : 'rounded-bl-[6px] border border-border/70 bg-card text-slate-800'
                     }`}
                   >
-                    <p className="text-[10px] leading-[1.5]">{msg.text}</p>
+                    <p className="text-[15px] leading-[1.5]">{msg.text}</p>
 
                     <div
                       className={`mt-0.5 flex items-center justify-end gap-0.5 text-[7px] ${
@@ -250,17 +250,17 @@ export function ChatScreen() {
               <button
                 key={reply}
                 onClick={() => handleQuickReply(reply)}
-                className="shrink-0 rounded-full border border-black/6 bg-white px-2 py-1 text-[8px] font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700"
+                className="shrink-0 rounded-full border border-border/70 bg-card px-2 py-1 text-[15px] font-medium text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-700"
               >
                 {reply}
               </button>
             ))}
           </div>
 
-          <div className="rounded-[18px] border border-black/6 bg-white p-2 shadow-[0_8px_26px_rgba(15,23,42,0.06)]">
+          <div className="rounded-[18px] border border-border/70 bg-card p-2 shadow-[0_8px_26px_rgba(15,23,42,0.06)]">
             <div className="flex items-end gap-1.5">
               <button
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-black/6 bg-[#f7f7f5] text-slate-500 transition hover:bg-white"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
                 aria-label={isRu ? 'Прикрепить' : 'Attach'}
               >
                 <Paperclip className="h-3.5 w-3.5" />
@@ -278,11 +278,11 @@ export function ChatScreen() {
                   }}
                   placeholder={t('typeMessage')}
                   rows={1}
-                  className="max-h-24 min-h-[36px] w-full resize-none rounded-[12px] border border-black/6 bg-[#fafaf8] px-2.5 py-2 pr-9 text-[9px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-200 focus:bg-white"
+                  className="max-h-24 min-h-[36px] w-full resize-none rounded-[12px] border border-border/70 bg-[#fafaf8] px-2.5 py-2 pr-9 text-[14px] text-slate-900 outline-none placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
                 />
 
                 <button
-                  className="absolute bottom-1.5 right-1.5 flex h-5 w-5 items-center justify-center rounded-full text-slate-400 transition hover:bg-white hover:text-emerald-600"
+                  className="absolute bottom-1.5 right-1.5 flex h-5 w-5 items-center justify-center rounded-full text-slate-400 transition hover:bg-card hover:text-emerald-600"
                   aria-label={isRu ? 'Эмодзи' : 'Emoji'}
                 >
                   <Smile className="h-3 w-3" />

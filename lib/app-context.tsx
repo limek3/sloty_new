@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import type { Language, Theme, UserRole, AppScreen, Master, Booking, ServiceRequest, Chat, InfoPage } from './types';
 import { translations, type TranslationKey } from './i18n';
 import { masters as mockMasters, bookings as mockBookings, serviceRequests as mockRequests, chats as mockChats } from './mock-data';
@@ -108,6 +108,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
     sortBy: 'distance',
   });
 
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem('sloty-theme') as Theme | null;
+    const savedLanguage = window.localStorage.getItem('sloty-language') as Language | null;
+
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setState(prev => ({ ...prev, theme: savedTheme }));
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    }
+
+    if (savedLanguage === 'ru' || savedLanguage === 'en') {
+      setState(prev => ({ ...prev, language: savedLanguage }));
+    }
+  }, []);
+
   // Translation helper
   const t = useCallback((key: TranslationKey): string => {
     return translations[state.language][key] || translations.en[key] || key;
@@ -136,10 +150,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // Settings
   const setLanguage = useCallback((lang: Language) => {
+    window.localStorage.setItem('sloty-language', lang);
     setState(prev => ({ ...prev, language: lang }));
   }, []);
 
   const setTheme = useCallback((theme: Theme) => {
+    window.localStorage.setItem('sloty-theme', theme);
     setState(prev => ({ ...prev, theme }));
     // Apply theme to document
     if (theme === 'dark') {
