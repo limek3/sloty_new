@@ -137,58 +137,58 @@ export function HomeScreen() {
     const key = getCategoryKey(category);
     if (key.includes("manicure") || key.includes("маник")) {
       return {
-        bg: "bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-100 dark:from-rose-200/22 dark:via-pink-200/18 dark:to-fuchsia-200/20",
+        bg: "bg-gradient-to-br from-rose-50 via-pink-50/90 to-red-50 dark:from-rose-200/18 dark:via-pink-200/14 dark:to-red-200/16",
         text: "text-rose-500 dark:text-rose-100",
-        border: "border-rose-200/80 dark:border-rose-200/35",
+        border: "border-rose-200/75 dark:border-rose-200/30",
       };
     }
     if (key.includes("pedicure") || key.includes("педик")) {
       return {
-        bg: "bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-emerald-200/22 dark:via-teal-200/18 dark:to-cyan-200/20",
-        text: "text-emerald-600 dark:text-emerald-100",
-        border: "border-emerald-200/80 dark:border-emerald-200/35",
+        bg: "bg-gradient-to-br from-sky-50 via-blue-50/85 to-cyan-50 dark:from-sky-200/18 dark:via-blue-200/14 dark:to-cyan-200/16",
+        text: "text-blue-500 dark:text-blue-100",
+        border: "border-sky-200/75 dark:border-sky-200/30",
       };
     }
     if (key.includes("hair") || key.includes("парикмах") || key.includes("barber") || key.includes("барбер")) {
       return {
-        bg: "bg-gradient-to-br from-green-50 via-emerald-50 to-lime-100 dark:from-green-200/22 dark:via-emerald-200/18 dark:to-lime-200/20",
+        bg: "bg-gradient-to-br from-emerald-50 via-green-50/90 to-teal-50 dark:from-emerald-200/18 dark:via-green-200/14 dark:to-teal-200/16",
         text: "text-green-600 dark:text-green-100",
-        border: "border-green-200/80 dark:border-green-200/35",
+        border: "border-emerald-200/75 dark:border-emerald-200/30",
       };
     }
     if (key.includes("makeup") || key.includes("макияж")) {
       return {
-        bg: "bg-gradient-to-br from-violet-50 via-indigo-50 to-purple-100 dark:from-violet-200/22 dark:via-indigo-200/18 dark:to-purple-200/20",
+        bg: "bg-gradient-to-br from-violet-50 via-purple-50/90 to-fuchsia-50 dark:from-violet-200/18 dark:via-purple-200/14 dark:to-fuchsia-200/16",
         text: "text-violet-500 dark:text-violet-100",
-        border: "border-violet-200/80 dark:border-violet-200/35",
+        border: "border-violet-200/75 dark:border-violet-200/30",
       };
     }
     if (key.includes("massage") || key.includes("массаж")) {
       return {
-        bg: "bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-100 dark:from-cyan-200/22 dark:via-sky-200/18 dark:to-blue-200/20",
+        bg: "bg-gradient-to-br from-cyan-50 via-sky-50/85 to-blue-50 dark:from-cyan-200/18 dark:via-sky-200/14 dark:to-blue-200/16",
         text: "text-cyan-600 dark:text-cyan-100",
-        border: "border-cyan-200/80 dark:border-cyan-200/35",
+        border: "border-cyan-200/75 dark:border-cyan-200/30",
       };
     }
     if (key.includes("cosmet") || key.includes("космет")) {
       return {
-        bg: "bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 dark:from-amber-200/22 dark:via-orange-200/18 dark:to-yellow-200/20",
+        bg: "bg-gradient-to-br from-amber-50 via-orange-50/90 to-rose-50 dark:from-amber-200/18 dark:via-orange-200/14 dark:to-rose-200/16",
         text: "text-orange-500 dark:text-orange-100",
-        border: "border-orange-200/80 dark:border-orange-200/35",
+        border: "border-orange-200/75 dark:border-orange-200/30",
       };
     }
     if (key.includes("brow") || key.includes("бров")) {
       return {
-        bg: "bg-gradient-to-br from-lime-50 via-green-50 to-emerald-100 dark:from-lime-200/22 dark:via-green-200/18 dark:to-emerald-200/20",
+        bg: "bg-gradient-to-br from-lime-50 via-emerald-50/90 to-teal-50 dark:from-lime-200/18 dark:via-emerald-200/14 dark:to-teal-200/16",
         text: "text-emerald-600 dark:text-emerald-100",
-        border: "border-emerald-200/80 dark:border-emerald-200/35",
+        border: "border-lime-200/75 dark:border-lime-200/30",
       };
     }
     if (key.includes("lash") || key.includes("ресниц")) {
       return {
-        bg: "bg-gradient-to-br from-teal-50 via-emerald-50 to-green-100 dark:from-teal-200/22 dark:via-emerald-200/18 dark:to-green-200/20",
-        text: "text-emerald-500 dark:text-emerald-100",
-        border: "border-emerald-200/80 dark:border-emerald-200/35",
+        bg: "bg-gradient-to-br from-teal-50 via-cyan-50/85 to-emerald-50 dark:from-teal-200/18 dark:via-cyan-200/14 dark:to-emerald-200/16",
+        text: "text-teal-600 dark:text-teal-100",
+        border: "border-teal-200/75 dark:border-teal-200/30",
       };
     }
     return {
@@ -302,17 +302,17 @@ export function HomeScreen() {
                 >
                   <div
                     className={[
-                      "relative flex h-[50px] w-[50px] items-center justify-center rounded-[18px] border transition-all duration-200",
+                      "relative flex h-[52px] w-[52px] items-center justify-center rounded-[18px] border transition-all duration-200 group-hover:-translate-y-[1px]",
                       tone.bg,
                       tone.border,
                       isActive
-                        ? "shadow-[0_12px_24px_rgba(16,185,129,0.16)]"
-                        : "shadow-[0_6px_18px_rgba(15,23,42,0.05)] group-hover:shadow-[0_10px_24px_rgba(15,23,42,0.08)]",
+                        ? "scale-[1.02] shadow-[0_10px_22px_rgba(15,23,42,0.12)]"
+                        : "shadow-[0_4px_14px_rgba(15,23,42,0.05)] group-hover:shadow-[0_8px_18px_rgba(15,23,42,0.08)]",
                     ].join(" ")}
                   >
-                    <Icon className={`h-4.5 w-4.5 ${tone.text}`} strokeWidth={1.9} />
+                    <Icon className={`h-5 w-5 ${tone.text}`} strokeWidth={1.9} />
                     {typeof category.count === "number" && (
-                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[13px] font-bold text-slate-500 shadow-sm dark:text-slate-200">
+                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full border border-white/70 bg-white/85 px-1 text-[13px] font-bold text-slate-500 shadow-[0_2px_6px_rgba(15,23,42,0.08)] backdrop-blur-sm dark:border-slate-700/70 dark:bg-slate-900/85 dark:text-slate-200">
                         {category.count}
                       </span>
                     )}
