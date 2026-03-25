@@ -43,7 +43,7 @@ export function StateCard({
   return (
     <Empty
       className={cn(
-        'rounded-[18px] border border-border/70 bg-card px-4 py-8 shadow-premium-sm',
+        'rounded-[20px] border border-border/70 bg-card px-4 py-8 shadow-premium-sm',
         className,
       )}
     >
@@ -51,7 +51,7 @@ export function StateCard({
         <EmptyMedia
           variant="icon"
           className={cn(
-            'size-12 rounded-[14px]',
+            'size-12 rounded-[15px]',
             tone === 'error'
               ? 'bg-destructive/10 text-destructive'
               : 'bg-surface-secondary text-muted-foreground',
@@ -60,9 +60,9 @@ export function StateCard({
           <ResolvedIcon className="h-5 w-5" />
         </EmptyMedia>
 
-        <EmptyTitle className="text-[14px] font-semibold text-foreground">{title}</EmptyTitle>
+        <EmptyTitle className="text-[16px] font-semibold text-foreground">{title}</EmptyTitle>
 
-        <EmptyDescription className="max-w-xs text-[13px] leading-[1.45] text-muted-foreground">
+        <EmptyDescription className="max-w-xs text-[14px] leading-6 text-muted-foreground">
           {description}
         </EmptyDescription>
       </EmptyHeader>
@@ -70,7 +70,7 @@ export function StateCard({
       <EmptyContent className="mt-1.5 w-auto max-w-none gap-2 sm:flex-row">
         <Button
           onClick={primaryAction.onClick}
-          className="h-9 rounded-[12px] bg-primary px-3 text-[13px] font-semibold text-primary-foreground shadow-primary-glow hover:bg-primary-hover"
+          className="h-10 rounded-[13px] bg-primary px-3.5 text-[13px] font-semibold text-primary-foreground shadow-primary-glow hover:bg-primary-hover"
         >
           {primaryAction.label}
         </Button>
@@ -79,7 +79,7 @@ export function StateCard({
           <Button
             variant="outline"
             onClick={secondaryAction.onClick}
-            className="h-9 rounded-[12px] border-border/70 px-3 text-[13px] font-semibold"
+            className="h-10 rounded-[13px] border-border/70 px-3.5 text-[13px] font-semibold"
           >
             {secondaryAction.label}
           </Button>

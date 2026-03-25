@@ -177,7 +177,7 @@ export function BottomNav() {
   return (
     <nav className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-3 safe-bottom safe-bottom-keyboard">
       <div className="mx-auto max-w-md">
-        <div className="pointer-events-auto relative overflow-hidden rounded-[24px] border border-border/70 bg-card/92 px-2.5 py-2.5 shadow-premium-lg backdrop-blur-2xl">
+        <div className="pointer-events-auto relative overflow-hidden rounded-[26px] border border-border/70 bg-card/88 px-2.5 py-2.5 shadow-premium-lg backdrop-blur-2xl">
           {/* Top gradient line */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -195,7 +195,7 @@ export function BottomNav() {
                 <button
                   key={screen}
                   onClick={() => navigate(screen)}
-                  className="relative flex h-[58px] items-center justify-center rounded-2xl transition-all duration-200 hover:bg-accent-soft/80 active:scale-[0.98] active:bg-accent/45"
+                  className="relative flex h-[58px] items-center justify-center rounded-2xl transition-all duration-200 hover:bg-accent-soft/85 active:scale-[0.98] active:bg-accent/50"
                   aria-label={`${a11yLabel}${badgeLabel}`}
                   aria-current={isActive ? 'page' : undefined}
                   aria-pressed={isActive}
@@ -204,7 +204,7 @@ export function BottomNav() {
                     {isActive && (
                       <motion.div
                         layoutId="bottom-nav-active-shell"
-                        className="absolute left-1/2 top-1/2 h-11 w-[52px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-primary/20 bg-gradient-to-b from-primary/20 to-primary/8 shadow-premium-sm"
+                        className="absolute left-1/2 top-1/2 h-11 w-[54px] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-primary/24 bg-gradient-to-b from-primary/22 to-primary/10 shadow-premium-sm"
                         transition={{
                           type: 'spring',
                           stiffness: 420,
@@ -247,7 +247,7 @@ export function BottomNav() {
                           stiffness: 380,
                           damping: 24,
                         }}
-                        className={`text-[11px] font-medium tracking-tight ${
+                        className={`text-[11px] font-semibold tracking-tight ${
                           isActive
                             ? 'text-primary'
                             : 'text-muted-foreground'
