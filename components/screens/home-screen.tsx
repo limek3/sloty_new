@@ -71,7 +71,7 @@ export function HomeScreen() {
             : "Top masters with a great first-booking offer",
         icon: TicketPercent,
         classes:
-          "from-emerald-50 via-white to-emerald-100 border-emerald-200/70 text-emerald-700",
+          "from-emerald-50 via-white to-emerald-100 border-emerald-200/70 text-emerald-700 dark:from-emerald-950/60 dark:via-slate-900 dark:to-emerald-900/50 dark:border-emerald-500/30 dark:text-emerald-300",
       },
       {
         id: "today",
@@ -83,7 +83,7 @@ export function HomeScreen() {
             : "Available slots in the next few hours",
         icon: Zap,
         classes:
-          "from-amber-50 via-white to-orange-100 border-amber-200/70 text-amber-700",
+          "from-amber-50 via-white to-orange-100 border-amber-200/70 text-amber-700 dark:from-amber-950/50 dark:via-slate-900 dark:to-orange-950/45 dark:border-amber-500/30 dark:text-amber-300",
       },
       {
         id: "week",
@@ -95,7 +95,7 @@ export function HomeScreen() {
             : "Curated beauty deals for this week",
         icon: Sparkles,
         classes:
-          "from-violet-50 via-white to-fuchsia-100 border-violet-200/70 text-violet-700",
+          "from-violet-50 via-white to-fuchsia-100 border-violet-200/70 text-violet-700 dark:from-violet-950/55 dark:via-slate-900 dark:to-fuchsia-950/45 dark:border-violet-500/30 dark:text-violet-300",
       },
     ],
     [isRu],
@@ -136,35 +136,35 @@ export function HomeScreen() {
   const getCategoryTone = (category: CategoryLike) => {
     const key = getCategoryKey(category);
     if (key.includes("manicure") || key.includes("маник")) {
-      return { bg: "bg-rose-50", text: "text-rose-600", border: "border-rose-100" };
+      return { bg: "bg-rose-50 dark:bg-rose-500/20", text: "text-rose-600 dark:text-rose-300", border: "border-rose-100 dark:border-rose-500/30" };
     }
     if (key.includes("pedicure") || key.includes("педик")) {
-      return { bg: "bg-pink-50", text: "text-pink-600", border: "border-pink-100" };
+      return { bg: "bg-pink-50 dark:bg-pink-500/20", text: "text-pink-600 dark:text-pink-300", border: "border-pink-100 dark:border-pink-500/30" };
     }
     if (key.includes("hair") || key.includes("парикмах") || key.includes("barber") || key.includes("барбер")) {
-      return { bg: "bg-amber-50", text: "text-amber-700", border: "border-amber-100" };
+      return { bg: "bg-amber-50 dark:bg-amber-500/20", text: "text-amber-700 dark:text-amber-300", border: "border-amber-100 dark:border-amber-500/30" };
     }
     if (key.includes("makeup") || key.includes("макияж")) {
-      return { bg: "bg-violet-50", text: "text-violet-600", border: "border-violet-100" };
+      return { bg: "bg-violet-50 dark:bg-violet-500/20", text: "text-violet-600 dark:text-violet-300", border: "border-violet-100 dark:border-violet-500/30" };
     }
     if (key.includes("massage") || key.includes("массаж")) {
-      return { bg: "bg-blue-50", text: "text-blue-600", border: "border-blue-100" };
+      return { bg: "bg-blue-50 dark:bg-blue-500/20", text: "text-blue-600 dark:text-blue-300", border: "border-blue-100 dark:border-blue-500/30" };
     }
     if (key.includes("cosmet") || key.includes("космет")) {
-      return { bg: "bg-teal-50", text: "text-teal-700", border: "border-teal-100" };
+      return { bg: "bg-teal-50 dark:bg-teal-500/20", text: "text-teal-700 dark:text-teal-300", border: "border-teal-100 dark:border-teal-500/30" };
     }
     if (key.includes("brow") || key.includes("бров")) {
-      return { bg: "bg-orange-50", text: "text-orange-600", border: "border-orange-100" };
+      return { bg: "bg-orange-50 dark:bg-orange-500/20", text: "text-orange-600 dark:text-orange-300", border: "border-orange-100 dark:border-orange-500/30" };
     }
     if (key.includes("lash") || key.includes("ресниц")) {
-      return { bg: "bg-indigo-50", text: "text-indigo-600", border: "border-indigo-100" };
+      return { bg: "bg-indigo-50 dark:bg-indigo-500/20", text: "text-indigo-600 dark:text-indigo-300", border: "border-indigo-100 dark:border-indigo-500/30" };
     }
-    return { bg: "bg-primary/5", text: "text-primary", border: "border-primary/10" };
+    return { bg: "bg-primary/5 dark:bg-primary/20", text: "text-primary dark:text-primary-foreground", border: "border-primary/10 dark:border-primary/30" };
   };
 
   const sectionHeaderClass = "text-[12px] font-semibold tracking-tight text-foreground";
   const sectionActionClass =
-    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50";
+    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800";
 
   return (
     <div className="app-shell">
@@ -216,11 +216,11 @@ export function HomeScreen() {
         <section>
           <button
             onClick={() => navigate("create-request")}
-            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)]"
+            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)] dark:border-amber-500/30 dark:from-amber-950/45 dark:via-slate-900 dark:to-orange-950/40"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
-                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] border border-amber-200 bg-card shadow-sm">
+                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] border border-amber-200 bg-card shadow-sm dark:border-amber-500/30 dark:bg-slate-800">
                   <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 px-1.5 py-0.5 text-[7px] font-bold text-white shadow-sm">
                     VIP
                   </span>
@@ -228,14 +228,14 @@ export function HomeScreen() {
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-[12px] font-semibold text-slate-900">{t("createRequest")}</p>
-                  <p className="mt-0.5 text-[13px] leading-4 text-slate-500">
+                  <p className="text-[12px] font-semibold text-slate-900 dark:text-slate-100">{t("createRequest")}</p>
+                  <p className="mt-0.5 text-[13px] leading-4 text-slate-500 dark:text-slate-300">
                     {isRu ? "Получите отклики от лучших мастеров" : "Get responses from top masters"}
                   </p>
                 </div>
               </div>
 
-              <div className="shrink-0 rounded-full border border-amber-200 bg-card p-1.5 shadow-sm transition-transform group-hover:translate-x-0.5">
+              <div className="shrink-0 rounded-full border border-amber-200 bg-card p-1.5 shadow-sm transition-transform group-hover:translate-x-0.5 dark:border-amber-500/30 dark:bg-slate-800">
                 <ArrowRight className="h-3.5 w-3.5 text-amber-600" />
               </div>
             </div>
@@ -276,13 +276,13 @@ export function HomeScreen() {
                   >
                     <Icon className={`h-4.5 w-4.5 ${tone.text}`} strokeWidth={1.9} />
                     {typeof category.count === "number" && (
-                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[13px] font-bold text-slate-500 shadow-sm">
+                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-card/95 px-1 text-[13px] font-bold text-slate-500 shadow-sm dark:text-slate-200">
                         {category.count}
                       </span>
                     )}
                   </div>
 
-                  <span className="mt-1.5 text-[12px] font-medium leading-3 text-slate-700">
+                  <span className="mt-1.5 text-[12px] font-medium leading-3 text-slate-700 dark:text-slate-200">
                     {getCategoryLabel(category)}
                   </span>
                 </button>
@@ -424,21 +424,21 @@ export function HomeScreen() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[12px] font-semibold">
+                      <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[12px] font-semibold dark:bg-slate-800/80">
                         {promo.badge}
                       </div>
-                      <h3 className="mt-3 text-[12px] font-semibold leading-tight text-slate-900">
+                      <h3 className="mt-3 text-[12px] font-semibold leading-tight text-slate-900 dark:text-slate-100">
                         {promo.title}
                       </h3>
-                      <p className="mt-1.5 text-[13px] leading-4 text-slate-500">{promo.description}</p>
+                      <p className="mt-1.5 text-[13px] leading-4 text-slate-500 dark:text-slate-300">{promo.description}</p>
                     </div>
 
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[16px] bg-card/80 shadow-sm">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[16px] bg-card/80 shadow-sm dark:bg-slate-800/85">
                       <Icon className="h-4 w-4" />
                     </div>
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-slate-900">
+                  <div className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-slate-900 dark:text-slate-100">
                     {isRu ? "Смотреть предложения" : "View offers"}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </div>

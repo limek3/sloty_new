@@ -235,17 +235,17 @@ export function MasterProfileScreen() {
       <div className="px-3 mt-3">
         <div className="mx-auto max-w-2xl">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-4 h-10 rounded-[14px] bg-[#f0f0ec] p-1">
-              <TabsTrigger value="services" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+            <TabsList className="grid w-full grid-cols-4 h-10 rounded-[14px] border border-border/70 bg-[#f0f0ec] p-1 dark:bg-slate-800">
+              <TabsTrigger value="services" className="rounded-[10px] text-[12px] font-medium text-slate-500 data-[state=active]:bg-card data-[state=active]:text-slate-900 data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)] dark:text-slate-300 dark:data-[state=active]:bg-slate-700 dark:data-[state=active]:text-slate-100">
                 {t('services')}
               </TabsTrigger>
-              <TabsTrigger value="reviews" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="reviews" className="rounded-[10px] text-[12px] font-medium text-slate-500 data-[state=active]:bg-card data-[state=active]:text-slate-900 data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)] dark:text-slate-300 dark:data-[state=active]:bg-slate-700 dark:data-[state=active]:text-slate-100">
                 {t('reviews')}
               </TabsTrigger>
-              <TabsTrigger value="portfolio" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="portfolio" className="rounded-[10px] text-[12px] font-medium text-slate-500 data-[state=active]:bg-card data-[state=active]:text-slate-900 data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)] dark:text-slate-300 dark:data-[state=active]:bg-slate-700 dark:data-[state=active]:text-slate-100">
                 {t('portfolio')}
               </TabsTrigger>
-              <TabsTrigger value="about" className="rounded-[10px] text-[12px] font-medium data-[state=active]:bg-card data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)]">
+              <TabsTrigger value="about" className="rounded-[10px] text-[12px] font-medium text-slate-500 data-[state=active]:bg-card data-[state=active]:text-slate-900 data-[state=active]:shadow-[0_4px_12px_rgba(15,23,42,0.05)] dark:text-slate-300 dark:data-[state=active]:bg-slate-700 dark:data-[state=active]:text-slate-100">
                 {t('about')}
               </TabsTrigger>
             </TabsList>
