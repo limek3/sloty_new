@@ -77,10 +77,10 @@ function SearchMasterCard({
   return (
     <button
       onClick={onClick}
-      className="group w-full rounded-[18px] border border-border/70 bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
+      className="group w-full rounded-[18px] border border-border bg-card p-2.5 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-[0.5px] hover:shadow-[0_10px_26px_rgba(15,23,42,0.06)]"
     >
       <div className="flex items-start gap-2.5">
-        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px] bg-slate-100">
+        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px] bg-surface-secondary">
           <Image
             src={master.avatar}
             alt={master.name}
@@ -93,7 +93,7 @@ function SearchMasterCard({
           <div className="flex items-start gap-2">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1">
-                <p className="truncate text-[12px] font-semibold leading-tight text-slate-900 dark:text-slate-100">
+                <p className="truncate text-[12px] font-semibold leading-tight text-foreground dark:text-foreground">
                   {master.name}
                 </p>
                 {master.verified && (
@@ -101,7 +101,7 @@ function SearchMasterCard({
                 )}
               </div>
 
-              <p className="mt-0.5 truncate text-[12px] text-slate-500 dark:text-slate-300">
+              <p className="mt-0.5 truncate text-[12px] text-muted-foreground dark:text-muted-foreground">
                 {master.specialization}
               </p>
             </div>
@@ -114,7 +114,7 @@ function SearchMasterCard({
               className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition ${
                 isFavorite
                   ? 'border-rose-300/80 bg-rose-400 text-white shadow-[0_6px_14px_rgba(251,113,133,0.25)] dark:border-rose-400/40 dark:bg-rose-400/85'
-                  : 'border-border/70 bg-[#f4f3ee] text-slate-500 hover:text-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-slate-100'
+                  : 'border-border bg-surface-secondary text-muted-foreground hover:text-text-secondary dark:bg-surface-3 dark:text-muted-foreground dark:hover:text-slate-100'
               }`}
               aria-label={isRu ? 'Избранное' : 'Favorite'}
             >
@@ -129,7 +129,7 @@ function SearchMasterCard({
               <span className="text-[#c58d5e] dark:text-amber-100/80">({master.reviewCount})</span>
             </div>
 
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#f1f2f4] px-2 py-0.5 text-[12px] text-slate-600 dark:bg-slate-700/60 dark:text-slate-200">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-surface-secondary px-2 py-0.5 text-[12px] text-text-secondary dark:bg-surface-3/60 dark:text-slate-200">
               <MapPin className="h-3 w-3" />
               <span>{formatDistance(master.distance, language)}</span>
             </div>
@@ -142,12 +142,12 @@ function SearchMasterCard({
         </div>
       </div>
 
-      <div className="mt-2 flex items-center gap-1.5 border-t border-border/70 pt-2">
+      <div className="mt-2 flex items-center gap-1.5 border-t border-border pt-2">
         <div className="flex min-w-0 flex-1 flex-wrap gap-1">
           {master.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border/70 bg-[#f6f4ee] px-2 py-1 text-[13px] text-slate-700 dark:bg-slate-800 dark:text-slate-200"
+              className="rounded-full border border-border bg-surface-secondary px-2 py-1 text-[13px] text-text-secondary dark:bg-surface-3 dark:text-slate-200"
             >
               {tag}
             </span>
@@ -158,7 +158,7 @@ function SearchMasterCard({
           {formatPrice(master.priceFrom, language)}
         </div>
 
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f3f2ed] text-slate-500 transition group-hover:bg-emerald-100 group-hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-emerald-500/20 dark:group-hover:text-emerald-200">
+        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-secondary text-muted-foreground transition group-hover:bg-emerald-100 group-hover:text-emerald-600 dark:bg-surface-3 dark:text-muted-foreground dark:group-hover:bg-emerald-500/20 dark:group-hover:text-emerald-200">
           <ChevronRight className="h-3.5 w-3.5" />
         </div>
       </div>
@@ -182,10 +182,10 @@ function SearchMasterGridCard({
   return (
     <button
       onClick={onClick}
-      className="group w-full rounded-[16px] border border-border/70 bg-card p-2 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px]"
+      className="group w-full rounded-[16px] border border-border bg-card p-2 text-left shadow-[0_6px_20px_rgba(15,23,42,0.04)] transition hover:-translate-y-[0.5px]"
     >
       <div className="relative overflow-hidden rounded-[12px]">
-        <div className="relative aspect-square w-full bg-slate-100">
+        <div className="relative aspect-square w-full bg-surface-secondary">
           <Image
             src={master.avatar}
             alt={master.name}
@@ -202,7 +202,7 @@ function SearchMasterGridCard({
           className={`absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full backdrop-blur-md transition ${
             isFavorite
               ? 'bg-rose-400 text-white dark:bg-rose-400/85'
-              : 'bg-[#f3f2ed] text-slate-500 dark:bg-slate-800 dark:text-slate-300'
+              : 'bg-surface-secondary text-muted-foreground dark:bg-surface-3 dark:text-muted-foreground'
           }`}
         >
           <Heart className={`h-3 w-3 ${isFavorite ? 'fill-current' : ''}`} />
@@ -211,7 +211,7 @@ function SearchMasterGridCard({
 
       <div className="pt-2">
         <div className="flex items-center gap-1">
-          <p className="min-w-0 flex-1 truncate text-[13px] font-semibold text-slate-900 dark:text-slate-100">
+          <p className="min-w-0 flex-1 truncate text-[13px] font-semibold text-foreground dark:text-foreground">
             {master.name}
           </p>
           {master.verified && (
@@ -219,7 +219,7 @@ function SearchMasterGridCard({
           )}
         </div>
 
-        <p className="mt-0.5 truncate text-[13px] text-slate-500 dark:text-slate-300">
+        <p className="mt-0.5 truncate text-[13px] text-muted-foreground dark:text-muted-foreground">
           {master.specialization}
         </p>
 
@@ -327,29 +327,29 @@ export function SearchScreen() {
     <div className="app-shell">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
+          <div className="rounded-[22px] border border-border bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => navigate('map')}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border border-border/70 bg-[#f7f7f5] text-emerald-600 transition hover:bg-emerald-50"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border border-border bg-surface-secondary text-emerald-600 transition hover:bg-emerald-50"
                 aria-label={isRu ? 'Открыть карту' : 'Open map'}
               >
                 <Map className="h-4 w-4" />
               </button>
 
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={isRu ? 'Поиск мастеров, услуг...' : 'Search masters, services...'}
-                  className="h-10 w-full rounded-[14px] border border-border/70 bg-[#f7f7f5] pl-9 pr-8 text-[13px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+                  className="h-10 w-full rounded-[14px] border border-border bg-surface-secondary pl-9 pr-8 text-[13px] text-foreground outline-none transition placeholder:text-text-muted focus:border-emerald-200 focus:bg-card"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-2 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-card text-slate-400 shadow-sm"
+                    className="absolute right-2 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-card text-text-muted shadow-sm"
                     aria-label={isRu ? 'Очистить' : 'Clear'}
                   >
                     <X className="h-3 w-3" />
@@ -362,7 +362,7 @@ export function SearchScreen() {
                 className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border transition ${
                   showFilters
                     ? 'border-emerald-200 bg-emerald-50 text-emerald-600'
-                    : 'border-border/70 bg-[#f7f7f5] text-slate-500'
+                    : 'border-border bg-surface-secondary text-muted-foreground'
                 }`}
                 aria-label={isRu ? 'Фильтры' : 'Filters'}
               >
@@ -375,9 +375,9 @@ export function SearchScreen() {
                 value={selectedCategory ?? 'all'}
                 onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)}
               >
-                <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-[#fafaf8] px-3 text-[13px] shadow-none">
+                <SelectTrigger className="h-9 rounded-[12px] border-border bg-surface-tertiary px-3 text-[13px] shadow-none">
                   <div className="flex min-w-0 items-center gap-1.5">
-                    <span className="truncate font-medium text-slate-800">
+                    <span className="truncate font-medium text-foreground">
                       {selectedCategoryData
                         ? isRu
                           ? selectedCategoryData.nameRu
@@ -398,16 +398,16 @@ export function SearchScreen() {
             </div>
 
             {showFilters && (
-              <div className="mt-2 rounded-[14px] border border-border/70 bg-[#fafaf8] p-2">
+              <div className="mt-2 rounded-[14px] border border-border bg-surface-tertiary p-2">
                 <div className="grid gap-2 sm:grid-cols-2">
                   <Select
                     value={sortBy}
                     onValueChange={(value) => setSortBy(value as typeof sortBy)}
                   >
-                    <SelectTrigger className="h-9 rounded-[12px] border-border/70 bg-card px-3 text-[13px] shadow-none">
+                    <SelectTrigger className="h-9 rounded-[12px] border-border bg-card px-3 text-[13px] shadow-none">
                       <div className="flex min-w-0 items-center gap-1.5">
-                        <ArrowUpDown className="h-3.5 w-3.5 text-slate-400" />
-                        <span className="truncate font-medium text-slate-800">
+                        <ArrowUpDown className="h-3.5 w-3.5 text-text-muted" />
+                        <span className="truncate font-medium text-foreground">
                           {sortLabelMap[sortBy]}
                         </span>
                       </div>
@@ -431,7 +431,7 @@ export function SearchScreen() {
                       className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[13px] font-medium transition ${
                         viewMode === 'list'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                          : 'border-border/70 bg-card text-slate-700'
+                          : 'border-border bg-card text-text-secondary'
                       }`}
                     >
                       <List className="h-3.5 w-3.5" />
@@ -443,7 +443,7 @@ export function SearchScreen() {
                       className={`flex h-9 flex-1 items-center justify-center gap-1.5 rounded-[12px] border text-[13px] font-medium transition ${
                         viewMode === 'grid'
                           ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
-                          : 'border-border/70 bg-card text-slate-700'
+                          : 'border-border bg-card text-text-secondary'
                       }`}
                     >
                       <Grid2X2 className="h-3.5 w-3.5" />
@@ -459,14 +459,14 @@ export function SearchScreen() {
 
       <main className="mx-auto max-w-2xl px-3 pt-3">
         <div className="mb-2.5 flex items-center gap-1.5">
-          <div className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 text-[12px] font-medium text-slate-700 shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
+          <div className="inline-flex rounded-full border border-border bg-card px-2 py-1 text-[12px] font-medium text-text-secondary shadow-[0_4px_12px_rgba(15,23,42,0.03)]">
             {isRu ? 'Найдено' : 'Found'}: <span className="ml-0.5 font-semibold">{filteredMasters.length}</span>
           </div>
 
           {(searchQuery || selectedCategory) && (
             <button
               onClick={clearAll}
-              className="inline-flex rounded-full border border-border/70 bg-card px-2 py-1 text-[12px] font-medium text-slate-600"
+              className="inline-flex rounded-full border border-border bg-card px-2 py-1 text-[12px] font-medium text-text-secondary"
             >
               {isRu ? 'Сбросить' : 'Reset'}
             </button>

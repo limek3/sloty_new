@@ -193,24 +193,24 @@ export function HomeScreen() {
     }
     return {
       bg: "bg-gradient-to-br from-slate-50 via-zinc-50 to-stone-100 dark:from-slate-200/18 dark:via-zinc-200/14 dark:to-stone-200/18",
-      text: "text-slate-500 dark:text-slate-100",
+      text: "text-muted-foreground dark:text-foreground",
       border: "border-slate-200/80 dark:border-slate-200/30",
     };
   };
 
   const sectionHeaderClass = "text-[12px] font-semibold tracking-tight text-foreground";
   const sectionActionClass =
-    "inline-flex items-center gap-1 rounded-full border border-border/70 bg-card px-2.5 py-1 text-[13px] font-medium text-slate-700 transition hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800";
+    "inline-flex items-center gap-1 rounded-full border border-border bg-card px-2.5 py-1 text-[13px] font-medium text-text-secondary transition hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800";
 
   return (
     <div className="app-shell">
       <header className="sticky top-0 z-40 px-3 pt-3">
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[28px] border border-border/70 bg-card p-2 shadow-[0_10px_34px_rgba(15,23,42,0.06)]">
+          <div className="rounded-[28px] border border-border bg-card p-2 shadow-[0_10px_34px_rgba(15,23,42,0.06)]">
             <div className="flex items-center justify-between gap-3 px-1 pb-2 pt-1">
               <div className="min-w-0">
-                <p className="text-[12px] font-medium text-slate-500">{t("greeting")},</p>
-                <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
+                <p className="text-[12px] font-medium text-muted-foreground">{t("greeting")},</p>
+                <h1 className="truncate text-[12px] font-bold tracking-tight text-foreground">
                   {userName}
                 </h1>
               </div>
@@ -219,7 +219,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => setLanguage(language === "ru" ? "en" : "ru")}
                   aria-label="Toggle language"
-                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-[12px] font-bold text-slate-600 transition hover:bg-card"
+                  className="flex h-10 w-10 items-center justify-center rounded-[16px] border border-border bg-surface-secondary text-[12px] font-bold text-text-secondary transition hover:bg-surface"
                 >
                   {language.toUpperCase()}
                 </button>
@@ -227,7 +227,7 @@ export function HomeScreen() {
                 <button
                   onClick={() => navigate("notifications")}
                   aria-label="View notifications"
-                  className="relative flex h-10 w-10 items-center justify-center rounded-[16px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card"
+                  className="relative flex h-10 w-10 items-center justify-center rounded-[16px] border border-border bg-surface-secondary text-muted-foreground transition hover:bg-surface"
                 >
                   <Bell className="h-4 w-4" />
                   <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-rose-500 px-1 text-[13px] font-bold text-white">
@@ -239,10 +239,10 @@ export function HomeScreen() {
 
             <button
               onClick={() => navigate("search")}
-              className="group flex h-10 w-full items-center gap-3 rounded-[18px] border border-border/70 bg-[#f7f7f5] px-3 text-left transition hover:bg-card"
+              className="group flex h-10 w-full items-center gap-3 rounded-[18px] border border-border bg-surface-secondary px-3 text-left transition hover:bg-surface"
             >
-              <Search className="h-4 w-4 text-slate-400 transition-colors group-hover:text-emerald-600" />
-              <span className="text-[12px] text-slate-400">{t("searchPlaceholder")}</span>
+              <Search className="h-4 w-4 text-text-muted transition-colors group-hover:text-emerald-600" />
+              <span className="text-[12px] text-text-muted">{t("searchPlaceholder")}</span>
             </button>
           </div>
         </div>
@@ -256,7 +256,7 @@ export function HomeScreen() {
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
-                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] border border-amber-200 bg-card shadow-sm dark:border-amber-200/25 dark:bg-slate-800/65">
+                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] border border-amber-200 bg-card shadow-sm dark:border-amber-200/25 dark:bg-surface-3/65">
                   <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 px-1.5 py-0.5 text-[7px] font-bold text-white shadow-sm">
                     VIP
                   </span>
@@ -264,14 +264,14 @@ export function HomeScreen() {
                 </div>
 
                 <div className="min-w-0">
-                  <p className="text-[12px] font-semibold text-slate-900 dark:text-slate-100">{t("createRequest")}</p>
-                  <p className="mt-0.5 text-[13px] leading-4 text-slate-500 dark:text-slate-300">
+                  <p className="text-[12px] font-semibold text-foreground dark:text-foreground">{t("createRequest")}</p>
+                  <p className="mt-0.5 text-[13px] leading-4 text-muted-foreground dark:text-muted-foreground">
                     {isRu ? "Получите отклики от лучших мастеров" : "Get responses from top masters"}
                   </p>
                 </div>
               </div>
 
-              <div className="shrink-0 rounded-full border border-amber-200 bg-card p-1.5 shadow-sm transition-transform group-hover:translate-x-0.5 dark:border-amber-200/25 dark:bg-slate-800/65">
+              <div className="shrink-0 rounded-full border border-amber-200 bg-card p-1.5 shadow-sm transition-transform group-hover:translate-x-0.5 dark:border-amber-200/25 dark:bg-surface-3/65">
                 <ArrowRight className="h-3.5 w-3.5 text-amber-600" />
               </div>
             </div>
@@ -312,13 +312,13 @@ export function HomeScreen() {
                   >
                     <Icon className={`h-5 w-5 ${tone.text}`} strokeWidth={1.9} />
                     {typeof category.count === "number" && (
-                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full border border-white/70 bg-white/85 px-1 text-[13px] font-bold text-slate-500 shadow-[0_2px_6px_rgba(15,23,42,0.08)] backdrop-blur-sm dark:border-slate-700/70 dark:bg-slate-900/85 dark:text-slate-200">
+                      <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full border border-white/70 bg-white/85 px-1 text-[13px] font-bold text-muted-foreground shadow-[0_2px_6px_rgba(15,23,42,0.08)] backdrop-blur-sm dark:border-slate-700/70 dark:bg-background/85 dark:text-slate-200">
                         {category.count}
                       </span>
                     )}
                   </div>
 
-                  <span className="mt-1.5 text-[12px] font-medium leading-3 text-slate-700 dark:text-slate-200">
+                  <span className="mt-1.5 text-[12px] font-medium leading-3 text-text-secondary dark:text-slate-200">
                     {getCategoryLabel(category)}
                   </span>
                 </button>
@@ -374,7 +374,7 @@ export function HomeScreen() {
                 <button
                   key={master.id}
                   onClick={() => navigate("search")}
-                  className="w-[220px] shrink-0 rounded-[22px] border border-border/70 bg-card p-3 text-left shadow-[0_8px_24px_rgba(15,23,42,0.05)] transition hover:-translate-y-[1px] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]"
+                  className="w-[220px] shrink-0 rounded-[22px] border border-border bg-card p-3 text-left shadow-[0_8px_24px_rgba(15,23,42,0.05)] transition hover:-translate-y-[1px] hover:shadow-[0_12px_28px_rgba(15,23,42,0.08)]"
                 >
                   <div className="flex items-start gap-3">
                     <img
@@ -385,7 +385,7 @@ export function HomeScreen() {
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <div className="truncate text-[12px] font-semibold leading-tight text-slate-900">
+                        <div className="truncate text-[12px] font-semibold leading-tight text-foreground">
                           {master.name}
                         </div>
                         {master.verified && (
@@ -393,7 +393,7 @@ export function HomeScreen() {
                         )}
                       </div>
 
-                      <div className="mt-0.5 truncate text-[12px] text-slate-500">
+                      <div className="mt-0.5 truncate text-[12px] text-muted-foreground">
                         {master.specialization}
                       </div>
 
@@ -403,7 +403,7 @@ export function HomeScreen() {
                           {master.nextAvailable || (isRu ? "Сегодня" : "Today")}
                         </span>
 
-                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 px-2 py-1 text-[13px] font-medium text-slate-600">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-surface-secondary px-2 py-1 text-[13px] font-medium text-text-secondary">
                           <MapPin className="h-2.5 w-2.5" />
                           {typeof master.distance === "number"
                             ? master.distance < 1
@@ -417,7 +417,7 @@ export function HomeScreen() {
                     </div>
                   </div>
 
-                  <div className="mt-3 flex items-center justify-between border-t border-border/70 pt-3">
+                  <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
                     <div className="text-[13px] font-bold text-emerald-600">
                       {isRu ? "от " : "from "}
                       {master.priceFrom.toLocaleString("ru-RU")} ₽
@@ -460,21 +460,21 @@ export function HomeScreen() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[12px] font-semibold dark:bg-slate-800/80">
+                      <div className="inline-flex rounded-full border border-current/10 bg-card/75 px-2.5 py-1 text-[12px] font-semibold dark:bg-surface-3/80">
                         {promo.badge}
                       </div>
-                      <h3 className="mt-3 text-[12px] font-semibold leading-tight text-slate-900 dark:text-slate-100">
+                      <h3 className="mt-3 text-[12px] font-semibold leading-tight text-foreground dark:text-foreground">
                         {promo.title}
                       </h3>
-                      <p className="mt-1.5 text-[13px] leading-4 text-slate-500 dark:text-slate-300">{promo.description}</p>
+                      <p className="mt-1.5 text-[13px] leading-4 text-muted-foreground dark:text-muted-foreground">{promo.description}</p>
                     </div>
 
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[16px] bg-card/80 shadow-sm dark:bg-slate-800/85">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[16px] bg-card/80 shadow-sm dark:bg-surface-3/85">
                       <Icon className="h-4 w-4" />
                     </div>
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-slate-900 dark:text-slate-100">
+                  <div className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-foreground dark:text-foreground">
                     {isRu ? "Смотреть предложения" : "View offers"}
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                   </div>

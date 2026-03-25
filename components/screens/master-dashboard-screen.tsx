@@ -221,7 +221,7 @@ export function MasterDashboardScreen() {
       case 'violet':
         return 'bg-violet-50 text-violet-600 border-violet-100 dark:bg-violet-500/15 dark:text-violet-300 dark:border-violet-500/30';
       case 'slate':
-        return 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-500/15 dark:text-slate-300 dark:border-slate-400/30';
+        return 'bg-surface-secondary text-text-secondary border-slate-200 dark:bg-slate-500/15 dark:text-muted-foreground dark:border-slate-400/30';
       default:
         return 'bg-secondary text-muted-foreground border-border';
     }
@@ -279,7 +279,7 @@ export function MasterDashboardScreen() {
               </button>
             </div>
 
-            <div className="mt-2.5 flex items-center justify-between rounded-xl border border-border/70 bg-secondary/70 px-3 py-2">
+            <div className="mt-2.5 flex items-center justify-between rounded-xl border border-border bg-secondary/70 px-3 py-2">
               <div>
                 <p className="text-xs font-semibold text-foreground">
                   {isRu ? 'Профессиональный режим активен' : 'Professional mode is active'}
@@ -308,7 +308,7 @@ export function MasterDashboardScreen() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="interactive-tile rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm"
+              className="interactive-tile rounded-2xl border border-border bg-card p-3 shadow-premium-sm"
             >
               <div className="flex items-start justify-between gap-2">
                 <div
@@ -329,7 +329,7 @@ export function MasterDashboardScreen() {
           ))}
         </section>
 
-        <section className="rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm">
+        <section className="rounded-2xl border border-border bg-card p-3 shadow-premium-sm">
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-sm font-semibold text-foreground">
               {isRu ? 'Активность за неделю' : 'Weekly activity'}
@@ -379,7 +379,7 @@ export function MasterDashboardScreen() {
               <button
                 key={index}
                 onClick={item.onClick}
-                className="group interactive-tile rounded-2xl border border-border/70 bg-card p-3 text-left shadow-premium-sm"
+                className="group interactive-tile rounded-2xl border border-border bg-card p-3 text-left shadow-premium-sm"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div
@@ -401,7 +401,7 @@ export function MasterDashboardScreen() {
           </div>
         </section>
 
-        <section className="rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm">
+        <section className="rounded-2xl border border-border bg-card p-3 shadow-premium-sm">
           <div className="mb-2 flex items-center justify-between">
             <h3 className="text-sm font-semibold text-foreground">
               {isRu ? 'Сегодняшнее расписание' : 'Today schedule'}
@@ -420,7 +420,7 @@ export function MasterDashboardScreen() {
               {upcomingBookings.slice(0, 3).map((booking) => (
                 <div
                   key={booking.id}
-                  className="rounded-xl border border-border/70 bg-secondary/50 p-2.5"
+                  className="rounded-xl border border-border bg-secondary/50 p-2.5"
                 >
                   <div className="flex items-center justify-between gap-2.5">
                     <div className="min-w-0">
@@ -479,7 +479,7 @@ export function MasterDashboardScreen() {
               <button
                 key={index}
                 onClick={item.onClick}
-                className="group interactive-tile flex w-full items-center justify-between rounded-2xl border border-border/70 bg-card p-3 text-left shadow-premium-sm"
+                className="group interactive-tile flex w-full items-center justify-between rounded-2xl border border-border bg-card p-3 text-left shadow-premium-sm"
               >
                 <div className="flex min-w-0 items-center gap-2.5">
                   <div
