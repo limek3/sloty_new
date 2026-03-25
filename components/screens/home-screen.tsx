@@ -71,7 +71,7 @@ export function HomeScreen() {
             : "Top masters with a great first-booking offer",
         icon: TicketPercent,
         classes:
-          "from-emerald-50 via-white to-emerald-100 border-emerald-200/70 text-emerald-700 dark:from-emerald-950/60 dark:via-slate-900 dark:to-emerald-900/50 dark:border-emerald-500/30 dark:text-emerald-300",
+          "from-emerald-50 via-white to-emerald-100 border-emerald-200/70 text-emerald-700 dark:from-emerald-200/18 dark:via-teal-100/8 dark:to-cyan-200/14 dark:border-emerald-200/28 dark:text-emerald-100",
       },
       {
         id: "today",
@@ -83,7 +83,7 @@ export function HomeScreen() {
             : "Available slots in the next few hours",
         icon: Zap,
         classes:
-          "from-amber-50 via-white to-orange-100 border-amber-200/70 text-amber-700 dark:from-amber-950/50 dark:via-slate-900 dark:to-orange-950/45 dark:border-amber-500/30 dark:text-amber-300",
+          "from-amber-50 via-white to-orange-100 border-amber-200/70 text-amber-700 dark:from-amber-200/16 dark:via-rose-100/8 dark:to-orange-200/14 dark:border-amber-200/28 dark:text-amber-100",
       },
       {
         id: "week",
@@ -95,7 +95,7 @@ export function HomeScreen() {
             : "Curated beauty deals for this week",
         icon: Sparkles,
         classes:
-          "from-violet-50 via-white to-fuchsia-100 border-violet-200/70 text-violet-700 dark:from-violet-950/55 dark:via-slate-900 dark:to-fuchsia-950/45 dark:border-violet-500/30 dark:text-violet-300",
+          "from-violet-50 via-white to-fuchsia-100 border-violet-200/70 text-violet-700 dark:from-violet-200/16 dark:via-indigo-100/8 dark:to-fuchsia-200/14 dark:border-violet-200/28 dark:text-violet-100",
       },
     ],
     [isRu],
@@ -136,30 +136,30 @@ export function HomeScreen() {
   const getCategoryTone = (category: CategoryLike) => {
     const key = getCategoryKey(category);
     if (key.includes("manicure") || key.includes("маник")) {
-      return { bg: "bg-rose-50 dark:bg-rose-500/20", text: "text-rose-600 dark:text-rose-300", border: "border-rose-100 dark:border-rose-500/30" };
+      return { bg: "bg-rose-50 dark:bg-rose-200/16", text: "text-rose-600 dark:text-rose-100", border: "border-rose-100 dark:border-rose-200/28" };
     }
     if (key.includes("pedicure") || key.includes("педик")) {
-      return { bg: "bg-pink-50 dark:bg-pink-500/20", text: "text-pink-600 dark:text-pink-300", border: "border-pink-100 dark:border-pink-500/30" };
+      return { bg: "bg-pink-50 dark:bg-pink-200/16", text: "text-pink-600 dark:text-pink-100", border: "border-pink-100 dark:border-pink-200/28" };
     }
     if (key.includes("hair") || key.includes("парикмах") || key.includes("barber") || key.includes("барбер")) {
-      return { bg: "bg-amber-50 dark:bg-amber-500/20", text: "text-amber-700 dark:text-amber-300", border: "border-amber-100 dark:border-amber-500/30" };
+      return { bg: "bg-amber-50 dark:bg-amber-200/16", text: "text-amber-700 dark:text-amber-100", border: "border-amber-100 dark:border-amber-200/28" };
     }
     if (key.includes("makeup") || key.includes("макияж")) {
-      return { bg: "bg-violet-50 dark:bg-violet-500/20", text: "text-violet-600 dark:text-violet-300", border: "border-violet-100 dark:border-violet-500/30" };
+      return { bg: "bg-violet-50 dark:bg-violet-200/16", text: "text-violet-600 dark:text-violet-100", border: "border-violet-100 dark:border-violet-200/28" };
     }
     if (key.includes("massage") || key.includes("массаж")) {
-      return { bg: "bg-blue-50 dark:bg-blue-500/20", text: "text-blue-600 dark:text-blue-300", border: "border-blue-100 dark:border-blue-500/30" };
+      return { bg: "bg-blue-50 dark:bg-blue-200/16", text: "text-blue-600 dark:text-blue-100", border: "border-blue-100 dark:border-blue-200/28" };
     }
     if (key.includes("cosmet") || key.includes("космет")) {
-      return { bg: "bg-teal-50 dark:bg-teal-500/20", text: "text-teal-700 dark:text-teal-300", border: "border-teal-100 dark:border-teal-500/30" };
+      return { bg: "bg-teal-50 dark:bg-teal-200/16", text: "text-teal-700 dark:text-teal-100", border: "border-teal-100 dark:border-teal-200/28" };
     }
     if (key.includes("brow") || key.includes("бров")) {
-      return { bg: "bg-orange-50 dark:bg-orange-500/20", text: "text-orange-600 dark:text-orange-300", border: "border-orange-100 dark:border-orange-500/30" };
+      return { bg: "bg-orange-50 dark:bg-orange-200/16", text: "text-orange-600 dark:text-orange-100", border: "border-orange-100 dark:border-orange-200/28" };
     }
     if (key.includes("lash") || key.includes("ресниц")) {
-      return { bg: "bg-indigo-50 dark:bg-indigo-500/20", text: "text-indigo-600 dark:text-indigo-300", border: "border-indigo-100 dark:border-indigo-500/30" };
+      return { bg: "bg-indigo-50 dark:bg-indigo-200/16", text: "text-indigo-600 dark:text-indigo-100", border: "border-indigo-100 dark:border-indigo-200/28" };
     }
-    return { bg: "bg-primary/5 dark:bg-primary/20", text: "text-primary dark:text-primary-foreground", border: "border-primary/10 dark:border-primary/30" };
+    return { bg: "bg-primary/5 dark:bg-emerald-200/14", text: "text-primary dark:text-emerald-100", border: "border-primary/10 dark:border-emerald-200/24" };
   };
 
   const sectionHeaderClass = "text-[12px] font-semibold tracking-tight text-foreground";
@@ -216,11 +216,11 @@ export function HomeScreen() {
         <section>
           <button
             onClick={() => navigate("create-request")}
-            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)] dark:border-amber-500/30 dark:from-amber-950/45 dark:via-slate-900 dark:to-orange-950/40"
+            className="group relative w-full overflow-hidden rounded-[24px] border border-amber-200/70 bg-gradient-to-r from-amber-50 via-white to-orange-50 p-3 text-left shadow-[0_8px_26px_rgba(15,23,42,0.05)] dark:border-amber-200/28 dark:from-amber-200/15 dark:via-rose-100/7 dark:to-orange-200/13"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex min-w-0 items-center gap-3">
-                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] border border-amber-200 bg-card shadow-sm dark:border-amber-500/30 dark:bg-slate-800">
+                <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[16px] border border-amber-200 bg-card shadow-sm dark:border-amber-200/25 dark:bg-slate-800/65">
                   <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-amber-400 to-orange-400 px-1.5 py-0.5 text-[7px] font-bold text-white shadow-sm">
                     VIP
                   </span>
@@ -235,7 +235,7 @@ export function HomeScreen() {
                 </div>
               </div>
 
-              <div className="shrink-0 rounded-full border border-amber-200 bg-card p-1.5 shadow-sm transition-transform group-hover:translate-x-0.5 dark:border-amber-500/30 dark:bg-slate-800">
+              <div className="shrink-0 rounded-full border border-amber-200 bg-card p-1.5 shadow-sm transition-transform group-hover:translate-x-0.5 dark:border-amber-200/25 dark:bg-slate-800/65">
                 <ArrowRight className="h-3.5 w-3.5 text-amber-600" />
               </div>
             </div>
