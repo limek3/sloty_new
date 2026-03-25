@@ -113,13 +113,13 @@ export function RoleSelectionScreen() {
                 </p>
               </div>
               {/* Selection indicator */}
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all shrink-0 mt-0.5 ${
+              <div className={`h-5 w-5 shrink-0 self-center rounded-full border-2 transition-all grid place-items-center ${
                 selectedRole === 'client'
                   ? 'border-primary bg-primary'
                   : 'border-border'
               }`}>
                 {selectedRole === 'client' && (
-                  <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                  <svg className="block h-3 w-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 )}
@@ -153,13 +153,13 @@ export function RoleSelectionScreen() {
                 </p>
               </div>
               {/* Selection indicator */}
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all shrink-0 mt-0.5 ${
+              <div className={`h-5 w-5 shrink-0 self-center rounded-full border-2 transition-all grid place-items-center ${
                 selectedRole === 'master'
                   ? 'border-primary bg-primary'
                   : 'border-border'
               }`}>
                 {selectedRole === 'master' && (
-                  <svg className="w-3 h-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                  <svg className="block h-3 w-3 text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 )}

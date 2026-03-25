@@ -93,7 +93,7 @@ function SearchMasterCard({
           <div className="flex items-start gap-2">
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1">
-                <p className="truncate text-[12px] font-semibold leading-tight text-slate-900">
+                <p className="truncate text-[12px] font-semibold leading-tight text-slate-900 dark:text-slate-100">
                   {master.name}
                 </p>
                 {master.verified && (
@@ -101,7 +101,7 @@ function SearchMasterCard({
                 )}
               </div>
 
-              <p className="mt-0.5 truncate text-[12px] text-slate-500">
+              <p className="mt-0.5 truncate text-[12px] text-slate-500 dark:text-slate-300">
                 {master.specialization}
               </p>
             </div>
@@ -113,8 +113,8 @@ function SearchMasterCard({
               }}
               className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition ${
                 isFavorite
-                  ? 'border-rose-200 bg-rose-500 text-white shadow-[0_6px_14px_rgba(244,63,94,0.25)]'
-                  : 'border-border/70 bg-[#f7f7f5] text-slate-400 hover:text-slate-700'
+                  ? 'border-rose-300/80 bg-rose-400 text-white shadow-[0_6px_14px_rgba(251,113,133,0.25)] dark:border-rose-400/40 dark:bg-rose-400/85'
+                  : 'border-border/70 bg-[#f4f3ee] text-slate-500 hover:text-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:text-slate-100'
               }`}
               aria-label={isRu ? 'Избранное' : 'Favorite'}
             >
@@ -123,18 +123,18 @@ function SearchMasterCard({
           </div>
 
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fff3e7] px-2 py-0.5 text-[12px] text-[#b86419]">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fef4ea] px-2 py-0.5 text-[12px] text-[#af6a2d] dark:bg-amber-500/15 dark:text-amber-200">
               <Star className="h-3 w-3 fill-current" />
               <span className="font-semibold">{master.rating}</span>
-              <span className="text-[#d1945f]">({master.reviewCount})</span>
+              <span className="text-[#c58d5e] dark:text-amber-100/80">({master.reviewCount})</span>
             </div>
 
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#f3f4f6] px-2 py-0.5 text-[12px] text-slate-600">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#f1f2f4] px-2 py-0.5 text-[12px] text-slate-600 dark:bg-slate-700/60 dark:text-slate-200">
               <MapPin className="h-3 w-3" />
               <span>{formatDistance(master.distance, language)}</span>
             </div>
 
-            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#ebfbf3] px-2 py-0.5 text-[12px] text-emerald-700">
+            <div className="inline-flex items-center gap-0.5 rounded-full bg-[#eaf8f1] px-2 py-0.5 text-[12px] text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-200">
               <Clock3 className="h-3 w-3" />
               <span>{isRu ? 'Сегодня' : 'Today'}</span>
             </div>
@@ -147,18 +147,18 @@ function SearchMasterCard({
           {master.tags.slice(0, 2).map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border/70 bg-[#fafaf8] px-2 py-1 text-[13px] text-slate-700"
+              className="rounded-full border border-border/70 bg-[#f6f4ee] px-2 py-1 text-[13px] text-slate-700 dark:bg-slate-800 dark:text-slate-200"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="shrink-0 rounded-full bg-[#ebfbf3] px-2 py-1 text-[13px] font-semibold text-emerald-700">
+        <div className="shrink-0 rounded-full bg-[#e8f7f0] px-2 py-1 text-[13px] font-semibold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-200">
           {formatPrice(master.priceFrom, language)}
         </div>
 
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f7f7f5] text-slate-500 transition group-hover:bg-emerald-50 group-hover:text-emerald-600">
+        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f3f2ed] text-slate-500 transition group-hover:bg-emerald-100 group-hover:text-emerald-600 dark:bg-slate-800 dark:text-slate-300 dark:group-hover:bg-emerald-500/20 dark:group-hover:text-emerald-200">
           <ChevronRight className="h-3.5 w-3.5" />
         </div>
       </div>
@@ -201,8 +201,8 @@ function SearchMasterGridCard({
           }}
           className={`absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full backdrop-blur-md transition ${
             isFavorite
-              ? 'bg-rose-500 text-white'
-              : 'bg-card/90 text-slate-500'
+              ? 'bg-rose-400 text-white dark:bg-rose-400/85'
+              : 'bg-[#f3f2ed] text-slate-500 dark:bg-slate-800 dark:text-slate-300'
           }`}
         >
           <Heart className={`h-3 w-3 ${isFavorite ? 'fill-current' : ''}`} />
@@ -211,7 +211,7 @@ function SearchMasterGridCard({
 
       <div className="pt-2">
         <div className="flex items-center gap-1">
-          <p className="min-w-0 flex-1 truncate text-[13px] font-semibold text-slate-900">
+          <p className="min-w-0 flex-1 truncate text-[13px] font-semibold text-slate-900 dark:text-slate-100">
             {master.name}
           </p>
           {master.verified && (
@@ -219,17 +219,17 @@ function SearchMasterGridCard({
           )}
         </div>
 
-        <p className="mt-0.5 truncate text-[13px] text-slate-500">
+        <p className="mt-0.5 truncate text-[13px] text-slate-500 dark:text-slate-300">
           {master.specialization}
         </p>
 
         <div className="mt-1.5 flex items-center justify-between gap-1.5">
-          <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fff3e7] px-1.5 py-0.5 text-[13px] text-[#b86419]">
+          <div className="inline-flex items-center gap-0.5 rounded-full bg-[#fef4ea] px-1.5 py-0.5 text-[13px] text-[#af6a2d] dark:bg-amber-500/15 dark:text-amber-200">
             <Star className="h-2.5 w-2.5 fill-current" />
             <span className="font-semibold">{master.rating}</span>
           </div>
 
-          <div className="rounded-full bg-[#ebfbf3] px-2 py-0.5 text-[12px] font-semibold text-emerald-700">
+          <div className="rounded-full bg-[#e8f7f0] px-2 py-0.5 text-[12px] font-semibold text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-200">
             {formatPrice(master.priceFrom, language)}
           </div>
         </div>
