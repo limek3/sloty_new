@@ -184,10 +184,11 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   html {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   h1 {
@@ -281,10 +282,10 @@
   }
 
   .app-shell {
-    @apply min-h-screen bg-background text-foreground pb-24;
+    @apply min-h-screen bg-background text-foreground pb-28;
     background-image:
-      radial-gradient(circle at 0% 0%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 32%),
-      radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 36%);
+      radial-gradient(circle at 0% -6%, color-mix(in oklab, var(--primary) 8%, transparent), transparent 30%),
+      radial-gradient(circle at 100% -4%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 34%);
     padding-top: env(safe-area-inset-top);
   }
 
@@ -325,6 +326,18 @@
 
   .ds-interactive {
     @apply transition-all duration-200 hover:-translate-y-[1px] active:translate-y-0 active:scale-[0.99] disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .section-shell {
+    @apply space-y-4;
+  }
+
+  .section-title {
+    @apply text-[15px] font-semibold tracking-tight text-foreground;
+  }
+
+  .section-description {
+    @apply text-[13px] leading-5 text-muted-foreground;
   }
 }
 
@@ -475,6 +488,26 @@
   animation: shimmer 2s linear infinite;
   background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.4), transparent);
   background-size: 200% 100%;
+}
+
+button,
+a,
+[role='button'],
+input,
+textarea,
+select {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 
