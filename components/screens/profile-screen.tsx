@@ -140,21 +140,21 @@ export function ProfileScreen() {
   const getToneClasses = (tone?: string) => {
     switch (tone) {
       case 'rose':
-        return 'bg-rose-50 text-rose-600 border-rose-100';
+        return 'bg-rose-50 text-rose-600 border-rose-100 dark:bg-rose-500/15 dark:text-rose-300 dark:border-rose-500/30';
       case 'emerald':
-        return 'bg-emerald-50 text-emerald-600 border-emerald-100';
+        return 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/30';
       case 'indigo':
-        return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+        return 'bg-indigo-50 text-indigo-600 border-indigo-100 dark:bg-indigo-500/15 dark:text-indigo-300 dark:border-indigo-500/30';
       case 'amber':
-        return 'bg-amber-50 text-amber-700 border-amber-100';
+        return 'bg-amber-50 text-amber-700 border-amber-100 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/30';
       case 'blue':
-        return 'bg-blue-50 text-blue-600 border-blue-100';
+        return 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-500/15 dark:text-blue-300 dark:border-blue-500/30';
       case 'violet':
-        return 'bg-violet-50 text-violet-600 border-violet-100';
+        return 'bg-violet-50 text-violet-600 border-violet-100 dark:bg-violet-500/15 dark:text-violet-300 dark:border-violet-500/30';
       case 'slate':
-        return 'bg-slate-100 text-slate-600 border-slate-200';
+        return 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-500/15 dark:text-slate-300 dark:border-slate-500/30';
       default:
-        return 'bg-[#f7f7f5] text-slate-600 border-border/70';
+        return 'bg-[#f7f7f5] text-slate-600 border-border/70 dark:bg-muted/60 dark:text-slate-300';
     }
   };
 
@@ -165,11 +165,11 @@ export function ProfileScreen() {
           <div className="rounded-[22px] border border-border/70 bg-card p-2.5 shadow-[0_8px_28px_rgba(15,23,42,0.05)]">
             <div className="flex items-start gap-2.5 px-0.5 pb-1.5 pt-0.5">
               <div className="relative shrink-0">
-                <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-emerald-100 bg-emerald-50 shadow-[0_4px_14px_rgba(15,23,42,0.03)]">
-                  <User className="h-5 w-5 text-emerald-600" />
+                <div className="flex h-11 w-11 items-center justify-center rounded-[14px] border border-emerald-100 bg-emerald-50 shadow-[0_4px_14px_rgba(15,23,42,0.03)] dark:border-emerald-500/30 dark:bg-emerald-500/15">
+                  <User className="h-5 w-5 text-emerald-600 dark:text-emerald-300" />
                 </div>
 
-                <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-emerald-500 shadow-sm">
+                <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-emerald-500 shadow-sm dark:border-card">
                   <BadgeCheck className="h-2.5 w-2.5 text-white" />
                 </div>
               </div>
@@ -179,7 +179,7 @@ export function ProfileScreen() {
                   <h1 className="truncate text-[12px] font-bold tracking-tight text-slate-900">
                     {profileName}
                   </h1>
-                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[13px] font-medium text-emerald-700">
+                  <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[13px] font-medium text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
                     <Sparkles className="h-2 w-2" />
                     {userRole === 'client'
                       ? isRu
@@ -200,7 +200,7 @@ export function ProfileScreen() {
 
               <button
                 onClick={() => navigate('notifications')}
-                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card hover:text-emerald-600"
+                className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] border border-border/70 bg-[#f7f7f5] text-slate-500 transition hover:bg-card hover:text-emerald-600 dark:bg-muted dark:text-slate-300 dark:hover:text-emerald-300"
                 aria-label={isRu ? 'Уведомления' : 'Notifications'}
               >
                 <Bell className="h-4 w-4" />
@@ -211,7 +211,7 @@ export function ProfileScreen() {
             </div>
 
             <div className="mt-1 grid grid-cols-3 gap-2">
-              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
+              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center dark:bg-muted/60">
                 <p className="text-[12px] font-bold tracking-tight text-slate-900">
                   {favorites.length}
                 </p>
@@ -220,7 +220,7 @@ export function ProfileScreen() {
                 </p>
               </div>
 
-              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
+              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center dark:bg-muted/60">
                 <p className="text-[12px] font-bold tracking-tight text-slate-900">
                   {upcomingCount}
                 </p>
@@ -229,7 +229,7 @@ export function ProfileScreen() {
                 </p>
               </div>
 
-              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center">
+              <div className="rounded-[12px] border border-border/70 bg-[#fafaf8] p-2 text-center dark:bg-muted/60">
                 <div className="flex items-center justify-center gap-0.5">
                   <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                   <p className="text-[12px] font-bold tracking-tight text-slate-900">4.9</p>
@@ -255,7 +255,7 @@ export function ProfileScreen() {
           </div>
 
           <div className="space-y-2">
-            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
+            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5 dark:bg-muted/60">
               <div className="flex items-center justify-between gap-2.5">
                 <div className="flex min-w-0 items-center gap-2.5">
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-slate-500">
@@ -297,7 +297,7 @@ export function ProfileScreen() {
               </div>
             </div>
 
-            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
+            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5 dark:bg-muted/60">
               <div className="flex items-center justify-between gap-2.5">
                 <div className="flex min-w-0 items-center gap-2.5">
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-slate-500">
@@ -345,7 +345,7 @@ export function ProfileScreen() {
               </div>
             </div>
 
-            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
+            <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5 dark:bg-muted/60">
               <div className="flex items-center justify-between gap-2.5">
                 <div className="flex min-w-0 items-center gap-2.5">
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-card text-slate-500">
@@ -358,7 +358,7 @@ export function ProfileScreen() {
                 </div>
                 <button
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[12px] font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="rounded-[10px] border border-border/70 bg-card px-3 py-1.5 text-[12px] font-semibold text-slate-700 transition hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-muted/70"
                 >
                   {theme === 'dark' ? (isRu ? 'Светлая' : 'Light') : (isRu ? 'Темная' : 'Dark')}
                 </button>
@@ -378,7 +378,7 @@ export function ProfileScreen() {
                 <button
                   key={itemIndex}
                   onClick={item.onClick}
-                  className={`flex w-full items-center gap-2.5 px-2.5 py-2.5 text-left transition hover:bg-[#fafaf8] ${
+                  className={`flex w-full items-center gap-2.5 px-2.5 py-2.5 text-left transition hover:bg-[#fafaf8] dark:hover:bg-muted/70 ${
                     itemIndex !== section.items.length - 1 ? 'border-b border-border/70' : ''
                   }`}
                 >
@@ -408,7 +408,7 @@ export function ProfileScreen() {
           </section>
         ))}
 
-        <button className="flex w-full items-center justify-center gap-1.5 rounded-[14px] border border-rose-200 bg-rose-50 p-2.5 text-[13px] font-medium text-rose-600 transition hover:bg-rose-100">
+        <button className="flex w-full items-center justify-center gap-1.5 rounded-[14px] border border-rose-200 bg-rose-50 p-2.5 text-[13px] font-medium text-rose-600 transition hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/15 dark:text-rose-300 dark:hover:bg-rose-500/20">
           <LogOut className="h-4 w-4" />
           {isRu ? 'Выйти' : 'Log out'}
         </button>
