@@ -155,20 +155,20 @@ export function MapScreen() {
       </div>
 
       <div className="absolute inset-x-0 top-0 z-[1000] px-3 pt-3 safe-top">
-        <div className="rounded-[18px] border border-border/70 bg-card/95 p-2 shadow-[0_8px_28px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+        <div className="rounded-[18px] border border-border bg-card/95 p-2 shadow-[0_8px_28px_rgba(15,23,42,0.08)] backdrop-blur-xl">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t('searchPlaceholder')}
-              className="h-10 w-full rounded-[12px] border border-border/70 bg-[#f7f7f5] pl-9 pr-9 text-[13px] text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-emerald-200 focus:bg-card"
+              className="h-10 w-full rounded-[12px] border border-border bg-surface-secondary pl-9 pr-9 text-[13px] text-foreground outline-none transition placeholder:text-text-muted focus:border-emerald-200 focus:bg-card"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-card text-slate-400 shadow-sm"
+                className="absolute right-2 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full bg-card text-text-muted shadow-sm"
                 aria-label="Clear search"
               >
                 <X className="h-3 w-3" />
@@ -177,8 +177,8 @@ export function MapScreen() {
           </div>
 
           <div className="mt-1.5 flex items-center gap-1.5 overflow-x-auto pb-0.5 scrollbar-hide">
-            <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-[#f7f7f5] transition hover:bg-card">
-              <SlidersHorizontal className="h-3.5 w-3.5 text-slate-500" />
+            <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-border bg-surface-secondary transition hover:bg-surface">
+              <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" />
             </button>
 
             {filterTabs.map((tab) => {
@@ -190,7 +190,7 @@ export function MapScreen() {
                   className={`h-8 shrink-0 rounded-[10px] px-3 text-[12px] font-medium transition-all ${
                     active
                       ? 'bg-emerald-500 text-white shadow-[0_8px_18px_rgba(16,185,129,0.22)]'
-                      : 'border border-border/70 bg-[#f7f7f5] text-slate-700 hover:bg-card'
+                      : 'border border-border bg-surface-secondary text-text-secondary hover:bg-surface'
                   }`}
                 >
                   {tab.label}
@@ -200,7 +200,7 @@ export function MapScreen() {
 
             <button
               onClick={() => setRecenterSignal((v) => v + 1)}
-              className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-border/70 bg-[#f7f7f5] transition hover:bg-card"
+              className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] border border-border bg-surface-secondary transition hover:bg-surface"
               aria-label={isRu ? 'Моё местоположение' : 'My location'}
             >
               <LocateFixed className="h-4 w-4 text-emerald-600" />
@@ -208,7 +208,7 @@ export function MapScreen() {
           </div>
         </div>
 
-        <div className="mt-2 inline-flex rounded-full border border-border/70 bg-card/95 px-2.5 py-1 text-[12px] font-medium text-slate-700 shadow-[0_4px_12px_rgba(15,23,42,0.05)] backdrop-blur-xl">
+        <div className="mt-2 inline-flex rounded-full border border-border bg-card/95 px-2.5 py-1 text-[12px] font-medium text-text-secondary shadow-[0_4px_12px_rgba(15,23,42,0.05)] backdrop-blur-xl">
           {isRu
             ? `Найдено мастеров: ${filteredMasters.length}`
             : `Found masters: ${filteredMasters.length}`}
@@ -245,7 +245,7 @@ export function MapScreen() {
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5">
-                      <SheetTitle className="truncate text-[12px] font-bold tracking-tight text-slate-900">
+                      <SheetTitle className="truncate text-[12px] font-bold tracking-tight text-foreground">
                         {selectedMaster.name}
                       </SheetTitle>
                       {selectedMaster.verified && (
@@ -253,18 +253,18 @@ export function MapScreen() {
                       )}
                     </div>
 
-                    <p className="truncate text-[12px] text-slate-500">
+                    <p className="truncate text-[12px] text-muted-foreground">
                       {selectedMaster.specialization}
                     </p>
 
                     <div className="mt-1.5 flex flex-wrap items-center gap-2">
                       <div className="flex items-center gap-0.5 text-[12px]">
                         <Star className="h-3 w-3 fill-[#f4b63d] text-[#f4b63d]" />
-                        <span className="font-semibold text-slate-900">{selectedMaster.rating}</span>
-                        <span className="text-slate-400">({selectedMaster.reviewCount})</span>
+                        <span className="font-semibold text-foreground">{selectedMaster.rating}</span>
+                        <span className="text-text-muted">({selectedMaster.reviewCount})</span>
                       </div>
 
-                      <div className="flex items-center gap-0.5 text-[12px] text-slate-500">
+                      <div className="flex items-center gap-0.5 text-[12px] text-muted-foreground">
                         <MapPin className="h-3 w-3" />
                         <span>{formatDistance(selectedMaster.distance, language)}</span>
                       </div>
@@ -276,7 +276,7 @@ export function MapScreen() {
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] transition ${
                       isFavorite
                         ? 'bg-rose-50 text-rose-500'
-                        : 'bg-slate-100 text-slate-400 hover:text-slate-700'
+                        : 'bg-surface-secondary text-text-muted hover:text-text-secondary'
                     }`}
                   >
                     <Heart className={`h-4 w-4 ${isFavorite ? 'fill-current' : ''}`} />
@@ -285,18 +285,18 @@ export function MapScreen() {
               </SheetHeader>
 
               <div className="mb-3 grid grid-cols-2 gap-2">
-                <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
-                  <p className="mb-0.5 text-[13px] text-slate-500">{t('from')}</p>
+                <div className="rounded-[14px] border border-border bg-surface-tertiary p-2.5">
+                  <p className="mb-0.5 text-[13px] text-muted-foreground">{t('from')}</p>
                   <p className="text-[12px] font-bold text-emerald-600">
                     {formatPrice(selectedMaster.priceFrom)}
                   </p>
                 </div>
 
-                <div className="rounded-[14px] border border-border/70 bg-[#fafaf8] p-2.5">
-                  <p className="mb-0.5 text-[13px] text-slate-500">
+                <div className="rounded-[14px] border border-border bg-surface-tertiary p-2.5">
+                  <p className="mb-0.5 text-[13px] text-muted-foreground">
                     {isRu ? 'Адрес' : 'Address'}
                   </p>
-                  <p className="truncate text-[13px] font-medium text-slate-900">
+                  <p className="truncate text-[13px] font-medium text-foreground">
                     {selectedMaster.address}
                   </p>
                 </div>
@@ -309,10 +309,10 @@ export function MapScreen() {
                   </div>
 
                   <div className="flex-1">
-                    <p className="text-[13px] font-semibold text-slate-900">
+                    <p className="text-[13px] font-semibold text-foreground">
                       {isRu ? 'Маршрут построен' : 'Route built'}
                     </p>
-                    <p className="text-[13px] text-slate-500">
+                    <p className="text-[13px] text-muted-foreground">
                       {isRu ? 'Пешеходный маршрут на карте' : 'Walking route on the map'}
                     </p>
                   </div>
@@ -321,7 +321,7 @@ export function MapScreen() {
                     variant="outline"
                     size="sm"
                     onClick={handleOpenInMaps}
-                    className="h-8 rounded-[10px] border-border/70 bg-card px-2.5 text-[12px]"
+                    className="h-8 rounded-[10px] border-border bg-card px-2.5 text-[12px]"
                   >
                     <ExternalLink className="mr-1 h-3 w-3" />
                     {t('openInMaps')}
@@ -332,7 +332,7 @@ export function MapScreen() {
               <div className="mb-3 grid grid-cols-3 gap-2">
                 <Button
                   variant="outline"
-                  className="h-10 rounded-[12px] border-border/70 bg-card text-[12px]"
+                  className="h-10 rounded-[12px] border-border bg-card text-[12px]"
                   onClick={handleBuildRoute}
                 >
                   <Navigation className="mr-1.5 h-3.5 w-3.5" />
@@ -341,7 +341,7 @@ export function MapScreen() {
 
                 <Button
                   variant="outline"
-                  className="h-10 rounded-[12px] border-border/70 bg-card text-[12px]"
+                  className="h-10 rounded-[12px] border-border bg-card text-[12px]"
                   onClick={handleChat}
                 >
                   <MessageCircle className="mr-1.5 h-3.5 w-3.5" />
@@ -350,7 +350,7 @@ export function MapScreen() {
 
                 <Button
                   variant="outline"
-                  className="h-10 rounded-[12px] border-border/70 bg-card text-[12px]"
+                  className="h-10 rounded-[12px] border-border bg-card text-[12px]"
                   onClick={handleOpenProfile}
                 >
                   {isRu ? 'Профиль' : 'Profile'}

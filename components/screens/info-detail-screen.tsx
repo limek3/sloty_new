@@ -278,7 +278,7 @@ export function InfoDetailScreen() {
 
   return (
     <div className="app-shell safe-top safe-bottom">
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 px-3 py-3 backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-border bg-background/90 px-3 py-3 backdrop-blur-xl">
         <div className="mx-auto flex max-w-2xl items-center gap-3">
           <button
             onClick={goBack}
@@ -303,7 +303,7 @@ export function InfoDetailScreen() {
       <main className="mx-auto max-w-2xl space-y-3 px-3 py-3.5">
         {selectedInfoPage === 'my-schedule' && (
           <>
-            <section className="rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm">
+            <section className="rounded-2xl border border-border bg-card p-3 shadow-premium-sm">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <h2 className="text-sm font-semibold text-foreground">{isRu ? 'Управление слотами' : 'Slot management'}</h2>
@@ -361,7 +361,7 @@ export function InfoDetailScreen() {
 
         {selectedInfoPage === 'my-services' && (
           <>
-            <section className="rounded-2xl border border-border/70 bg-card p-3 shadow-premium-sm">
+            <section className="rounded-2xl border border-border bg-card p-3 shadow-premium-sm">
               <h2 className="text-sm font-semibold text-foreground">{isRu ? 'Редактор услуг' : 'Service editor'}</h2>
               <p className="mt-0.5 text-xs text-muted-foreground">
                 {isRu ? 'Добавляйте и обновляйте услуги, цену, длительность и описание.' : 'Add and update service name, price, duration, and description.'}
@@ -418,7 +418,7 @@ export function InfoDetailScreen() {
 
             <section className="space-y-2">
               {services.map((service) => (
-                <div key={service.id} className="rounded-xl border border-border/70 bg-card p-2.5 shadow-premium-sm">
+                <div key={service.id} className="rounded-xl border border-border bg-card p-2.5 shadow-premium-sm">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
                       <p className="truncate text-[13px] font-semibold text-foreground">{service.name}</p>
@@ -456,7 +456,7 @@ export function InfoDetailScreen() {
 
         {selectedInfoPage !== 'my-services' && selectedInfoPage !== 'my-schedule' &&
           content.blocks.map((block, idx) => (
-            <div key={idx} className="rounded-xl border border-border/70 bg-card p-3.5 shadow-premium-sm">
+            <div key={idx} className="rounded-xl border border-border bg-card p-3.5 shadow-premium-sm">
               <h2 className="mb-1.5 text-sm font-semibold text-foreground">{block.title}</h2>
               <p className="text-xs leading-relaxed text-muted-foreground">{block.text}</p>
             </div>
@@ -464,7 +464,7 @@ export function InfoDetailScreen() {
 
         <button
           onClick={() => navigate('chats')}
-          className="group flex w-full items-center justify-between rounded-xl border border-border/70 bg-card p-3.5 text-left shadow-premium-sm transition-all hover:border-primary/40"
+          className="group flex w-full items-center justify-between rounded-xl border border-border bg-card p-3.5 text-left shadow-premium-sm transition-all hover:border-primary/40"
         >
           <div>
             <p className="text-sm font-medium text-foreground">{isRu ? 'Открыть чат поддержки' : 'Open support chat'}</p>
@@ -473,7 +473,7 @@ export function InfoDetailScreen() {
           <ChevronRight className="h-4 w-4 text-muted-foreground transition group-hover:text-primary" />
         </button>
 
-        <section className="rounded-xl border border-border/70 bg-secondary/60 p-3">
+        <section className="rounded-xl border border-border bg-secondary/60 p-3">
           <div className="flex items-start gap-2">
             <Lock className="mt-0.5 h-4 w-4 text-muted-foreground" />
             <div>

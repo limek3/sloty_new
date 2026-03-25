@@ -177,7 +177,7 @@ export function BottomNav() {
   return (
     <nav className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-3 safe-bottom safe-bottom-keyboard">
       <div className="mx-auto max-w-md">
-        <div className="pointer-events-auto relative overflow-hidden rounded-[26px] border border-border/70 bg-card/88 px-2.5 py-2.5 shadow-premium-lg backdrop-blur-2xl">
+        <div className="pointer-events-auto relative overflow-hidden rounded-[26px] border border-border bg-card/88 px-2.5 py-2.5 shadow-premium-lg backdrop-blur-2xl">
           {/* Top gradient line */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
