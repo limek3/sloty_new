@@ -136,30 +136,66 @@ export function HomeScreen() {
   const getCategoryTone = (category: CategoryLike) => {
     const key = getCategoryKey(category);
     if (key.includes("manicure") || key.includes("маник")) {
-      return { bg: "bg-rose-50 dark:bg-rose-200/16", text: "text-rose-600 dark:text-rose-100", border: "border-rose-100 dark:border-rose-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-100 dark:from-rose-200/22 dark:via-pink-200/18 dark:to-fuchsia-200/20",
+        text: "text-rose-500 dark:text-rose-100",
+        border: "border-rose-200/80 dark:border-rose-200/35",
+      };
     }
     if (key.includes("pedicure") || key.includes("педик")) {
-      return { bg: "bg-pink-50 dark:bg-pink-200/16", text: "text-pink-600 dark:text-pink-100", border: "border-pink-100 dark:border-pink-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-100 dark:from-emerald-200/22 dark:via-teal-200/18 dark:to-cyan-200/20",
+        text: "text-emerald-600 dark:text-emerald-100",
+        border: "border-emerald-200/80 dark:border-emerald-200/35",
+      };
     }
     if (key.includes("hair") || key.includes("парикмах") || key.includes("barber") || key.includes("барбер")) {
-      return { bg: "bg-amber-50 dark:bg-amber-200/16", text: "text-amber-700 dark:text-amber-100", border: "border-amber-100 dark:border-amber-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-green-50 via-emerald-50 to-lime-100 dark:from-green-200/22 dark:via-emerald-200/18 dark:to-lime-200/20",
+        text: "text-green-600 dark:text-green-100",
+        border: "border-green-200/80 dark:border-green-200/35",
+      };
     }
     if (key.includes("makeup") || key.includes("макияж")) {
-      return { bg: "bg-violet-50 dark:bg-violet-200/16", text: "text-violet-600 dark:text-violet-100", border: "border-violet-100 dark:border-violet-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-violet-50 via-indigo-50 to-purple-100 dark:from-violet-200/22 dark:via-indigo-200/18 dark:to-purple-200/20",
+        text: "text-violet-500 dark:text-violet-100",
+        border: "border-violet-200/80 dark:border-violet-200/35",
+      };
     }
     if (key.includes("massage") || key.includes("массаж")) {
-      return { bg: "bg-blue-50 dark:bg-blue-200/16", text: "text-blue-600 dark:text-blue-100", border: "border-blue-100 dark:border-blue-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-teal-50 via-cyan-50 to-sky-100 dark:from-cyan-200/22 dark:via-sky-200/18 dark:to-blue-200/20",
+        text: "text-cyan-600 dark:text-cyan-100",
+        border: "border-cyan-200/80 dark:border-cyan-200/35",
+      };
     }
     if (key.includes("cosmet") || key.includes("космет")) {
-      return { bg: "bg-teal-50 dark:bg-teal-200/16", text: "text-teal-700 dark:text-teal-100", border: "border-teal-100 dark:border-teal-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 dark:from-amber-200/22 dark:via-orange-200/18 dark:to-yellow-200/20",
+        text: "text-orange-500 dark:text-orange-100",
+        border: "border-orange-200/80 dark:border-orange-200/35",
+      };
     }
     if (key.includes("brow") || key.includes("бров")) {
-      return { bg: "bg-orange-50 dark:bg-orange-200/16", text: "text-orange-600 dark:text-orange-100", border: "border-orange-100 dark:border-orange-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-lime-50 via-green-50 to-emerald-100 dark:from-lime-200/22 dark:via-green-200/18 dark:to-emerald-200/20",
+        text: "text-emerald-600 dark:text-emerald-100",
+        border: "border-emerald-200/80 dark:border-emerald-200/35",
+      };
     }
     if (key.includes("lash") || key.includes("ресниц")) {
-      return { bg: "bg-indigo-50 dark:bg-indigo-200/16", text: "text-indigo-600 dark:text-indigo-100", border: "border-indigo-100 dark:border-indigo-200/28" };
+      return {
+        bg: "bg-gradient-to-br from-teal-50 via-emerald-50 to-green-100 dark:from-teal-200/22 dark:via-emerald-200/18 dark:to-green-200/20",
+        text: "text-emerald-500 dark:text-emerald-100",
+        border: "border-emerald-200/80 dark:border-emerald-200/35",
+      };
     }
-    return { bg: "bg-primary/5 dark:bg-emerald-200/14", text: "text-primary dark:text-emerald-100", border: "border-primary/10 dark:border-emerald-200/24" };
+    return {
+      bg: "bg-gradient-to-br from-slate-50 via-zinc-50 to-stone-100 dark:from-slate-200/18 dark:via-zinc-200/14 dark:to-stone-200/18",
+      text: "text-slate-500 dark:text-slate-100",
+      border: "border-slate-200/80 dark:border-slate-200/30",
+    };
   };
 
   const sectionHeaderClass = "text-[12px] font-semibold tracking-tight text-foreground";
