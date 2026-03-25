@@ -43,7 +43,7 @@ export function StateCard({
   return (
     <Empty
       className={cn(
-        'rounded-[18px] border border-border/70 bg-card px-4 py-8 shadow-[0_6px_20px_rgba(15,23,42,0.04)]',
+        'rounded-[18px] border border-border/70 bg-card px-4 py-8 shadow-premium-sm',
         className,
       )}
     >
@@ -53,16 +53,16 @@ export function StateCard({
           className={cn(
             'size-12 rounded-[14px]',
             tone === 'error'
-              ? 'bg-rose-50 text-rose-600'
-              : 'bg-[#f5f5f2] text-slate-400',
+              ? 'bg-destructive/10 text-destructive'
+              : 'bg-surface-secondary text-muted-foreground',
           )}
         >
           <ResolvedIcon className="h-5 w-5" />
         </EmptyMedia>
 
-        <EmptyTitle className="text-[14px] font-semibold text-slate-900">{title}</EmptyTitle>
+        <EmptyTitle className="text-[14px] font-semibold text-foreground">{title}</EmptyTitle>
 
-        <EmptyDescription className="max-w-xs text-[13px] leading-[1.4] text-slate-500">
+        <EmptyDescription className="max-w-xs text-[13px] leading-[1.45] text-muted-foreground">
           {description}
         </EmptyDescription>
       </EmptyHeader>
@@ -70,7 +70,7 @@ export function StateCard({
       <EmptyContent className="mt-1.5 w-auto max-w-none gap-2 sm:flex-row">
         <Button
           onClick={primaryAction.onClick}
-          className="h-9 rounded-[12px] bg-emerald-500 px-3 text-[13px] font-semibold text-white shadow-[0_10px_20px_rgba(16,185,129,0.2)] hover:bg-emerald-600"
+          className="h-9 rounded-[12px] bg-primary px-3 text-[13px] font-semibold text-primary-foreground shadow-primary-glow hover:bg-primary-hover"
         >
           {primaryAction.label}
         </Button>
