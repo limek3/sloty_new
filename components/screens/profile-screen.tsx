@@ -16,7 +16,7 @@ import {
   FileText,
   LogOut,
   Briefcase,
-  BadgeCheck,
+  Check,
   Sparkles,
   Star,
   Settings2,
@@ -169,8 +169,8 @@ export function ProfileScreen() {
                   <User className="h-5 w-5 text-emerald-600 dark:text-emerald-300" />
                 </div>
 
-                <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-white bg-emerald-500 shadow-sm dark:border-card">
-                  <BadgeCheck className="h-2.5 w-2.5 text-white" />
+                <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full border border-white/90 bg-sky-500 shadow-[0_3px_10px_rgba(14,165,233,0.35)] dark:border-slate-900">
+                  <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />
                 </div>
               </div>
 
